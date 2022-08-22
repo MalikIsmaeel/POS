@@ -113,8 +113,8 @@
 												<td>
 													
 												    	
-												<a href="http://127.0.0.1:8000/" class="btn btn-primary">Profile</a>
-		                                            <button class="btn btn-danger"> Delete</button>
+												<a href="{{route('user.show',$user->id)}}" class="btn btn-primary">Profile</a>
+												<a href="http://127.0.0.1:8000/" class="btn btn-danger">delete</a>
 													
 							    					
 													
