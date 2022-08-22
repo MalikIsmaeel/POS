@@ -102,7 +102,7 @@
 												<td>{{$user->first_name}}</td>
 												<td>{{$user->last_name}}</td>
 												<td>{{$user->email}}</td>
-												<td> <select name="active" class="form-select ml-3 mr-1">
+												<td> <select name="active" class="form-select">
 												<option value="" >الحالة</option>
 												<option value="1" {{ $user->active == 1 ? 'selected' : '' }}>   مفعل   </option>
     											<option value="0" {{  $user->active == 0 ? 'selected' : '' }}>  غير مفعل  </option>
@@ -128,7 +128,7 @@
 										
 									</table>
 									
-    								{{ $users->links() }}
+    								<tfoot>{{ $users->links() }}</tfoot>
 								</div>
 							</div>
 
