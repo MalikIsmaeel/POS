@@ -18,7 +18,7 @@ use App\Http\Controllers\UserController;
     return view('index');
 });
 Auth::routes();
- Route::get('/{page}', [AdminController::class, 'index']);
+//  Route::get('/{page}', [AdminController::class, 'index']);
 Route::get('/will', function () {
     return view('Auth.showall');
 });

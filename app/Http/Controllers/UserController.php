@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
- 
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role; 
+use Illuminate\Support\Facades\Input;
+
+use function PHPUnit\Framework\returnCallback;
+
 class UserController extends Controller
 {
     /**
@@ -12,7 +18,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $users =User::all()->where('active','=',1);
+        $users =User::paginate(10);
+        // ->where('active','=',1);
         // dd($users);
         return view('user.showall',['users'=>$users]);
     }
@@ -35,7 +42,37 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::validation([]);
+         $request->validate([
+            
+           'first_name'=>'required',
+            'last_name'=>'required',
+            'address'=>'required|max:30',
+            'user_name'=>'required|unique:users',
+            'email'=>'required|email|unique:users',
+            'password'=>'required|min:8|alpha_dash',
+            
+                ]);
+    
+                user::create( [
+                
+            'email'=>$request->email,
+            
+           
+            'password' =>Hash::make($request->password),
+            'phone'=>$request->phone,
+           'address'=>$request->address,
+            'user_name'=>$request->user_name,
+            'first_name' =>$request->first_name,
+            'meddile_name'=>$request->imd_name,
+            'address'=>$request->address,
+            'last_name'=>$request->last_name,
+            'active'=>$request->input('active','1'),
+    
+        ]);
+        
+
+   
+    return redirect()->back()->with('success', 'User Added successfully.');
     }
 
     /**

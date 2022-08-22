@@ -42,11 +42,40 @@
 		<!-- main-content -->
 		<div class=" mr-2 ml-3 mt-5">
 		@include('layouts.main-header');
+	
+    
+ 
 			
+
+				
 			<!-- container -->
 			<div class="d-flex flex-column mt-5">
-
+		
 			<div class="row">
+			@if ($errors->any())
+		@foreach ($errors->all() as $error)
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert">
+							<i class="fa fa-times"></i>
+						</button>
+						<strong>danger !</strong> {{$error}}
+					</div>
+</br>
+					@endforeach
+				
+				{{-- Message --}}
+@else
+@if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>Success !</strong> {{ session('success') }}
+   </div>
+	@endif
+@endif
+
+
 					<div class="col-lg-12 col-md-12">
 						<div class="card">
 							<div class="card-body">
@@ -57,21 +86,58 @@
 								<div id="wizard3">
 									<h3>المعلومات الاساسية</h3>
 									<section>
+									<form action="{{route('user.store')}}" method="post">
+										@csrf
 										<div class="d-flex">
-											<div class="row justify-content-left">
+											<div class="col justify-content-left">
 											<div class="control-group form-group mr-5">
 												<label class="form-label">  الاسم الاول</label>
-												<input type="text" class="form-control required" placeholder="الاسم">
+												<input type="text"  name ='first_name' class="form-control required" required placeholder="الاول">
 											</div>
 											<div class="control-group form-group mr-5">
 												<label class="form-label"> الاسم الاوسط</label>
-												<input type="text" class="form-control required" placeholder="الاسم">
+												<input type="text" name="imd_name" class="form-control required" required placeholder="الثاني">
 											</div>
 											<div class="control-group form-group mr-5">
 												<label class="form-label"> الاسم الاخير</label>
-												<input type="text" class="form-control required" placeholder="الاسم">
+												<input type="text" name="last_name" class="form-control"  required placeholder="الثالث">
 											</div>
-										</div>
+											<div class="control-group form-group mr-5">
+												<label class="form-label"> الموقع</label>
+												<input type="text" name="address" class="form-control"  required placeholder="الثالث">
+											</div>
+											
+											<div class="control-group form-group mr-5">
+												<label class="form-label"> رقم الهاتف</label>
+												<input type="text" name="phone" class="form-control"  required placeholder="الثالث">
+											</div>
+											<div class="control-group form-group mr-5">
+												<label class="form-label">البريد الالكتروني</label>
+												<input type="email" name="email" class="form-control required" autofill='false' required placeholder="البريد الالكتروني">
+											</div>
+											<div class="control-group form-group mr-5">
+												<label class="form-label">  إسم المستخدم</label>
+												<input type="text"  name ='user_name' class="form-control required" required placeholder="الاول">
+											</div>
+											<div class="control-group form-group mr-5">
+													<label class="form-label">كلمة المرور</label>
+													<input type="password" class="form-control " name="password" required placeholder="كلمة المرور ">
+											</div>
+												
+											<div>
+													<input type="submit" class='btn btn-primary' value="حفظ">
+											</div>
+											<!-- 'email'=>$request->email,
+            // input('Malik@gmail.com'),
+           
+            'password' =>Hash::make($request->password),
+            // input('123456'), // password
+           'address'=>$request->address,
+            'user_name'=>$request->user_name,
+            'first_name' =>$request->f_name,
+            'meddile_name'=>$request->imd_name,
+            'last_name'=>$request->ls_name, -->
+										<!-- </div>
 										</div>
 										<div class="control-group form-group ">
 											<label class="form-label">البريد الالكتروني</label>
@@ -84,30 +150,26 @@
 										<div class="control-group form-group mb-0">
 											<label class="form-label">العنوان</label>
 											<input type="text" class="form-control" placeholder="السكن">
-										</div>
+										</div> -->
+										</form>
 									</section>
-									<h3>Billing Information</h3>
+									<!-- <h3>بيانات الحساب</h3>
 									<section>
-										<div class="table-responsive mg-t-20">
-											<table class="table table-bordered">
-												<tbody>
-													<tr>
-														<td>Cart Subtotal</td>
-														<td class="text-right">$792.00</td>
-													</tr>
-													<tr>
-														<td><span>Totals</span></td>
-														<td class="text-right text-muted"><span>$792.00</span></td>
-													</tr>
-													<tr>
-														<td><span>Order Total</span></td>
-														<td><h2 class="price text-right mb-0">$792.00</h2></td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</section>
-									<h3>Payment Details</h3>
+									<div class="control-group form-group ">
+												<label class="form-label">البريد الالكتروني</label>
+												<input type="email" name="email" class="form-control required" placeholder="البريد الالكتروني">
+											</div>
+											<div class="control-group form-group">
+													<label class="form-label">رقم الهاتف</label>
+													<input type="number" class="form-control required" placeholder="رقم الهاتف">
+											</div>
+												
+											<div>
+													<input type="submit"   class='btn btn-success' value="save">
+											</div>
+									</section> -->
+									</form>
+									<!-- <h3>Payment Details</h3>
 									<section>
 										<div class="form-group">
 											<label class="form-label" >CardHolder Name</label>
@@ -140,7 +202,7 @@
 												</div>
 											</div>
 										</div>
-									</section>
+									</section> -->
 								</div>
 							</div>
 						</div>
