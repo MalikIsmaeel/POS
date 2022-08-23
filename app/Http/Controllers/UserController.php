@@ -97,7 +97,7 @@ class UserController extends Controller
      */
     public function edit($id,Request $request)
     {
-      dd($request);
+      
        
     }
 
