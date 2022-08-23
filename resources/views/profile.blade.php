@@ -35,11 +35,38 @@
 						</div>
 					</div>
 				</div>
+				<div class="d-flex flex-column mt-5">
+		
+			<div class="row">
+			@if ($errors->any())
+		@foreach ($errors->all() as $error)
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert">
+							<i class="fa fa-times"></i>
+						</button>
+						<strong>danger !</strong> {{$error}}
+					</div>
+</br>
+					@endforeach
+				
+				{{-- Message --}}
+@else
+@if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>Success !</strong> {{ session('success') }}
+   </div>
+	@endif
+@endif
+			</div>
 				<!-- breadcrumb -->
 @endsection
 @section('content')
 				<!-- row -->
 				<div class="row row-sm">
+					
 					<div class="col-lg-4">
 						<div class="card mg-b-20">
 							<div class="card-body">
@@ -50,26 +77,26 @@
 										</div>
 										<div class="d-flex justify-content-between mg-b-20">
 											<div>
-												<h5 class="main-profile-name">Petey Cruiser</h5>
+												<h5 class="main-profile-name">{{$user->first_name.' '.$user->last_name}}</h5>
 												<p class="main-profile-name-text">Web Designer</p>
 											</div>
 										</div>
-										<h6>Bio</h6>
+										<h6>السكن</h6>
 										<div class="main-profile-bio">
-											pleasure rationally encounter but because pursue consequences that are extremely painful.occur in which toil and pain can procure him some great pleasure.. <a href="">More</a>
-										</div><!-- main-profile-bio -->
+											{{$user->address}}
+									</div><!-- main-profile-bio -->
 										<div class="row">
 											<div class="col-md-4 col mb20">
 												<h5>947</h5>
-												<h6 class="text-small text-muted mb-0">Followers</h6>
+												<h6 class="text-small text-muted mb-0">  فاتورة مبيعات</h6>
 											</div>
 											<div class="col-md-4 col mb20">
 												<h5>583</h5>
-												<h6 class="text-small text-muted mb-0">Tweets</h6>
+												<h6 class="text-small text-muted mb-0">قيد</h6>
 											</div>
 											<div class="col-md-4 col mb20">
 												<h5>48</h5>
-												<h6 class="text-small text-muted mb-0">Posts</h6>
+												<h6 class="text-small text-muted mb-0">فاتورة مشتريات</h6>
 											</div>
 										</div>
 										<hr class="mg-y-30">
@@ -233,6 +260,7 @@
 									</div>
 									<div class="tab-pane" id="profile">
 										<div class="row">
+											
 											<div class="col-sm-4">
 												<div class="border p-1 card thumb">
 													<a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/7.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
@@ -284,33 +312,45 @@
 										</div>
 									</div>
 									<div class="tab-pane" id="settings">
-										<form role="form">
-											<div class="form-group">
-												<label for="FullName">Full Name</label>
-												<input type="text" value="John Doe" id="FullName" class="form-control">
+									<form action="{{route('user.update',$user->id)}}" method="POST">
+										@csrf
+										{{ method_field('PUT') }}
+										<div class="d-flex">
+											<div class="col justify-content-left">
+											<div class="control-group form-group mr-5">
+												<label class="form-label">  الاسم الاول</label>
+												<input type="text" value="{{$user->first_name}}" name ='first_name' class="form-control required" required placeholder="الاول">
 											</div>
-											<div class="form-group">
-												<label for="Email">Email</label>
-												<input type="email" value="first.last@example.com" id="Email" class="form-control">
+											<div class="control-group form-group mr-5">
+												<label class="form-label"> الاسم الاوسط</label>
+												<input type="text" value="{{$user->meddile_name}}" name="meddile_name" class="form-control required" required placeholder="الثاني">
 											</div>
-											<div class="form-group">
-												<label for="Username">Username</label>
-												<input type="text" value="john" id="Username" class="form-control">
+											<div class="control-group form-group mr-5">
+												<label class="form-label"> الاسم الاخير</label>
+												<input type="text" value="{{$user->last_name}}" name="last_name" class="form-control"  required placeholder="الثالث">
 											</div>
-											<div class="form-group">
-												<label for="Password">Password</label>
-												<input type="password" placeholder="6 - 15 Characters" id="Password" class="form-control">
+											<div class="control-group form-group mr-5">
+												<label class="form-label"> السكن</label>
+												<input type="text" value="{{$user->address}}" name="address" class="form-control"  required placeholder="الثالث">
 											</div>
-											<div class="form-group">
-												<label for="RePassword">Re-Password</label>
-												<input type="password" placeholder="6 - 15 Characters" id="RePassword" class="form-control">
+											
+											<div class="control-group form-group mr-5">
+												<label class="form-label"> رقم الهاتف</label>
+												<input type="text" value="{{$user->phone}}" name="phone" class="form-control"  required placeholder="الثالث">
 											</div>
-											<div class="form-group">
-												<label for="AboutMe">About Me</label>
-												<textarea id="AboutMe" class="form-control">Loren gypsum dolor sit mate, consecrate disciplining lit, tied diam nonunion nib modernism tincidunt it Loretta dolor manga Amalia erst volute. Ur wise denim ad minim venial, quid nostrum exercise ration perambulator suspicious cortisol nil it applique ex ea commodore consequent.</textarea>
+											<div class="control-group form-group mr-5">
+												<label class="form-label">البريد الالكتروني</label>
+												<input type="email" value="{{$user->email}}" name="email" class="form-control required" autofill='false' required placeholder="البريد الالكتروني">
 											</div>
-											<button class="btn btn-primary waves-effect waves-light w-md" type="submit">Save</button>
-										</form>
+											<div class="control-group form-group mr-5">
+												<label class="form-label">  إسم المستخدم</label>
+												<input type="text" value="{{$user->user_name}}" name ='user_name' class="form-control required" required placeholder="الاول">
+											</div>
+										
+												
+											<div>
+													<input type="submit" class='btn btn-primary' value="حفظ">
+											</div>
 									</div>
 								</div>
 							</div>

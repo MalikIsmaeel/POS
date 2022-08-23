@@ -103,7 +103,7 @@
 												<input type="text" name="last_name" class="form-control"  required placeholder="الثالث">
 											</div>
 											<div class="control-group form-group mr-5">
-												<label class="form-label"> الموقع</label>
+												<label class="form-label"> السكن</label>
 												<input type="text" name="address" class="form-control"  required placeholder="الثالث">
 											</div>
 											

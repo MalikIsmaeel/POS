@@ -95,9 +95,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,Request $request)
     {
-        //
+      dd($request);
+       
     }
 
     /**
@@ -109,7 +110,31 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user= user::findorfail($id);
+       
+      
+     
+                 $user->update( [
+                 
+             'email'=>$request->email,
+             
+            
+             
+             
+            'address'=>$request->address,
+             'user_name'=>$request->user_name,
+             'first_name' =>$request->first_name,
+             'meddile_name'=>$request->meddile_name,
+             'address'=>$request->address,
+             'last_name'=>$request->last_name,
+             'active'=>$request->input('active','1'),
+             
+         ]);
+       
+         
+        
+         return redirect()->back()->with('success', 'User updated successfully.');
+         
     }
 
     /**
