@@ -102,11 +102,11 @@
 												<td>{{$user->first_name}}</td>
 												<td>{{$user->last_name}}</td>
 												<td>{{$user->email}}</td>
-												<td> <select name="active" class="form-select">
-												<option value="" >الحالة</option>
-												<option value="1" {{ $user->active == 1 ? 'selected' : '' }}>   مفعل   </option>
-    											<option value="0" {{  $user->active == 0 ? 'selected' : '' }}>  غير مفعل  </option>
-												</select>
+												<td> 
+											
+												<p> {{ $user->active == 1 ? 'مفعل' : 'غير مفعل ' }}     </p>
+    										
+												
 													  
 											</td>
 												
@@ -114,7 +114,7 @@
 													
 												    	
 												<a href="{{route('user.show',$user->id)}}" class="btn btn-primary">Profile</a>
-												<a href="http://127.0.0.1:8000/" class="btn btn-danger">delete</a>
+
 													
 							    					
 													
@@ -162,4 +162,15 @@
 <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
 <!--Internal  Datatable js -->
 <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
+<script>
+
+$("#btnSend").click(function (e) {
+	var result = window.confirm('Are you sure?');
+	if (result == false) {
+		e.preventDefault();
+	};
+	
+
+});
+</script>
 @endsection

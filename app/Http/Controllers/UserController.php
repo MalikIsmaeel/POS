@@ -143,8 +143,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, request $request)
     {
-        //
+        $user= user::findorfail($id);
+        $user->update([
+            'active'=>$request->input('active','0')
+        ]);
+
+        return redirect()->back()->with('success', 'User deleted successfully.');
     }
 }

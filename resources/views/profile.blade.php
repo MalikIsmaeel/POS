@@ -346,10 +346,23 @@
 												<label class="form-label">  إسم المستخدم</label>
 												<input type="text" value="{{$user->user_name}}" name ='user_name' class="form-control required" required placeholder="الاول">
 											</div>
-										
+											<div class="control-group form-group mr-5">
+												<label class="form-label">  إسم المستخدم</label>
+												<p>{{$user->active}}</p> 
+											</div>
 												
 											<div>
+
+									
 													<input type="submit" class='btn btn-primary' value="حفظ">
+													<form id="delete" action="{{route('user.destroy',$user->id)}}" method="post">
+														@csrf
+														@method('DELETE')
+											<button id="btnSend" class="btn btn-danger">مسح</button>
+											</form>		
+												</form>
+													
+
 											</div>
 									</div>
 								</div>
@@ -360,8 +373,38 @@
 				<!-- row closed -->
 			</div>
 			<!-- Container closed -->
+			
 		</div>
 		<!-- main-content closed -->
 @endsection
 @section('js')
+<script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/pdfmake.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/vfs_fonts.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
+<!--Internal  Datatable js -->
+<script src="{{URL::asset('assets/js/table-data.js')}}"></script>
+<script>
+
+$("#btnSend").click(function (e) {
+	var result = window.confirm('Are you sure?');
+	if (result == false) {
+		e.preventDefault();
+	};
+	
+
+});
+</script>
 @endsection
