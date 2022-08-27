@@ -116,18 +116,15 @@ class UserController extends Controller
      
                  $user->update( [
                  
-             'email'=>$request->email,
-             
-            
-             
-             
+             'email'=>$request->email,         
+                         
             'address'=>$request->address,
              'user_name'=>$request->user_name,
              'first_name' =>$request->first_name,
              'meddile_name'=>$request->meddile_name,
              'address'=>$request->address,
              'last_name'=>$request->last_name,
-             'active'=>$request->input('active','1'),
+             'active'=>$request->active,
              
          ]);
        
