@@ -20,7 +20,12 @@ return new class extends Migration
             $table->string('type');
             $table->unsignedInteger('active');
             $table->string('photo')->nullable();
-            $table->rememberToken();
+            $table->foreignId('user_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade');
+            $table->foreignId('catogery_id')
+            ->references('id')->on('catogeries')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }
