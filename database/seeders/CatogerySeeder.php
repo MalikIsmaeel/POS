@@ -14,6 +14,6 @@ class CatogerySeeder extends Seeder
      */
     public function run()
     {
-        //
+      
     }
 }

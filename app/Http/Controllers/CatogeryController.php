@@ -14,7 +14,8 @@ class CatogeryController extends Controller
      */
     public function index()
     {
-        //
+       $catogery= catogery::where('active','=','1')->get();
+     return view('catogery.index')->with('catogeries',$catogery);
     }
 
     /**
@@ -35,7 +36,22 @@ class CatogeryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+       $request->validate([
+        'catogery_name'=>'required|min:5|max:50',
+        'description'=>'max:100',
+        'active'=>'required|in:0,1',
+        'user_id'=>'required|',
+        
+
+       ]);
+       
+        $catogery=catogery::create([
+            'catogery_name'=>$request->catogery_name,
+        'description'=>$request->description,
+        'active'=>'required|in:0,1',
+        'user_id'=>'required'
+        ]);
     }
 
     /**
@@ -46,8 +62,10 @@ class CatogeryController extends Controller
      */
     public function show(catogery $catogery)
     {
-        //
+    
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
