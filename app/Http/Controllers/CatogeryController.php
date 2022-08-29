@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\catogery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CatogeryController extends Controller
@@ -47,16 +48,18 @@ class CatogeryController extends Controller
         'catogery_name'=>'required|min:5|max:50',
         'description'=>'max:100',
         'active'=>'required|in:0,1',
-        'user_id'=>'required|',
+        'user_id'=>'required'
+        
         
 
        ]);
        
         $catogery=catogery::create([
-            'catogery_name'=>$request->catogery_name,
+        'catogery_name'=>$request->catogery_name,
         'description'=>$request->description,
-        'active'=>'required|in:0,1',
-        'user_id'=>'required'
+        'active'=>$request->active,
+        'user_id'=>Auth::user()->id,
+        'parent_id'=>$request->parent_id
         ]);
     }
 
