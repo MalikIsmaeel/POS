@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\catogery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CatogeryController extends Controller
 {
@@ -14,8 +15,12 @@ class CatogeryController extends Controller
      */
     public function index()
     {
-       $catogery= catogery::where('active','=','1')->get();
-     return view('catogery.index')->with('catogeries',$catogery);
+       $catogery=  DB::table('catogeries as main_catogery')
+       ->select('sub_catogery.catogery_name as catogery_name', 'sub_catogery.description as description','main_catogery.catogery_name as main_catogery')
+       ->rightJoin('catogeries as sub_catogery', 'sub_catogery.id', '=', 'main_catogery.parent_id')
+       ->get();
+      return   view('catogery.index')->with('catogeries',$catogery);
+    
     }
 
     /**
@@ -25,7 +30,8 @@ class CatogeryController extends Controller
      */
     public function create()
     {
-        //
+        $catogery=catogery::get()->where('active','=','1');
+        return view('catogery.insert',$catogery);
     }
 
     /**

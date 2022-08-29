@@ -22,9 +22,9 @@ return new class extends Migration
             $table->foreignId('user_id')
             ->references('id')->on('users')
             ->onDelete('cascade');
-            $table->foreignId('parent_id')
+            $table->foreignId('parent_id')->nullable()
             ->references('id')->on('catogeries')
-            ->onDelete('cascade')->nullable();
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }
