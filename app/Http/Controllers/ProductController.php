@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use Illuminate\Http\Request;
+use App\Models\catogery;
 
 class ProductController extends Controller
 {
@@ -39,7 +40,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
+            'name'=>'required|unique:product',
             'meature'=>'required|number',
             'type'=>'number',
             'active'=>'required',
@@ -50,8 +51,12 @@ class ProductController extends Controller
             'name'=>$request->namr,
             'meature'=>$request->meature,
             'type'=>$request->type,
-            'active'=>$request->input('active','1'),
-            'photo'=>$request->photo
+            'active'=>$request->active ?? 0,
+            'photo'=>$request->photo ,
+            'catogery'=>$request->catogery,
+            'user_id'=>$request->user_id,
+
+            
         ]);
 
             return redirect()->back()->with('success', 'User Added successfully.');
@@ -66,9 +71,9 @@ class ProductController extends Controller
     public function show($id)
     {
         $product=product::findorfail($id);
-        if($product){
+        
             return view('profile',['product'=>$product]);
-    }
+    
 }
 
     /**
@@ -77,7 +82,7 @@ class ProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(product $product)
+    public function edit($id)
     {
         $product=product::findorfail($id);
         if($product){
@@ -86,7 +91,7 @@ class ProductController extends Controller
             'meature'=>$request->meature,
             'type'=>$request->type,
             'active'=>$request->active,
-            'photo'=>$request->photo
+            'photo'=>$request->photo 
         ]);
         }
 
@@ -111,8 +116,17 @@ class ProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(product $product)
+    public function destroy($is)
     {
-        //
+        $product=product::findorfail($id);
+        if($product){
+        $products=product::update( [
+        
+            'active'=>$request->input('0'),
+       
+        ]);
+        }
+
+            return redirect()->back()->with('success', 'Product Deleted successfully.');
     }
 }
