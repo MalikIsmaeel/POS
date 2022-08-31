@@ -19,7 +19,7 @@ use App\Http\Controllers\CatogeryController;
     return view('index');
 });
 Auth::routes();
-Route::get('/{page}', [AdminController::class, 'index']);
+// Route::get('/{page}', [AdminController::class, 'index']);
 Route::resource('/user',UserController::class);
 Route::resource('/catogery',CatogeryController::class);
 

@@ -51,7 +51,7 @@
 								</div>
 								<p class="tx-12 tx-gray-500 mb-2">Example of Valex Striped Rows.. <a href="">Learn more</a></p>
 							</div>
-							<a href="{{route('catogery.create')}}" class="btn btn-primary"></a>
+							<a href="{{route('catogery.create')}}" class="btn btn-primary"> Adding new catogery</a>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table table-striped mg-b-0 text-md-nowrap">
@@ -62,6 +62,7 @@
 												<th>Name</th>
 												<th>Description</th>
 												<th>Parent</th>
+												<th>operation</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -73,6 +74,11 @@
 												<td>
 												{{$catogery->main_catogery }} 
 												</td>
+												<td><a href="{{route('catogery.edit',$catogery->id)}}" class="btn btn-primary"> edit catogery</a>
+												<form id="delete" action="{{route('catogery.destroy',$catogery->id)}}" method="post">
+														@csrf
+														@method('DELETE')
+											<button id="btnSend" class="btn btn-danger">delete</button>
 											</tr> 
 											@endforeach
 										</tbody>

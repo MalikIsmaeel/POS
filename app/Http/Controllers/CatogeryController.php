@@ -45,9 +45,8 @@ class CatogeryController extends Controller
     {
         
        $request->validate([
-        'catogery_name'=>'required|unique|min:5|max:50',
+        'catogery_name'=>'required|unique:catogeries|min:5|max:50',
         'description'=>'max:100',
-        'active'=>'required|in:0,1',
         'user_id'=>'required'
         
         
@@ -57,7 +56,7 @@ class CatogeryController extends Controller
         $catogery=catogery::create([
         'catogery_name'=>$request->catogery_name,
         'description'=>$request->description,
-        'active'=>$request->active,
+        'active'=>$request->active ?? 0,
         'user_id'=>$request->user_id,
         'parent_id'=>$request->parent_id
         ]);
@@ -107,7 +106,7 @@ class CatogeryController extends Controller
      */
     public function update(Request $request, catogery $catogery)
     {
-        //
+        
     }
 
     /**
@@ -116,8 +115,13 @@ class CatogeryController extends Controller
      * @param  \App\Models\catogery  $catogery
      * @return \Illuminate\Http\Response
      */
-    public function destroy(catogery $catogery)
+    public function destroy($id,$request)
     {
-        //
+        $catogery= catogery::findorfail($id);
+        $catogery->update([
+            'active'=>$request->input('active','0')
+        ]);
+
+        return redirect()->back()->with('success', 'User deleted successfully.');
     }
 }
