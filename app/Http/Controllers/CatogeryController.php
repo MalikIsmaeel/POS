@@ -32,7 +32,7 @@ class CatogeryController extends Controller
     public function create()
     {
         $catogery=catogery::get()->where('active','=','1');
-        return view('catogery.insert',$catogery);
+        return view('catogery.insert')->with('catogeries',$catogery);
     }
 
     /**
@@ -45,7 +45,7 @@ class CatogeryController extends Controller
     {
         
        $request->validate([
-        'catogery_name'=>'required|min:5|max:50',
+        'catogery_name'=>'required|unique|min:5|max:50',
         'description'=>'max:100',
         'active'=>'required|in:0,1',
         'user_id'=>'required'
@@ -58,9 +58,11 @@ class CatogeryController extends Controller
         'catogery_name'=>$request->catogery_name,
         'description'=>$request->description,
         'active'=>$request->active,
-        'user_id'=>Auth::user()->id,
+        'user_id'=>$request->user_id,
         'parent_id'=>$request->parent_id
         ]);
+        
+        return redirect()->back()->with('success', 'User Added successfully.');
     }
 
     /**
@@ -82,9 +84,18 @@ class CatogeryController extends Controller
      * @param  \App\Models\catogery  $catogery
      * @return \Illuminate\Http\Response
      */
-    public function edit(catogery $catogery)
+    public function edit($id,$request)
     {
-        //
+        $catogery=catogery::findorfail($id);
+        $catogery->update([
+            'catogery_name'=>$request->catogery_name,
+            'description'=>$request->description,
+            'active'=>$request->active,
+            'user_id'=>$request->user_id,
+            'parent_id'=>$request->parent_id
+            ]);
+            
+            return redirect()->back()->with('success', 'User Added successfully.');
     }
 
     /**

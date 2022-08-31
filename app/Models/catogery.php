@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class catogery extends Model
 {
     use HasFactory;
+    protected $fillable=['catogery_name',
+    'description',
+    'active',
+    'user_id',
+    'parent_id'];
     public function user()
     {
         return $this->belongsTo(User::class);
