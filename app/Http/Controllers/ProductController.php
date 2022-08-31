@@ -45,11 +45,12 @@ class ProductController extends Controller
             'active'=>'required',
             
         ]);
+
         $products=product::create( [
-            'name'=>$request->namr;
-            'meature'=>$request->meature;
-            'type'=>$request->type;
-            'active'=>$request->input('active','1');
+            'name'=>$request->namr,
+            'meature'=>$request->meature,
+            'type'=>$request->type,
+            'active'=>$request->input('active','1'),
             'photo'=>$request->photo
         ]);
 
@@ -68,6 +69,7 @@ class ProductController extends Controller
         if($product){
             return view('profile',['product'=>$product]);
     }
+}
 
     /**
      * Show the form for editing the specified resource.
@@ -80,10 +82,10 @@ class ProductController extends Controller
         $product=product::findorfail($id);
         if($product){
         $products=product::create( [
-            'name'=>$request->namr;
-            'meature'=>$request->meature;
-            'type'=>$request->type;
-            'active'=>$request->active;
+            'name'=>$request->namr,
+            'meature'=>$request->meature,
+            'type'=>$request->type,
+            'active'=>$request->active,
             'photo'=>$request->photo
         ]);
         }

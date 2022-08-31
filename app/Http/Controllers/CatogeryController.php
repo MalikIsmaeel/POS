@@ -14,7 +14,7 @@ class CatogeryController extends Controller
      */
     public function index()
     {
-        //
+    
     }
 
     /**
