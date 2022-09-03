@@ -84,11 +84,12 @@ class CatogeryController extends Controller
      * @param  \App\Models\catogery  $catogery
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $catogery=catogery::findorfail($id);
+         $catogery=catogery::findorfail($id);
         $catogeries=catogery::get();
-       return view('catogery.edit');
+       return view('catogery.edit',['sub_catogery'=>$catogery,'main_catogery'=>$catogeries]);
+    dd($catogeries);
     }
 
     /**

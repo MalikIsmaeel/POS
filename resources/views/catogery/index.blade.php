@@ -74,7 +74,7 @@
 												{{$catogery->main_catogery }} 
 												</td>
 												<td>
-												<a href="{{url('/will')}}" class="btn btn-primary">yes</a>
+												<a href="{{route('catogrey.edit',$catogery->child_id)}}" class="btn btn-primary">yes</a>
 												</td>
 												</tr> 
 											@endforeach
