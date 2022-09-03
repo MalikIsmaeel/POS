@@ -32,6 +32,7 @@ class CatogeryController extends Controller
     public function create()
     {
         $catogery=catogery::get()->where('active','=','1');
+        
         return view('catogery.insert')->with('catogeries',$catogery);
     }
 
@@ -61,7 +62,7 @@ class CatogeryController extends Controller
         'parent_id'=>$request->parent_id
         ]);
         
-        return redirect()->back()->with('success', 'User Added successfully.');
+        return redirect()->back()->with('success', 'Catogery Added successfully.');
     }
 
     /**
@@ -83,7 +84,21 @@ class CatogeryController extends Controller
      * @param  \App\Models\catogery  $catogery
      * @return \Illuminate\Http\Response
      */
-    public function edit($id,$request)
+    public function edit($id)
+    {
+        $catogery=catogery::findorfail($id);
+        $catogeries=catogery::get();
+       return view('catogery.edit');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\catogery  $catogery
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
         $catogery=catogery::findorfail($id);
         $catogery->update([
@@ -94,19 +109,7 @@ class CatogeryController extends Controller
             'parent_id'=>$request->parent_id
             ]);
             
-            return redirect()->back()->with('success', 'User Added successfully.');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\catogery  $catogery
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, catogery $catogery)
-    {
-        
+            return redirect()->back()->with('success', 'User Added successfully.'); 
     }
 
     /**
@@ -122,6 +125,6 @@ class CatogeryController extends Controller
             'active'=>$request->input('active','0')
         ]);
 
-        return redirect()->back()->with('success', 'User deleted successfully.');
+        return redirect()->back()->with('success', 'Catogery deleted successfully.');
     }
 }

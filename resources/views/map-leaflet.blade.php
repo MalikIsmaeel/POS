@@ -1,12 +1,14 @@
 @extends('layouts.master')
 @section('css')
+<!-- Internal  leaflet-map css -->
+<link href="{{URL::asset('assets/plugins/leaflet/leaflet.css')}}" rel="stylesheet">
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">Pages</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Empty</span>
+							<h4 class="content-title mb-0 my-auto">Maps</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Mapel maps</span>
 						</div>
 					</div>
 					<div class="d-flex my-xl-auto right-content">
@@ -38,60 +40,55 @@
 				<!-- breadcrumb -->
 @endsection
 @section('content')
-<?php $i=0; ?>
 				<!-- row -->
 				<div class="row">
-				<!--div-->
-				<div class="col-xl-12">
+					<div class="col-lg-12">
 						<div class="card">
-							<div class="card-header pb-0">
-								<div class="d-flex justify-content-between">
-									<h4 class="card-title mg-b-0">STRIPED ROWS</h4>
-									<i class="mdi mdi-dots-horizontal text-gray"></i>
-								</div>
-								<p class="tx-12 tx-gray-500 mb-2">Example of Valex Striped Rows.. <a href="">Learn more</a></p>
-							</div>
-						
 							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-striped mg-b-0 text-md-nowrap">
-										<thead>
-											
-											<tr>
-												<th>#</th>
-												<th>Name</th>
-												<th>Description</th>
-												<th>Parent</th>
-											</tr>
-										</thead>
-										<tbody>
-										 @foreach($catogeries as $catogery ) 
-											 <tr>
-											 <th scope="row">{{++$i}}</th>
-												<td>{{$catogery->catogery_name}}</td>
-												<td>{{$catogery->description}}</td>
-												<td>
-												{{$catogery->main_catogery }} 
-												</td>
-												<td>
-												<a href="{{url('/will')}}" class="btn btn-primary">yes</a>
-												</td>
-												</tr> 
-											@endforeach
-										</tbody>
-									</table>
-								</div><!-- bd -->
-							</div><!-- bd -->
-						</div><!-- bd -->
+								<div class="main-content-label mg-b-5">
+									Basic
+								</div>
+								<p class="mg-b-20">A default map style by Leaflet Maps.</p>
+								<div class="ht-300" id="leaflet1"></div>
+							</div>
+						</div>
 					</div>
-					<!--/div-->
-
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="main-content-label mg-b-5">
+									With Popup
+								</div>
+								<p class="mg-b-20">Popups are usually used when you want to attach some information to a map.</p>
+								<div class="ht-300" id="leaflet2"></div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<!-- row closed -->
+				<!-- /row -->
+
+				<!-- row -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="main-content-label mg-b-5">
+									Map with circle
+								</div>
+								<p class="mg-b-20">Adding a circle is the same (except for specifying the radius in meters as a second argument), but lets you control how it looks by passing options as the last argument when creating the object.</p>
+								<div class="ht-200 ht-sm-300 ht-md-400 mb-0" id="leaflet3"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
 			</div>
 			<!-- Container closed -->
 		</div>
 		<!-- main-content closed -->
 @endsection
 @section('js')
+<!--Internal  Leaflet-maps js -->
+<script src="{{URL::asset('assets/plugins/leaflet/leaflet.js')}}"></script>
+<script src="{{URL::asset('assets/js/map-leafleft.js')}}"></script>
 @endsection

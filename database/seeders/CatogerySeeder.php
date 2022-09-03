@@ -14,6 +14,21 @@ class CatogerySeeder extends Seeder
      */
     public function run()
     {
-      
+      $data = [
+    'Clothing' => ['Woman Shoes', 'Men\'s Shirts'],
+    'Handy' => ['Smartphones', 'Smartwatches ']
+];
+
+foreach ($data as $category => $subCategories)
+{
+    $id = Category::create(['name' => $category])->id;
+
+    foreach ($subCategories as $subCategory) {
+        SubCategory::create([
+            'parent_id' => $id,
+            'name' => $subCategory
+        ]);
+    }
+}
     }
 }
