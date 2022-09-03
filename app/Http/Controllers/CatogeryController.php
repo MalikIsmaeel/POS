@@ -17,7 +17,7 @@ class CatogeryController extends Controller
     public function index()
     {
        $catogery=  DB::table('catogeries as main_catogery')
-       ->select('sub_catogery.catogery_name as catogery_name', 'sub_catogery.description as description','main_catogery.catogery_name as main_catogery')
+       ->select('sub_catogery.catogery_name as catogery_name', 'sub_catogery.description as description','main_catogery.catogery_name as main_catogery','sub_catogery.id as child_id')
        ->rightJoin('catogeries as sub_catogery', 'sub_catogery.id', '=', 'main_catogery.parent_id')
        ->get();
       return   view('catogery.index')->with('catogeries',$catogery);
