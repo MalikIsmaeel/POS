@@ -75,7 +75,12 @@
 												</td>
 												<td>
 												<a href="{{route('catogrey.edit',$catogery->child_id)}}" class="btn btn-primary">yes</a>
-												</td>
+												<form id="delete" action="{{route('catogrey.destroy',$catogery->child_id)}}" method="post">
+														@csrf
+														@method('DELETE')
+											<button id="btnSend" class="btn btn-danger">مسح</button>
+											</form>	
+											</td>
 												</tr> 
 											@endforeach
 										</tbody>

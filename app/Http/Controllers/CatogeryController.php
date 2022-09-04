@@ -6,7 +6,7 @@ use App\Models\catogery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\user;
 class CatogeryController extends Controller
 {
     /**
@@ -85,10 +85,10 @@ class CatogeryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {     $user=user::get();
          $catogery=catogery::findorfail($id);
         $catogeries=catogery::get();
-       return view('catogery.edit',['sub_catogery'=>$catogery,'main_catogery'=>$catogeries]);
+       return view('catogery.edit',['sub_catogery'=>$catogery,'main_catogery'=>$catogeries, 'users'=>$user]);
     dd($catogeries);
     }
 
@@ -119,7 +119,7 @@ class CatogeryController extends Controller
      * @param  \App\Models\catogery  $catogery
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id,$request)
+    public function destroy($id, request $request )
     {
         $catogery= catogery::findorfail($id);
         $catogery->update([

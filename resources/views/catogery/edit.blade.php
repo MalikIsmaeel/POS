@@ -55,7 +55,9 @@
 								<p class="mb-2">It is Very Easy to Customize and it uses in your website apllication.</p>
 							</div>
 							<div class="card-body pt-0">
-								<form class="form-horizontal" >
+							<form action="{{route('catogrey.update',$sub_catogery->id)}}" method="POST">
+										@csrf
+										{{ method_field('PUT') }}
 									<div class="form-group">
 										<input type="hidden" name="id" class="form-control" id="inputName" placeholder="id" value="{{$sub_catogery->id}}">
 									</div>
@@ -66,17 +68,32 @@
 										<input type="textarea" class="form-control"  placeholder="description" value="{{$sub_catogery->description}}" name="description">
 									</div>
 									<div class="form-group">
-										<input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+									<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
+										
+            							    
+										
+										<option value="$sub_catogery->active" selected>{{$sub_catogery->active == 1 ? 'active' : 'unactive'  }} </option>
+										<option value="{{$sub_catogery->active == 1 ?   0 : 1 }}">{{$sub_catogery->active == 1 ?   'unactive' : 'active' }}"</option>
+									</select>
 									</div>
 
 									<div class="form-group">
-										<select class="form-control selectpicker" id="select-country" data-live-search="true">
+										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="parent_id">
 											@foreach($main_catogery as $catogery)
 												<option value="{{$catogery->id}}">{{$catogery->catogery_name}}</option>
 
 
 											@endforeach
             							    </select>
+									</div>
+									<div class="form-group">
+										
+												<p value="{{$sub_catogery->user_id}}">{{$sub_catogery->user->first_name}}<p>
+
+														
+												</form>
+											
+            							    
 									</div>
 									<div class="form-group mb-0 justify-content-end">
 										<div class="checkbox">

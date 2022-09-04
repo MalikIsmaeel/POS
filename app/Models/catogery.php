@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class catogery extends Model
 {
+    protected $fillable =[
+    'catogery_name',
+    'description',
+    'active',
+    'user_id',
+    'parent_id'];
     use HasFactory;
     public function user()
     {
