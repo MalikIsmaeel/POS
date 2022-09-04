@@ -57,10 +57,10 @@
 							<div class="card-body pt-0">
 								<form class="form-horizontal" >
 									<div class="form-group">
-										<input type="hidden" name="id" class="form-control" id="inputName" placeholder="id" value="id">
+										<input type="hidden" name="id" class="form-control" id="inputName" placeholder="id" value="{{$sub_catogery->id}}>
 									</div>
 									<div class="form-group">
-										<input type="text" name="catogery_name" class="form-control" id="inputName" placeholder="Name">
+										<input type="text" name="catogery_name" class="form-control"  value="{{$sub_catogery->catogery_name}}" id="inputName" placeholder="Name">
 									</div>
 									<div class="form-group">
 										<input type="textarea" class="form-control"  placeholder="description" name="description">

@@ -51,7 +51,7 @@
 								</div>
 								<p class="tx-12 tx-gray-500 mb-2">Example of Valex Striped Rows.. <a href="">Learn more</a></p>
 							</div>
-					<a href="{{route('catogery.create')}}" class="btn"></a>
+					<a href="{{route('catogrey.create')}}" class="btn btn-primary">new catogery</a>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table table-striped mg-b-0 text-md-nowrap">

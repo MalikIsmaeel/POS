@@ -1,5 +1,12 @@
 @extends('layouts.master')
 @section('css')
+<link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+<!--Internal  Datetimepicker-slider css -->
+<link href="{{URL::asset('assets/plugins/amazeui-datetimepicker/css/amazeui.datetimepicker.css')}}" rel="stylesheet">
+<link href="{{URL::asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.css')}}" rel="stylesheet">
+<link href="{{URL::asset('assets/plugins/pickerjs/picker.min.css')}}" rel="stylesheet">
+<!-- Internal Spectrum-colorpicker css -->
+<link href="{{URL::asset('assets/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -40,72 +47,78 @@
 @section('content')
 				<!-- row -->
 				<div class="row">
-				<!--div-->
-				<div class="col-xl-12">
-						<div class="card">
-							<div class="card-header pb-0">
-								<div class="d-flex justify-content-between">
-									<h4 class="card-title mg-b-0">STRIPED ROWS</h4>
-									<i class="mdi mdi-dots-horizontal text-gray"></i>
-								</div>
-								<p class="tx-12 tx-gray-500 mb-2">Example of Valex Striped Rows.. <a href="">Learn more</a></p>
+	
+					<div class="col-md-12 col-sm-12">
+						<div class="card  box-shadow-0">
+							<div class="card-header">
+								<h4 class="card-title mb-1">Default Form</h4>
+								<p class="mb-2">It is Very Easy to Customize and it uses in your website apllication.</p>
 							</div>
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-striped mg-b-0 text-md-nowrap">
-										<thead>
-											<tr>
-												<th>ID</th>
-												<th>Name</th>
-												<th>Position</th>
-												<th>Salary</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<th scope="row">1</th>
-												<td>Joan Powell</td>
-												<td>Associate Developer</td>
-												<td>$450,870</td>
-											</tr>
-											<tr>
-												<th scope="row">2</th>
-												<td>Gavin Gibson</td>
-												<td>Account manager</td>
-												<td>$230,540</td>
-											</tr>
-											<tr>
-												<th scope="row">3</th>
-												<td>Julian Kerr</td>
-												<td>Senior Javascript Developer</td>
-												<td>$55,300</td>
-											</tr>
-											<tr>
-												<th scope="row">4</th>
-												<td>Cedric Kelly</td>
-												<td>Accountant</td>
-												<td>$234,100</td>
-											</tr>
-											<tr>
-												<th scope="row">5</th>
-												<td>Samantha May</td>
-												<td>Junior Technical Author</td>
-												<td>$43,198</td>
-											</tr>
-										</tbody>
-									</table>
-								</div><!-- bd -->
-							</div><!-- bd -->
-						</div><!-- bd -->
+							<div class="card-body pt-0">
+								<form class="form-horizontal" >
+									<div class="form-group">
+										<input type="hidden" name="id" class="form-control" id="inputName" placeholder="id" value="id">
+									</div>
+									<div class="form-group">
+										<input type="text" name="catogery_name" class="form-control" id="inputName" placeholder="Name">
+									</div>
+									<div class="form-group">
+										<input type="textarea" class="form-control"  placeholder="description" name="description">
+									</div>
+									<div class="form-group">
+										<input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+									</div>
+
+									<div class="form-group">
+										<select class="form-control selectpicker" id="select-country" data-live-search="true">
+					
+            							    </select>
+									</div>
+									<div class="form-group mb-0 justify-content-end">
+										<div class="checkbox">
+											<div class="custom-checkbox custom-control">
+												<input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-2">
+												<label for="checkbox-2" class="custom-control-label mt-1">Check me Out</label>
+											</div>
+										</div>
+									</div>
+									<div class="form-group mb-0 mt-3 justify-content-end">
+										<div>
+											<button type="submit" class="btn btn-primary">Sign in</button>
+											<button type="submit" class="btn btn-secondary">Cancel</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
 					</div>
-					<!--/div-->
+					
+				</div>
+				<!-- row -->
 
 				</div>
 				<!-- row closed -->
 			</div>
 			<!-- Container closed -->
-		</div>
+		
 		<!-- main-content closed -->
 @endsection
 @section('js')
+<script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
+<!--Internal  jquery.maskedinput js -->
+<script src="{{URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js')}}"></script>
+<!--Internal  spectrum-colorpicker js -->
+<script src="{{URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js')}}"></script>
+<!-- Internal Select2.min js -->
+<script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+<!--Internal Ion.rangeSlider.min js -->
+<script src="{{URL::asset('assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
+<!--Internal  jquery-simple-datetimepicker js -->
+<script src="{{URL::asset('assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js')}}"></script>
+<!-- Ionicons js -->
+<script src="{{URL::asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js')}}"></script>
+<!--Internal  pickerjs js -->
+<script src="{{URL::asset('assets/plugins/pickerjs/picker.min.js')}}"></script>
+<!-- Internal form-elements js -->
+<script src="{{URL::asset('assets/js/form-elements.js')}}"></script>
 @endsection
