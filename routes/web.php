@@ -18,12 +18,13 @@ use App\Http\Controllers\CatogeryController;
   Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
   Auth::routes();
-//  Route::get('/{page}', [AdminController::class, 'index']);
+   Route::get('/{page}', [AdminController::class, 'index']);
 
 Route::resource('/user',UserController::class);
 Route::resource('/catogrey',CatogeryController::class);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 
 Auth::routes();
 

@@ -64,7 +64,7 @@ class CatogeryController extends Controller
         'catogery_name'=>$request->catogery_name,
         'description'=>$request->description,
         'active'=>$request->active ?? 0,
-        'user_id'=>Auth::user(),
+        'user_id'=>Auth::user()->id,
         'parent_id'=>$request->parent_id
         ]);
         

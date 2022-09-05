@@ -45,6 +45,7 @@ class PermissionsDemoSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'name'=> fake()->name(),
             'user_name'=> fake()->name(),
             'first_name'=> fake()->firstname(),
             'meddile_name'=> fake()->name(),
@@ -53,8 +54,7 @@ class PermissionsDemoSeeder extends Seeder
            
    
             // 'active'=> $this->faker->randomNumber(0, 1),
-        ]);
-        $user->assignRole($role1);
+        ])->assignRole($role1);
 
         // $user = \App\Models\User::factory(3)->create([
         //     'email' => fake()->safeEmail(),
