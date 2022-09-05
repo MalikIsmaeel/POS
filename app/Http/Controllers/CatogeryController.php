@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\DB;
 use App\Models\user;
 class CatogeryController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -58,7 +64,7 @@ class CatogeryController extends Controller
         'catogery_name'=>$request->catogery_name,
         'description'=>$request->description,
         'active'=>$request->active ?? 0,
-        'user_id'=>$request->user_id,
+        'user_id'=>Auth::user(),
         'parent_id'=>$request->parent_id
         ]);
         

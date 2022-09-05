@@ -15,16 +15,16 @@ use App\Http\Controllers\CatogeryController;
 | contains the "web" middleware group. Now create something great!
 |
 */
- Route::get('/', function () {
-    return view('index');
-});
+  Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
-Auth::routes();
+  Auth::routes();
 //  Route::get('/{page}', [AdminController::class, 'index']);
-Route::get('/will', function () {
-    return view('catogery.edit');
-});
+
 Route::resource('/user',UserController::class);
 Route::resource('/catogrey',CatogeryController::class);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

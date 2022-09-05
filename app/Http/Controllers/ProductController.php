@@ -8,6 +8,11 @@ use App\Models\catogery;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -82,7 +87,7 @@ class ProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,  request $request)
     {
         $product=product::findorfail($id);
         if($product){
@@ -116,12 +121,12 @@ class ProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy($is)
+    public function destroy($id, request $request)
     {
         $product=product::findorfail($id);
         if($product){
-        $products=product::update( [
-        
+        $product->update( [
+
             'active'=>$request->input('0'),
        
         ]);
