@@ -98,7 +98,7 @@
 										
             							    
 										
-										<option value="0" selected>{{$sub_catogery->active == 1 ? 'active' : 'unactive'  }} </option>
+										<option value="{{$sub_catogery->active}}" selected>{{$sub_catogery->active == 1 ? 'active' : 'unactive'  }} </option>
 										<option value="{{$sub_catogery->active == 1 ?   0 : 1 }}">{{$sub_catogery->active == 1 ?   'unactive' : 'active' }}"</option>
 									</select>
 									</div>
