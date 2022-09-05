@@ -47,7 +47,28 @@
 @section('content')
 				<!-- row -->
 				<div class="row">
-	
+				@if ($errors->any())
+		@foreach ($errors->all() as $error)
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert">
+							<i class="fa fa-times"></i>
+						</button>
+						<strong>danger !</strong> {{$error}}
+					</div>
+</br>
+					@endforeach
+				
+				{{-- Message --}}
+@else
+@if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>Success !</strong> {{ session('success') }}
+   </div>
+	@endif
+@endif
 					<div class="col-md-12 col-sm-12">
 						<div class="card  box-shadow-0">
 							<div class="card-header">
@@ -55,38 +76,50 @@
 								<p class="mb-2">It is Very Easy to Customize and it uses in your website apllication.</p>
 							</div>
 							<div class="card-body pt-0">
-								<form class="form-horizontal" >
+								
+								<form action="{{route('catogrey.store')}}" method="POST">
+										@csrf
+										
+									
 									<div class="form-group">
-										<input type="hidden" name="id" class="form-control" id="inputName" placeholder="id" value="id">
+										<input type="text" name="catogery_name" class="form-control"  value="{{old('catogery_name')}}" id="inputName" placeholder="Name">
 									</div>
 									<div class="form-group">
-										<input type="text" name="catogery_name" class="form-control" id="inputName" placeholder="Name">
+										<input type="textarea" class="form-control"  placeholder="description" value="{{old('description')}}" name="description">
 									</div>
 									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="description" name="description">
-									</div>
-									<div class="form-group">
-										<input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+									<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
+										
+            							    
+										
+										<option value="1" selected>active</option>
+										<option value="0">unactive</option>
+									</select>
 									</div>
 
 									<div class="form-group">
-										<select class="form-control selectpicker" id="select-country" data-live-search="true">
-					
+										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="parent_id">
+											@foreach($catogeries as $catogery)
+												<option value="{{$catogery->id}}">{{$catogery->catogery_name}}</option>
+
+
+											@endforeach
             							    </select>
 									</div>
-									<div class="form-group mb-0 justify-content-end">
-										<div class="checkbox">
-											<div class="custom-checkbox custom-control">
-												<input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-2">
-												<label for="checkbox-2" class="custom-control-label mt-1">Check me Out</label>
-											</div>
-										</div>
+									<div class="form-group">
+										
+												<input type="text" value="1" name="user_id">
+
+														
+												
+											
+            							    
 									</div>
+									
 									<div class="form-group mb-0 mt-3 justify-content-end">
-										<div>
-											<button type="submit" class="btn btn-primary">Sign in</button>
-											<button type="submit" class="btn btn-secondary">Cancel</button>
-										</div>
+									<div>
+													<input type="submit" class='btn btn-primary' value="حفظ">
+											</div>
 									</div>
 								</form>
 							</div>

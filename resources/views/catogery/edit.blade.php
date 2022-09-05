@@ -47,13 +47,36 @@
 @section('content')
 				<!-- row -->
 				<div class="row">
-	
+				@if ($errors->any())
+		@foreach ($errors->all() as $error)
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert">
+							<i class="fa fa-times"></i>
+						</button>
+						<strong>danger !</strong> {{$error}}
+					</div>
+</br>
+					@endforeach
+				
+				{{-- Message --}}
+@else
+@if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>Success !</strong> {{ session('success') }}
+   </div>
+	@endif
+@endif
 					<div class="col-md-12 col-sm-12">
 						<div class="card  box-shadow-0">
 							<div class="card-header">
 								<h4 class="card-title mb-1">Default Form</h4>
 								<p class="mb-2">It is Very Easy to Customize and it uses in your website apllication.</p>
 							</div>
+
+							
 							<div class="card-body pt-0">
 							<form action="{{route('catogrey.update',$sub_catogery->id)}}" method="POST">
 										@csrf
@@ -65,6 +88,9 @@
 										<input type="text" name="catogery_name" class="form-control"  value="{{$sub_catogery->catogery_name}}" id="inputName" placeholder="Name">
 									</div>
 									<div class="form-group">
+										<input type="text" name="user_id" class="form-control"  value="{{$sub_catogery->user_id}}" id="inputName" placeholder="Name">
+									</div>
+									<div class="form-group">
 										<input type="textarea" class="form-control"  placeholder="description" value="{{$sub_catogery->description}}" name="description">
 									</div>
 									<div class="form-group">
@@ -72,7 +98,7 @@
 										
             							    
 										
-										<option value="$sub_catogery->active" selected>{{$sub_catogery->active == 1 ? 'active' : 'unactive'  }} </option>
+										<option value="0" selected>{{$sub_catogery->active == 1 ? 'active' : 'unactive'  }} </option>
 										<option value="{{$sub_catogery->active == 1 ?   0 : 1 }}">{{$sub_catogery->active == 1 ?   'unactive' : 'active' }}"</option>
 									</select>
 									</div>
@@ -91,7 +117,7 @@
 												<p value="{{$sub_catogery->user_id}}">{{$sub_catogery->user->first_name}}<p>
 
 														
-												</form>
+											
 											
             							    
 									</div>
