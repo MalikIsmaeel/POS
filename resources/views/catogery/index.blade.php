@@ -68,14 +68,15 @@
 										 @foreach($catogeries as $catogery ) 
 											 <tr>
 											 <th scope="row">{{++$i}}</th>
-												<td>{{$catogery->catogery_name}}</td>
+												<td>{{$catogery->main_catogery }} 
+													</td>
 												<td>{{$catogery->description}}</td>
 												<td>
-												{{$catogery->main_catogery }} 
+												{{$catogery->catogery_name}}
 												</td>
 												<td>
-												<a href="{{route('catogrey.edit',$catogery->child_id)}}" class="btn btn-primary">yes</a>
-												<form id="delete" action="{{route('catogrey.destroy',$catogery->child_id)}}" method="post">
+												<a href="{{route('catogrey.edit',$catogery->parent_id)}}" class="btn btn-primary">yes</a>
+												<form id="delete" action="{{route('catogrey.destroy',$catogery->parent_id)}}" method="post">
 														@csrf
 														@method('DELETE')
 											<button id="btnSend" class="btn btn-danger">مسح</button>
@@ -84,13 +85,15 @@
 												</tr> 
 											@endforeach
 										</tbody>
+										
 									</table>
 								</div><!-- bd -->
+								
 							</div><!-- bd -->
 						</div><!-- bd -->
 					</div>
 					<!--/div-->
-
+					<tfoot>{{ $catogeries->links() }}</tfoot>
 				</div>
 				<!-- row closed -->
 			</div>
