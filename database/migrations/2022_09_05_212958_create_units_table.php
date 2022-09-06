@@ -15,6 +15,15 @@ return new class extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->id();
+            $table->string('unit_name');
+            $table->foreignId('user_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade');
+            $table->foreignId('parent_id')->nullable()
+            ->references('id')->on('units')
+            ->onDelete('cascade');
+            $table->unsignedInteger('no_of_units');
+            $table->unsignedInteger('active');
             $table->timestamps();
         });
     }

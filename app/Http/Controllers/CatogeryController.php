@@ -94,7 +94,7 @@ class CatogeryController extends Controller
          $catogery=catogery::findorfail($id);
         $catogeries=catogery::get();
        return view('catogery.edit',['sub_catogery'=>$catogery,'main_catogery'=>$catogeries, 'users'=>$user]);
-    dd($catogeries);
+  
     }
 
     /**
@@ -115,7 +115,7 @@ class CatogeryController extends Controller
             'parent_id'=>$request->parent_id
             ]);
             
-            return redirect()->back()->with('success', 'User Added successfully.'); 
+            return redirect()->back()->with('success', 'Catogery edited successfully.'); 
     }
 
     /**

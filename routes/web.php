@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CatogeryController;
-
+use App\Http\Controllers\UnitController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +22,7 @@ use App\Http\Controllers\CatogeryController;
 
 Route::resource('/user',UserController::class);
 Route::resource('/catogrey',CatogeryController::class);
-
+Route::resource('/unit',UnitController::class);
 
 
 
