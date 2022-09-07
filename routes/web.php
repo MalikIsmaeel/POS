@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CatogeryController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +24,7 @@ use App\Http\Controllers\UnitController;
 Route::resource('/user',UserController::class);
 Route::resource('/catogrey',CatogeryController::class);
 Route::resource('/unit',UnitController::class);
-
+Route::resource('/product',ProductController::class);
 
 
 Auth::routes();

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\product;
 use Illuminate\Http\Request;
 use App\Models\catogery;
+use Illuminate\Support\Facades\DB;
+use App\Models\user;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -23,7 +26,7 @@ class ProductController extends Controller
         $product =product::paginate(10);
         // ->where('active','=',1);
         // dd($users);
-        return view('user.showall',['products'=>$product]);
+        return view('product.index',['products'=>$product]);
     }
 
     /**
@@ -33,7 +36,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $catogeries= catogery::get();
+       return   view('product.insert')->with('catogeries',$catogeries);
     }
 
     /**
@@ -45,26 +49,22 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required|unique:product',
-            'meature'=>'required|number',
-            'type'=>'number',
-            'active'=>'required',
-            
+            'name'=>'required|unique:products',
+            'active'=>'required', 
         ]);
 
         $products=product::create( [
-            'name'=>$request->namr,
-            'meature'=>$request->meature,
-            'type'=>$request->type,
+            'name'=>$request->name,
             'active'=>$request->active ?? 0,
             'photo'=>$request->photo ,
-            'catogery'=>$request->catogery,
-            'user_id'=>$request->user_id,
+            'catogery_id'=>$request->catogery_id,
+            'user_id'=>Auth()->user()->id,
 
             
         ]);
 
-            return redirect()->back()->with('success', 'User Added successfully.');
+            return redirect()->back()->with('success', $request->name.'Product Added successfully.');
+        dd($request);
     }
 
     /**
@@ -77,7 +77,7 @@ class ProductController extends Controller
     {
         $product=product::findorfail($id);
         
-            return view('profile',['product'=>$product]);
+            // return view('profile',['product'=>$product]);
     
 }
 
@@ -87,20 +87,12 @@ class ProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit($id,  request $request)
+    public function edit($id)
     {
+        $user=user::get();
         $product=product::findorfail($id);
-        if($product){
-        $products=product::create( [
-            'name'=>$request->namr,
-            'meature'=>$request->meature,
-            'type'=>$request->type,
-            'active'=>$request->active,
-            'photo'=>$request->photo 
-        ]);
-        }
-
-            return redirect()->back()->with('success', 'User Added successfully.');
+       $catogeries=catogery::get();
+      return view('product.edit',['sub_catogery'=>$product,'main_catogery'=>$catogeries, 'users'=>$user]);
     }
 
     /**
@@ -110,10 +102,19 @@ class ProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, product $product)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        $catogery=catogery::findorfail($id);
+        $catogery->update([
+            'name'=>$request->name,
+            'active'=>$request->active ?? 0,
+            'photo'=>$request->photo ,
+            'catogery_id'=>$request->catogery_id,
+            
+            ]);
+            
+            return redirect()->back()->with('success', 'Catogery edited successfully.');   
+    } 
 
     /**
      * Remove the specified resource from storage.
