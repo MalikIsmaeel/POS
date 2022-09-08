@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CounteryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CatogeryController;
 use App\Http\Controllers\UnitController;
@@ -25,7 +26,7 @@ Route::resource('/user',UserController::class);
 Route::resource('/catogrey',CatogeryController::class);
 Route::resource('/unit',UnitController::class);
 Route::resource('/product',ProductController::class);
-
+Route::resource('/countery',CounteryController::class);
 
 Auth::routes();
 

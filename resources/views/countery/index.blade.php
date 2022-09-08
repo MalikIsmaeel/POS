@@ -83,8 +83,8 @@
 									
 												</td>
 												<td>
-												<a href="{{route('catogrey.edit',$catogery->parent_id)}}" class="btn btn-primary">yes</a>
-												<form id="delete" action="{{route('catogrey.destroy',$catogery->parent_id)}}" method="post">
+												<a href="{{route('countery.edit',$countery->id)}}" class="btn btn-primary">yes</a>
+												<form id="delete" action="{{route('catogrey.destroy',$country->id)}}" method="post">
 														@csrf
 														@method('DELETE')
 											<button id="btnSend" class="btn btn-danger">مسح</button>
@@ -101,7 +101,7 @@
 						</div><!-- bd -->
 					</div>
 					<!--/div-->
-					<tfoot>{{ $catogeries->links() }}</tfoot>
+					<tfoot>{{ $counteries->links() }}</tfoot>
 				</div>
 				<!-- row closed -->
 			</div>

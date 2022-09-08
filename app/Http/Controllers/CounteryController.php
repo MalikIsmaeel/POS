@@ -20,7 +20,7 @@ class CounteryController extends Controller
     public function index()
     {
         $countery=countery::get();
-        return view('countery.index',['countreies',$countery]);
+        return view('countery.index',['counteries',$countery]);
     }
 
     /**
