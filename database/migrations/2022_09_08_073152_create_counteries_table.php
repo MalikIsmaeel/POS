@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('counteries', function (Blueprint $table) {
             $table->id();
+            $table->string('countery_name');
+            $table->text('description');
+            $table->string('active','1');
+            
+            $table->foreignId('user_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }

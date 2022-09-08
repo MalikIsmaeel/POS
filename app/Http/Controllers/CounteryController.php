@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CounteryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,8 @@ class CounteryController extends Controller
      */
     public function index()
     {
-        //
+        $countery=countery::get();
+        return view('countery.index',['countreies',$countery]);
     }
 
     /**

@@ -58,4 +58,13 @@ public function product()
 {
     return $this->belongsTo(product::class);
 }
+public function unit()
+{
+    return $this->belongsTo(unit::class);
+}
+public function countery()
+{
+    return $this->belongsTo(countery::class);
+}
+
 }
