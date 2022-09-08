@@ -100,7 +100,7 @@
 									<div class="form-group">
 										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="catogery_id">
 											@foreach($catogeries as $catogery)
-												<option value="{{$catogery->catogery_name}}">{{$catogery->id}}</option>
+												<option value="{{$catogery->id}}">{{$catogery->catogery_name}}</option>
 
 
 											@endforeach

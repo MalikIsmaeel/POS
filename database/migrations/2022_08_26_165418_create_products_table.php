@@ -18,17 +18,12 @@ return new class extends Migration
             $table->string('name')->unique();
             
             
-            $table->unsignedInteger('active');
+            $table->string('active','1');
             
             $table->string('photo')->nullable();
-            $table->foreignId('user_id')
-            ->references('id')->on('users')
-            ->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->foreignId('catogery_id')
-            ->references('id')->on('catogeries')
-            ->onDelete('cascade');
-          
+            $table->foreignId('catogery_id')->references('id')->on('catogeries')->onDelete('cascade');
             $table->timestamps();
         });
     }

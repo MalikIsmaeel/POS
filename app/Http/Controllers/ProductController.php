@@ -92,7 +92,7 @@ class ProductController extends Controller
         $user=user::get();
         $product=product::findorfail($id);
        $catogeries=catogery::get();
-      return view('product.edit',['sub_catogery'=>$product,'main_catogery'=>$catogeries, 'users'=>$user]);
+      return view('product.edit',['product'=>$product,'catogeries'=>$catogeries, 'users'=>$user]);
     }
 
     /**
@@ -104,8 +104,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $catogery=catogery::findorfail($id);
-        $catogery->update([
+        $product=product::findorfail($id);
+        $product->update([
             'name'=>$request->name,
             'active'=>$request->active ?? 0,
             'photo'=>$request->photo ,

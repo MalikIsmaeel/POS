@@ -78,64 +78,48 @@
 
 							
 							<div class="card-body pt-0">
-							<form action="{{route('catogrey.update',$sub_catogery->id)}}" method="POST">
+							<form action="{{route('product.update',$product->id)}}" method="POST">
 										@csrf
-										{{ method_field('PUT') }}
+										{{ method_field('PUT') }}	
+									
 									<div class="form-group">
-										<input type="hidden" name="id" class="form-control" id="inputName" placeholder="id" value="{{$sub_catogery->id}}">
+										<input type="text" name="name" class="form-control"  value="{{$product->name}}" id="inputName" placeholder="Name">
 									</div>
 									<div class="form-group">
-										<input type="text" name="name" class="form-control"  value="{{$sub_catogery->catogery_name}}" id="inputName" placeholder="Name">
-									</div>
-									<div class="form-group">
-										<input type="text" name="user_id" class="form-control"  value="{{$sub_catogery->user_id}}" id="inputName" placeholder="Name">
-									</div>
-									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="description" value="{{$sub_catogery->description}}" name="description">
+										<input type="textarea" class="form-control"  placeholder="insert new photo" value="{{$product->photo}}" name="photo">
 									</div>
 									<div class="form-group">
 									<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
 										
             							    
 										
-										<option value="{{$sub_catogery->active}}" selected>{{$sub_catogery->active == 1 ? 'active' : 'unactive'  }} </option>
-										<option value="{{$sub_catogery->active == 1 ?   0 : 1 }}">{{$sub_catogery->active == 1 ?   'unactive' : 'active' }}"</option>
+										<option value="{{$product->active}}" selected>{{$product->active == 1 ? 'active' : 'unactive'  }} </option>
+										<option value="{{$product->active == 1 ?   '0' : '1' }}">{{$product->active == 1 ?   'unactive' : 'active' }}</option>
 									</select>
-									</div>
 
 									<div class="form-group">
-										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="parent_id">
-											@foreach($main_catogery as $catogery)
+										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="catogery_id">
+											@foreach($catogeries as $catogery)
 												<option value="{{$catogery->id}}">{{$catogery->catogery_name}}</option>
-
-
 											@endforeach
             							    </select>
 									</div>
 									<div class="form-group">
+	
+            							    
+									</div>
+									
+									<div class="form-group mb-0 mt-3 justify-content-end">
+									<div>
+													<input type="submit" class='btn btn-primary' value="حفظ">
+											</div>
+									</div>
+								</form>
 										
-												<p value="{{$sub_catogery->user_id}}">{{$sub_catogery->user->first_name}}<p>
-
 														
 											
 											
-            							    
-									</div>
-									<div class="form-group mb-0 justify-content-end">
-										<div class="checkbox">
-											<div class="custom-checkbox custom-control">
-												<input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-2">
-												<label for="checkbox-2" class="custom-control-label mt-1">Check me Out</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group mb-0 mt-3 justify-content-end">
-										<div>
-											<button type="submit" class="btn btn-primary">Sign in</button>
-											<button type="submit" class="btn btn-secondary">Cancel</button>
-										</div>
-									</div>
-								</form>
+            					
 							</div>
 						</div>
 					</div>
