@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\countery;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class CounteryController extends Controller
 {
     public function __construct()
@@ -19,8 +19,8 @@ class CounteryController extends Controller
      */
     public function index()
     {
-        $countery=countery::get();
-        return view('countery.index',['counteries',$countery]);
+        $countery=countery::paginate(10);
+        return view('countery.index',['counteries'=>$countery]);
     }
 
     /**
@@ -30,7 +30,9 @@ class CounteryController extends Controller
      */
     public function create()
     {
-        //
+        
+        
+        return view('countery.insert');
     }
 
     /**
@@ -41,7 +43,24 @@ class CounteryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'countery_name'=>'required|unique:counteries|min:5|max:50',
+            'description'=>'max:100',
+            'user_id'=>'required'
+            
+            
+    
+           ]);
+           
+            $countery=countery::create([
+            'countery_name'=>$request->countery_name,
+            'description'=>$request->description,
+            'active'=>$request->active ?? 0,
+            'user_id'=>Auth::user()->id,
+      
+            ]);
+                 
+        return redirect()->back()->with('success', $request->countery_name.' Added successfully.');
     }
 
     /**
@@ -61,9 +80,10 @@ class CounteryController extends Controller
      * @param  \App\Models\countery  $countery
      * @return \Illuminate\Http\Response
      */
-    public function edit(countery $countery)
+    public function edit($id)
     {
-        //
+        $countery=countery::findOrfail($id);
+        return view('countery.edit',['countery'=>$countery]);
     }
 
     /**
@@ -73,9 +93,18 @@ class CounteryController extends Controller
      * @param  \App\Models\countery  $countery
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, countery $countery)
+    public function update(Request $request, $id)
     {
-        //
+        $countery=countery::findOrfail($id);
+        $countery->update([
+            'countery_name'=>$request->countery_name,
+            'description'=>$request->description,
+            'active'=>$request->active ?? 0,
+            
+      
+            ]);
+                 
+        return redirect()->back()->with('success', $request->countery_name.' Eidted successfully.');
     }
 
     /**
@@ -84,8 +113,13 @@ class CounteryController extends Controller
      * @param  \App\Models\countery  $countery
      * @return \Illuminate\Http\Response
      */
-    public function destroy(countery $countery)
+    public function destroy($id ,request $request)
     {
-        //
+        $countery= countery::findorfail($id);
+        $countery->update([
+            'active'=>$request->input('active','0')
+        ]);
+
+        return redirect()->back()->with('success', 'countery deleted successfully.');
     }
 }

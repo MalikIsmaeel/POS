@@ -8,8 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class countery extends Model
 {
     use HasFactory;
+    protected $fillable =[
+        'countery_name',
+        'description',
+        'active',
+        'user_id',
+        ];
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function countery(){
+        return $this->belongsTo(countery::class); 
     }
 }
