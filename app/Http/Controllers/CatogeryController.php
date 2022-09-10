@@ -67,7 +67,7 @@ class CatogeryController extends Controller
         'parent_id'=>$request->parent_id
         ]);
         
-        return redirect()->back()->with('success', $request->name.' Added successfully.');
+        return redirect()->back()->with('success', $request->catogery_name.' Added successfully.');
     }
 
     /**

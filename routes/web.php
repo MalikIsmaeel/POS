@@ -29,7 +29,7 @@ Route::resource('/catogrey',CatogeryController::class);
 Route::resource('/unit',UnitController::class);
 Route::resource('/product',ProductController::class);
 Route::resource('/countery',CounteryController::class);
-
+Route::resource('/city',CounteryController::class);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

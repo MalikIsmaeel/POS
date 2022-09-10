@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\city;
+use App\Models\countery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CityController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        $city= city::pagination(10);
+        return   view('city.index')->with('city',$city);
     }
 
     /**
@@ -24,7 +32,8 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        $countery=countery::get()->where('active','=','1');
+        return view('city.insert',['counteries'=>$countery]);
     }
 
     /**
@@ -35,7 +44,21 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'city_name'=>'required|unique:cities|min:5',
+            'description'=>'max:200',
+            'user_name'=>'required',
+            'active'=>'required',
+            'countery_id'=>'required'
+        ]);
+        $city=city::create([
+            'city_name'=>$request->city_name,
+            'description'=>$request->description,
+            'active'=>$request->active ?? 0,
+            'user_name'=>Auth::user()->id,
+            'countery_id'=>$request->countery_id
+        ]);
+        return response()->with('seccuess','The '. $request->city_name . ' been Added');
     }
 
     /**
@@ -55,10 +78,14 @@ class CityController extends Controller
      * @param  \App\Models\city  $city
      * @return \Illuminate\Http\Response
      */
-    public function edit(city $city)
+    
+        public function edit($id)
     {
-        //
+        $countery=countery::get()->where('active','=','1');
+        $city=city::findOrfail($id);
+        return view('city.edit',['city'=>$city],['counteries'=>$countery]);
     }
+    
 
     /**
      * Update the specified resource in storage.
