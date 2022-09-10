@@ -18,8 +18,10 @@ use App\Http\Controllers\ProductController;
 |
 */
   Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
-
   Auth::routes();
+
+  Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
   //  Route::get('/{page}', [AdminController::class, 'index']);
 
 Route::resource('/user',UserController::class);
@@ -28,6 +30,8 @@ Route::resource('/unit',UnitController::class);
 Route::resource('/product',ProductController::class);
 Route::resource('/countery',CounteryController::class);
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
