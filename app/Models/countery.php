@@ -19,6 +19,6 @@ class countery extends Model
         return $this->belongsTo(User::class);
     }
     public function countery(){
-        return $this->belongsTo(countery::class); 
+        return $this->hasmany(countery::class); 
     }
 }

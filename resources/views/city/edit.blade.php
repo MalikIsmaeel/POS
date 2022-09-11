@@ -79,23 +79,33 @@
 
 							
 							<div class="card-body pt-0">
-							<form action="{{route('countery.update',$countery->id)}}" method="POST">
+							<form action="{{route('city.update',$city->id)}}" method="POST">
 										@csrf
 										{{ method_field('PUT') }}	
 									
 									<div class="form-group">
-										<input type="text" name="countery_name" class="form-control"  value="{{$countery->countery_name}}" id="inputName" placeholder="Name">
+										<input type="text" name="city_name" class="form-control"  value="{{$city->city_name}}" id="inputName" placeholder="Name">
 									</div>
 									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="insert new photo" value="{{$countery->description}}" name="description">
+										<input type="textarea" class="form-control"  placeholder="insert new photo" value="{{$city->description}}" name="description">
+									</div>
+									<div class="form-group">
+										<select class="form-control selectpicker" id="select-country" data-live-search="true" value="" name="countery_id">
+											@foreach($counteries as $countery)
+											 
+												<option value="{{$countery->id}}" {{$city->countery_id == $countery->id ? 'selected' : ' '}} >{{$countery->countery_name}}</option>
+
+
+											@endforeach
+            							    </select>
 									</div>
 									<div class="form-group">
 									<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
-										
+									
             							    
 										
-										<option value="{{$countery->active}}" selected>{{$countery->active == 1 ? 'active' : 'unactive'  }} </option>
-										<option value="{{$countery->active == 1 ?   '0' : '1' }}">{{$countery->active == 1 ?   'unactive' : 'active' }}</option>
+										<option value="{{$city->active}}" selected>{{$city->active == 1 ? 'active' : 'unactive'  }} </option>
+										<option value="{{$city->active == 1 ?   '0' : '1' }}">{{$city->active == 1 ?   'unactive' : 'active' }}</option>
 									</select>
 
 									

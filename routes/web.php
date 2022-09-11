@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\CounteryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CatogeryController;
@@ -29,7 +30,7 @@ Route::resource('/catogrey',CatogeryController::class);
 Route::resource('/unit',UnitController::class);
 Route::resource('/product',ProductController::class);
 Route::resource('/countery',CounteryController::class);
-Route::resource('/city',CounteryController::class);
+Route::resource('/city',CityController::class);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

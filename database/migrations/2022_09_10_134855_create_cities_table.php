@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('active','1');
             $table->foreignId('countery_id')
-            ->references('id')->on('countery')
+            ->references('id')->on('counteries')
             ->onDelete('cascade'); 
             $table->foreignId('user_id')
             ->references('id')->on('users')

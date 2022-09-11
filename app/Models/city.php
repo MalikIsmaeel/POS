@@ -15,6 +15,6 @@ class city extends Model
         'user_id',
         'countery_id'];
         public function countery(){
-            return $this->hasMany(countery::class); 
+            return $this->belongsTo(countery::class); 
         }
 }

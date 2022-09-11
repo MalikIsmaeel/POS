@@ -72,7 +72,7 @@
 												<td>{{$city->city_name }} 
 													</td>
 												<td>{{$city->description}}</td>
-												<td>{{$city->countery->name}}</td>
+												<td>{{$city->countery->countery_name}}</td>
 												<td>
 											
 												<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
@@ -103,7 +103,7 @@
 						</div><!-- bd -->
 					</div>
 					<!--/div-->
-					<tfoot>{{ $city->links() }}</tfoot>
+					<tfoot>{{ $cities->links() }}</tfoot>
 				</div>
 				<!-- row closed -->
 			</div>

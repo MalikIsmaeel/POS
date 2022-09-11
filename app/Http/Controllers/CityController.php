@@ -7,6 +7,8 @@ use App\Models\countery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\callback;
+
 class CityController extends Controller
 {
     public function __construct()
@@ -21,8 +23,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        $city= city::pagination(10);
-        return   view('city.index')->with('city',$city);
+        $city= city::paginate(10);
+        return   view('city.index')->with('cities',$city);
     }
 
     /**
@@ -47,7 +49,7 @@ class CityController extends Controller
         $request->validate([
             'city_name'=>'required|unique:cities|min:5',
             'description'=>'max:200',
-            'user_name'=>'required',
+            
             'active'=>'required',
             'countery_id'=>'required'
         ]);
@@ -55,10 +57,10 @@ class CityController extends Controller
             'city_name'=>$request->city_name,
             'description'=>$request->description,
             'active'=>$request->active ?? 0,
-            'user_name'=>Auth::user()->id,
+            'user_id'=>Auth::user()->id,
             'countery_id'=>$request->countery_id
         ]);
-        return response()->with('seccuess','The '. $request->city_name . ' been Added');
+        return redirect()->back()->with('seccuess','The '. $request->city_name . ' been Added');
     }
 
     /**
@@ -94,9 +96,19 @@ class CityController extends Controller
      * @param  \App\Models\city  $city
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, city $city)
+    public function update(Request $request, $id)
     {
-        //
+        $city=countery::findOrfail($id);
+        $city->update([
+            'city_name'=>$request->city_name,
+            'description'=>$request->description,
+            'active'=>$request->active ?? 0,
+            'countery_id'=>$request->countery_id
+            
+      
+            ]);
+                 
+        return redirect()->back()->with('success', $request->city_name.' Eidted successfully.');
     }
 
     /**
