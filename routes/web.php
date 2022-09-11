@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\SubCityController;
 use App\Http\Controllers\CounteryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CatogeryController;
@@ -31,7 +32,7 @@ Route::resource('/unit',UnitController::class);
 Route::resource('/product',ProductController::class);
 Route::resource('/countery',CounteryController::class);
 Route::resource('/city',CityController::class);
-
+Route::resource('/subcity',SubCityController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

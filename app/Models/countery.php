@@ -18,7 +18,7 @@ class countery extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function countery(){
-        return $this->hasmany(countery::class); 
+    public function city(){
+        return $this->hasmany(city::class); 
     }
 }

@@ -75,48 +75,52 @@
 								<h4 class="card-title mb-1">Default Form</h4>
 								<p class="mb-2">It is Very Easy to Customize and it uses in your website apllication.</p>
 							</div>
+
+
+							
 							<div class="card-body pt-0">
-								
-								<form action="{{route('city.store')}}" method="POST">
+							<form action="{{route('city.update',$city->id)}}" method="POST">
 										@csrf
-										
-										<!-- $table->string('countery_name');
-            $table->text('description');
-            $table->string('active','1'); -->
-            
+										{{ method_field('PUT') }}	
+									
 									<div class="form-group">
-										<input type="text" name="city_name" class="form-control"  value="{{old('city_name')}}" id="inputName" placeholder="Name">
+										<input type="text" name="city_name" class="form-control"  value="{{$city->city_name}}" id="inputName" placeholder="Name">
 									</div>
 									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="description" value="{{old('description')}}" name="description">
+										<input type="textarea" class="form-control"  placeholder="insert new photo" value="{{$city->description}}" name="description">
 									</div>
 									<div class="form-group">
-									<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
-										
-            							    
-										
-										<option value="1" selected>active</option>
-										<option value="0">unactive</option>
-									</select>
-									</div>
-									<div class="form-group">
-										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="countery_id">
-											@foreach($cities as $cities)
-												<option value="{{$countery->id}}">{{$countery->countery_name}}</option>
+										<select class="form-control selectpicker" id="select-country" data-live-search="true" value="" name="countery_id">
+											@foreach($counteries as $countery)
+											 
+												<option value="{{$countery->id}}" {{$city->countery_id == $countery->id ? 'selected' : ' '}} >{{$countery->countery_name}}</option>
 
 
 											@endforeach
             							    </select>
 									</div>
+									<div class="form-group">
+									<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
 									
+            							    
+										
+										<option value="{{$city->active}}" selected>{{$city->active == 1 ? 'active' : 'unactive'  }} </option>
+										<option value="{{$city->active == 1 ?   '0' : '1' }}">{{$city->active == 1 ?   'unactive' : 'active' }}</option>
+									</select>
+
 									
-									
+								
 									<div class="form-group mb-0 mt-3 justify-content-end">
 									<div>
 													<input type="submit" class='btn btn-primary' value="حفظ">
 											</div>
 									</div>
 								</form>
+										
+														
+											
+											
+            					
 							</div>
 						</div>
 					</div>
