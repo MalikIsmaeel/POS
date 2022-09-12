@@ -73,7 +73,7 @@
 												<td>{{$store->storecode }} 
 													</td>
 												
-												<td>{{$store->sub_city->id}}</td>
+												<td>{{$store->sub_city->sub_cities_name}}</td>
 												<td>
 											
 												<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">

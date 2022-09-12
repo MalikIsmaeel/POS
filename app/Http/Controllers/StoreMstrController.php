@@ -125,8 +125,13 @@ class StoreMstrController extends Controller
      * @param  \App\Models\store_mstr  $store_mstr
      * @return \Illuminate\Http\Response
      */
-    public function destroy(store_mstr $store_mstr)
+    public function destroy($id,request $request)
     {
-        //
+        $store= store_mstr::findorfail($id);
+        $store->update([
+            'active'=>$request->input('active','0')
+        ]);
+
+        return redirect()->back()->with('success', 'store deleted successfully.');
     }
 }
