@@ -51,7 +51,7 @@
 								</div>
 								<p class="tx-12 tx-gray-500 mb-2">Example of Valex Striped Rows.. <a href="">Learn more</a></p>
 							</div>
-					<a href="{{route('subcity.create')}}" class="btn btn-primary">new city</a>
+					<a href="{{route('store.create')}}" class="btn btn-primary">new store</a>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table table-striped mg-b-0 text-md-nowrap">
@@ -60,33 +60,33 @@
 											<tr>
 												<th>#</th>
 												<th>Name</th>
-												<th>Description</th>
-												<th>city</th>
+												
+												<th> sub_city</th>
 												<th>active</th>
 											</tr>
 										</thead>
 										<tbody>
-										 @foreach($sub_cities as $sub_city ) 
+										 @foreach($stores as $store ) 
 											 <tr>
 											 <th scope="row">{{++$i}}</th>
-												<td>{{$sub_city->sub_cities_name }} 
+												<td>{{$store->storecode }} 
 													</td>
-												<td>{{$sub_city->description}}</td>
-												<td>{{$sub_city->city->city_name}}</td>
+												
+												<td>{{$store->sub_city->sub_cities_name}}</td>
 												<td>
 											
 												<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
 										
             							    
 										
-										<option value="{{$sub_city->active}}" selected>{{$sub_city->active == 1 ? 'active' : 'unactive'  }} </option>
-										<option value="{{$sub_city->active == 1 ?   '0' : '1' }}">{{$sub_city->active == 1 ?   'unactive' : 'active' }}</option>
+										<option value="{{$store->active}}" selected>{{$store->active == 1 ? 'active' : 'unactive'  }} </option>
+										<option value="{{$store->active == 1 ?   '0' : '1' }}">{{$store->active == 1 ?   'unactive' : 'active' }}</option>
 									</select>
 									
 												</td>
 												<td>
-												<a href="{{route('sub_city.edit',$sub_city->id)}}" class="btn btn-primary">edit</a>
-												<form id="delete" action="{{route('sub_city.destroy',$sub_city->id)}}" method="post">
+												<a href="{{route('store.edit',$store->id)}}" class="btn btn-primary">edit</a>
+												<form id="delete" action="{{route('store.destroy',$store->id)}}" method="post">
 														@csrf
 														@method('DELETE')
 											<button id="btnSend" class="btn btn-danger">مسح</button>
@@ -103,7 +103,7 @@
 						</div><!-- bd -->
 					</div>
 					<!--/div-->
-					<tfoot>{{ $sub_cities->links() }}</tfoot>
+					<tfoot>{{ $stores->links() }}</tfoot>
 				</div>
 				<!-- row closed -->
 			</div>

@@ -9,7 +9,7 @@ class CounteryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
         
     }
     /**
@@ -56,7 +56,7 @@ class CounteryController extends Controller
             'countery_name'=>$request->countery_name,
             'description'=>$request->description,
             'active'=>$request->active ?? 0,
-            'user_id'=>Auth::user()->id,
+            'user_id'=>Auth::user()->id ?? 1,
       
             ]);
                  

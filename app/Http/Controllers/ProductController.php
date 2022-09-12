@@ -64,7 +64,7 @@ class ProductController extends Controller
         ]);
 
             return redirect()->back()->with('success', $request->name.'Product Added successfully.');
-        dd($request);
+        
     }
 
     /**
@@ -75,7 +75,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product=product::findorfail($id);
+        // $product=product::findorfail($id);
         
             // return view('profile',['product'=>$product]);
     

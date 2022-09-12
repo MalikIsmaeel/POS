@@ -77,7 +77,7 @@
 							</div>
 							<div class="card-body pt-0">
 								
-								<form action="{{route('subcity.store')}}" method="POST">
+								<form action="{{route('store.store')}}" method="POST">
 										@csrf
 										
 										<!-- $table->string('countery_name');
@@ -85,10 +85,10 @@
             $table->string('active','1'); -->
             
 									<div class="form-group">
-										<input type="text" name="sub_cities_name" class="form-control"  value="{{old('sub_cities_name')}}" id="inputName" placeholder="Name">
+										<input type="text" name="storecode" class="form-control"  value="{{old('storecode')}}" id="inputName" placeholder="Name">
 									</div>
 									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="description" value="{{old('description')}}" name="description">
+										<input type="text" name="user_id" class="form-control"  value="1" id="inputName" placeholder="Name">
 									</div>
 									<div class="form-group">
 									<select class="form-control selectpicker" name='active'>
@@ -100,9 +100,9 @@
 									</select>
 									</div>
 									<div class="form-group">
-										<select class="form-control selectpicker" id="select-city" data-live-search="true" name="city_id">
-											@foreach($cities as $city)
-												<option value="{{$city->id}}">{{$city->city_name}}</option>
+										<select class="form-control selectpicker" id="select-city" data-live-search="true" name="sub_city_id">
+											@foreach($sub_cities as $sub_city)
+												<option value="{{$sub_city->id}}">{{$sub_city->sub_cities_name}}</option>
 
 
 											@endforeach
