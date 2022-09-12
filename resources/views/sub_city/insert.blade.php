@@ -46,7 +46,6 @@
 @endsection
 @section('content')
 				<!-- row -->
-				<div class="row">
 				@if ($errors->any())
 		@foreach ($errors->all() as $error)
 					<div class="alert alert-danger alert-dismissible" role="alert">
@@ -69,6 +68,8 @@
    </div>
 	@endif
 @endif
+				<div class="row">
+	
 					<div class="col-md-12 col-sm-12">
 						<div class="card  box-shadow-0">
 							<div class="card-header">

@@ -51,6 +51,10 @@
 								</div>
 								<p class="tx-12 tx-gray-500 mb-2">Example of Valex Striped Rows.. <a href="">Learn more</a></p>
 							</div>
+<<<<<<< HEAD
+=======
+				
+>>>>>>> 8b59a76bef7e8bbe0344bfb6fb5f3318404dcbb9
 					<a href="{{route('store.create')}}" class="btn btn-primary">new store</a>
 							<div class="card-body">
 								<div class="table-responsive">

@@ -69,6 +69,7 @@
    </div>
 	@endif
 @endif
+
 					<div class="col-md-12 col-sm-12">
 						<div class="card  box-shadow-0">
 							<div class="card-header">
@@ -90,6 +91,7 @@
 									<div class="form-group">
 										<input type="text" name="user_id" class="form-control"  value="1" id="inputName" placeholder="Name">
 									</div>
+									
 									<div class="form-group">
 									<select class="form-control selectpicker" name='active'>
 										

@@ -108,7 +108,7 @@ class CityController extends Controller
       
             ]);
                  
-        return redirect()->back()->with('success', $request->city_name.' Eidted successfully.');
+            return redirect()->back()->with('success', $request->city_name.' Added successfully.');
     }
 
     /**

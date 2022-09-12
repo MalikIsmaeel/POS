@@ -79,21 +79,21 @@
 
 							
 							<div class="card-body pt-0">
-							<form action="{{route('city.update',$city->id)}}" method="POST">
+							<form action="{{route('subcity.update',$sub_city->id)}}" method="POST">
 										@csrf
 										{{ method_field('PUT') }}	
 									
 									<div class="form-group">
-										<input type="text" name="city_name" class="form-control"  value="{{$city->city_name}}" id="inputName" placeholder="Name">
+										<input type="text" name="sub_cities_name" class="form-control"  value="{{$sub_city->sub_cities_name}}" id="inputName" placeholder="Name">
 									</div>
 									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="insert new photo" value="{{$city->description}}" name="description">
+										<input type="textarea" class="form-control"  placeholder="" value="{{$sub_city->description}}" name="description">
 									</div>
 									<div class="form-group">
-										<select class="form-control selectpicker" id="select-country" data-live-search="true" value="" name="countery_id">
-											@foreach($counteries as $countery)
+										<select class="form-control selectpicker" id="select-country" data-live-search="true" value="" name="city_id">
+											@foreach($cities as $city)
 											 
-												<option value="{{$countery->id}}" {{$city->countery_id == $countery->id ? 'selected' : ' '}} >{{$countery->countery_name}}</option>
+												<option value="{{$city->id}}" {{$city->city_id == $city->id ? 'selected' : ' '}} >{{$city->city_name}}</option>
 
 
 											@endforeach
@@ -104,8 +104,8 @@
 									
             							    
 										
-										<option value="{{$city->active}}" selected>{{$city->active == 1 ? 'active' : 'unactive'  }} </option>
-										<option value="{{$city->active == 1 ?   '0' : '1' }}">{{$city->active == 1 ?   'unactive' : 'active' }}</option>
+										<option value="{{$sub_city->active}}" selected>{{$sub_city->active == 1 ? 'active' : 'unactive'  }} </option>
+										<option value="{{$sub_city->active == 1 ?   '0' : '1' }}">{{$sub_city->active == 1 ?   'unactive' : 'active' }}</option>
 									</select>
 
 									
