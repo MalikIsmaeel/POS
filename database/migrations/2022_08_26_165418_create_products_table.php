@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name')->unique();
             
             
-            $table->string('active','1');
+            $table->unsignedInteger('active');
             
             $table->string('photo')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');

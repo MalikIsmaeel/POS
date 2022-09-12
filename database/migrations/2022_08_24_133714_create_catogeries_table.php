@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('catogery_name');
             $table->text('description');
-            $table->string('active','1');
+            $table->unsignedInteger('active');
             
             $table->foreignId('user_id')
             ->references('id')->on('users')

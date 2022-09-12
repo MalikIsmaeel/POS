@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('sub_cities_name');
             $table->text('description');
-            $table->string('active','1');
+            $table->unsignedInteger('active');
             $table->foreignId('city_id')
             ->references('id')->on('cities')
             ->onDelete('cascade'); 

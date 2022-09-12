@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('store_dtls', function (Blueprint $table) {
             $table->id();
             $table->integer('qty');
+            $table->unsignedInteger('active');
             $table->foreignId('store_id')
             ->references('id')->on('store_mstrs')
             ->onDelete('cascade');
