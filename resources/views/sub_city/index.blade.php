@@ -85,8 +85,8 @@
 									
 												</td>
 												<td>
-												<a href="{{route('sub_city.edit',$sub_city->id)}}" class="btn btn-primary">edit</a>
-												<form id="delete" action="{{route('sub_city.destroy',$sub_city->id)}}" method="post">
+												<a href="{{route('subcity.edit',$sub_city->id)}}" class="btn btn-primary">edit</a>
+												<form id="delete" action="{{route('subcity.destroy',$sub_city->id)}}" method="post">
 														@csrf
 														@method('DELETE')
 											<button id="btnSend" class="btn btn-danger">مسح</button>

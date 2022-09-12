@@ -57,7 +57,7 @@ class SubCityController extends Controller
             'user_id'=>Auth::user()->id,
             'city_id'=>$request->city_id
         ]);
-        return redirect()->back()->with('seccuess','The '. $request->sub_cities_name . ' been Added');
+        return redirect()->back()->with('success', $request->sub_cities_name.' Added successfully.');
     }
 
     /**
@@ -81,7 +81,7 @@ class SubCityController extends Controller
     {
         $city=city::get()->where('active','=','1');
         $sub_city=sub_city::findOrfail($id);
-        return view('sub_city.edit',['sub_city'=>$sub_city],['city'=>$city]);
+        return view('sub_city.edit',['sub_city'=>$sub_city],['cities'=>$city]);
     }
 
     /**
@@ -95,15 +95,15 @@ class SubCityController extends Controller
     {
         $city=sub_city::findOrfail($id);
         $city->update([
-            'sub_city_name'=>$request->city_name,
+            'sub_city_name'=>$request->sub_cities_name,
             'description'=>$request->description,
             'active'=>$request->active ?? 0,
-            'city'=>$request->countery_id
+            'city'=>$request->city_id
             
       
             ]);
                  
-        return redirect()->back()->with('success', $request->sub_city_name.' Eidted successfully.');
+        return redirect()->back()->with('success', $request->sub_cities_name.' Eidted successfully.');
     }
 
     /**
@@ -114,7 +114,7 @@ class SubCityController extends Controller
      */
     public function destroy($id , request $request)
     {
-        $sub_city= city::findorfail($id);
+        $sub_city= sub_city::findorfail($id);
         $sub_city->update([
             'active'=>$request->input('active','0')
         ]);

@@ -9,7 +9,7 @@ class sub_city extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'sub_city_name',
+        'sub_cities_name',
         'description',
         'active',
         'user_id',
