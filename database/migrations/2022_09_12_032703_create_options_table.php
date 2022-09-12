@@ -13,15 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('store_mstrs', function (Blueprint $table) {
+        Schema::create('options', function (Blueprint $table) {
             $table->id();
-            $table->string('storecode');
-            $table->foreignId('sub_city_id')
-            ->references('id')->on('sub_cities')
-            ->onDelete('cascade'); 
-            $table->foreignId('user_id')
-            ->references('id')->on('users')
-            ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('store_mstrs');
+        Schema::dropIfExists('options');
     }
 };

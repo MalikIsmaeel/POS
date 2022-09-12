@@ -15,6 +15,20 @@ return new class extends Migration
     {
         Schema::create('store_dtls', function (Blueprint $table) {
             $table->id();
+            $table->integer('qty');
+            
+            $table->foreignId('store_id')
+            ->references('id')->on('store_mstrs')
+            ->onDelete('cascade');
+            $table->foreignId('product_id')
+            ->references('id')->on('products')
+            ->onDelete('cascade');
+            $table->foreignId('unit_id')
+            ->references('id')->on('units')
+            ->onDelete('cascade');
+            $table->foreignId('user_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }

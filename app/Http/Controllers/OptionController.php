@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\store_mstr;
+use App\Models\option;
 use Illuminate\Http\Request;
 
-class StoreMstrController extends Controller
+class OptionController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-        
-    }
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +14,7 @@ class StoreMstrController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -46,10 +41,10 @@ class StoreMstrController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\store_mstr  $store_mstr
+     * @param  \App\Models\option  $option
      * @return \Illuminate\Http\Response
      */
-    public function show(store_mstr $store_mstr)
+    public function show(option $option)
     {
         //
     }
@@ -57,10 +52,10 @@ class StoreMstrController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\store_mstr  $store_mstr
+     * @param  \App\Models\option  $option
      * @return \Illuminate\Http\Response
      */
-    public function edit(store_mstr $store_mstr)
+    public function edit(option $option)
     {
         //
     }
@@ -69,10 +64,10 @@ class StoreMstrController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\store_mstr  $store_mstr
+     * @param  \App\Models\option  $option
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, store_mstr $store_mstr)
+    public function update(Request $request, option $option)
     {
         //
     }
@@ -80,10 +75,10 @@ class StoreMstrController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\store_mstr  $store_mstr
+     * @param  \App\Models\option  $option
      * @return \Illuminate\Http\Response
      */
-    public function destroy(store_mstr $store_mstr)
+    public function destroy(option $option)
     {
         //
     }
