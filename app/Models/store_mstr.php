@@ -12,7 +12,7 @@ class store_mstr extends Model
         'storecode',
        'sub_city_id',
        'user_id'];
-       public function subcity(){
+       public function sub_city(){
            return $this->belongsTo(sub_city::class); 
        }
        public function user(){

@@ -91,10 +91,11 @@ class StoreMstrController extends Controller
      * @param  \App\Models\store_mstr  $store_mstr
      * @return \Illuminate\Http\Response
      */
-    public function edit(store_mstr $store_mstr)
+    public function edit($id)
     {
         $sub_city=sub_city::get()->where('active','=','1');
-        return view('store.insert',['sub_cities'=>$sub_city]);
+        $store=store_mstr::findOrfail($id);
+        return view('store_mstr.edit',['sub_cities'=>$sub_city],['store'=>$store]);
     }
 
     /**
@@ -104,18 +105,18 @@ class StoreMstrController extends Controller
      * @param  \App\Models\store_mstr  $store_mstr
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, store_mstr $store_mstr)
+    public function update(Request $request,$id)
     {
-      
+        $store=store_mstr::findOrfail($id);
         
-        $store=store_mstr::update([
+        $store->update([
             'storecode'=>$request->storecode,
             'sub_cities'=>$request->sub_cities,
             'active'=>$request->active ?? 0,
             'user_id'=>Auth::user()->id ?? 1,
             
         ]);
-        return redirect()->back()->with('seccuess','The '. $request->storecode . ' been Added');
+        return redirect()->back()->with('success', $request->storecode.' updated successfully.');
     }
 
     /**
