@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CatogeryController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StoreMstrController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,7 +34,7 @@ Route::resource('/product',ProductController::class);
 Route::resource('/countery',CounteryController::class);
 Route::resource('/city',CityController::class);
 Route::resource('/subcity',SubCityController::class);
-
+Route::resource('/store',StoreMstrController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

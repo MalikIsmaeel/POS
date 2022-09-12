@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\store_mstr;
+use App\Models\sub_city;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StoreMstrController extends Controller
 {
@@ -19,7 +22,8 @@ class StoreMstrController extends Controller
      */
     public function index()
     {
-        
+        $store=store_mstr::paginate(10);
+        return view('store_mstr.index')->with(['stores'=>$store]);
     }
 
     /**
@@ -29,7 +33,8 @@ class StoreMstrController extends Controller
      */
     public function create()
     {
-        //
+     $sub_city=sub_city::get()->where('active','=','1');
+     return view('store_mstr.insert',['sub_cities'=>$sub_city]);
     }
 
     /**
@@ -40,7 +45,24 @@ class StoreMstrController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 'storecode',
+        //     'sub_city_id',
+        //     'user_id'
+        $request->validate([
+            'storecode'=>'required|unique:store_mstrs|min:5',
+            'description'=>'max:200',
+            
+            'active'=>'required',
+            'sub_city_id'=>'required'
+        ]);
+        $sub_city=sub_city::create([
+            'storecode'=>$request->storecode,
+            
+            'active'=>$request->active ?? 0,
+            'user_id'=>Auth::user()->id,
+            'sub_city_id'=>$request->sub_city_id
+        ]);
+        return redirect()->back()->with('success', $request->storecode.' Added successfully.');
     }
 
     /**

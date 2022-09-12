@@ -20,5 +20,8 @@ class sub_city extends Model
         public function user(){
             return $this->belongsTo(user::class); 
         }
+        public function storemstr(){
+            return $this->hasmany(store_mstr::class); 
+        }
         
 }
