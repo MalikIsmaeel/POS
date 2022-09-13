@@ -23,7 +23,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        $city= city::paginate(10);
+        $city= city::where('active','=','1')->paginate(10);
         return   view('city.index')->with('cities',$city);
     }
 

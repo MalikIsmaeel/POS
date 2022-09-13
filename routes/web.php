@@ -10,6 +10,7 @@ use App\Http\Controllers\CatogeryController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreMstrController;
+use App\Http\Controllers\StoreDtlController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +26,7 @@ use App\Http\Controllers\StoreMstrController;
 
   Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-  //  Route::get('/{page}', [AdminController::class, 'index']);
+    // Route::get('/{page}', [AdminController::class, 'index']);
 
 Route::resource('/user',UserController::class);
 Route::resource('/catogrey',CatogeryController::class);
@@ -35,6 +36,7 @@ Route::resource('/countery',CounteryController::class);
 Route::resource('/city',CityController::class);
 Route::resource('/subcity',SubCityController::class);
 Route::resource('/store',StoreMstrController::class);
+Route::resource('/entity',StoreDtlController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

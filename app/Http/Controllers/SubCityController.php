@@ -20,7 +20,7 @@ class SubCityController extends Controller
      */
     public function index()
     {
-        $sub_city= sub_city::paginate(10);
+        $sub_city= sub_city::where('active','=','1')->paginate(10);
         return   view('sub_city.index')->with('sub_cities',$sub_city);
     }
 

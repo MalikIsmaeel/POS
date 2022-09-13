@@ -25,6 +25,9 @@ class product extends Model
     public function catogery(){
         return $this->belongsTo(catogery::class); 
     }
+    public function store_dtl(){
+        return $this->hasmany(store_dtl::class); 
+    }
    
 
 }

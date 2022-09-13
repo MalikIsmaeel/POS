@@ -24,7 +24,7 @@ class CatogeryController extends Controller
     {
        $catogery=  DB::table('catogeries as main_catogery')
        ->select('sub_catogery.catogery_name as catogery_name', 'sub_catogery.description as description','main_catogery.catogery_name as main_catogery','main_catogery.id as parent_id')
-       ->LeftJoin('catogeries as sub_catogery', 'main_catogery.parent_id','=','sub_catogery.id')->paginate(10);
+       ->LeftJoin('catogeries as sub_catogery', 'main_catogery.parent_id','=','sub_catogery.id')::where('active','=','1')->paginate(10);
       return   view('catogery.index')->with('catogeries',$catogery);
     
     }

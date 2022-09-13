@@ -18,4 +18,7 @@ class store_mstr extends Model
        public function user(){
            return $this->belongsTo(user::class); 
        }
+       public function store_dtl(){
+        return $this->hasMany(store_dtl::class); 
+    }
 }

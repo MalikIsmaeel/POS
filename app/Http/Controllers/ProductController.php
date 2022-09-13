@@ -23,7 +23,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product =product::paginate(10);
+        $product =product::where('active','=','1')->paginate(10);
         // ->where('active','=',1);
         // dd($users);
         return view('product.index',['products'=>$product]);

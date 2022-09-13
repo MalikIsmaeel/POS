@@ -19,7 +19,7 @@ class CounteryController extends Controller
      */
     public function index()
     {
-        $countery=countery::paginate(10);
+        $countery=countery::where('active','=','1')->paginate(10);
         return view('countery.index',['counteries'=>$countery]);
     }
 

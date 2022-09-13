@@ -24,7 +24,7 @@ class StoreMstrController extends Controller
      */
     public function index()
     {
-        $store=store_mstr::paginate(10);
+        $store=store_mstr::where('active','=','1')->paginate(10);
         return view('store_mstr.index')->with(['stores'=>$store]);
     }
 

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\store_dtl;
 use Illuminate\Http\Request;
-
+use App\Models\store_mstr;
+use App\Models\product;
+use App\Models\unit;
 class StoreDtlController extends Controller
 {
     /**
@@ -14,7 +16,8 @@ class StoreDtlController extends Controller
      */
     public function index()
     {
-        //
+        $entity=store_dtl::where('active','=','1')->paginate(10);
+        return view('store_dtl.index')->with(['entites'=>$entity]);
     }
 
     /**
@@ -24,7 +27,10 @@ class StoreDtlController extends Controller
      */
     public function create()
     {
-        //
+        $store=store_mstr::get()->where('active','=','1');
+        $product=product::get()->where('active','=','1');
+        $unit=unit::get()->where('active','=','1');
+        return view('store_dtl.insert',['products'=>$product],['units'=>$unit])->with(['stores'=>$store]);
     }
 
     /**
@@ -35,7 +41,30 @@ class StoreDtlController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'qty'=>'required',
+            'active'=>'required',
+            'product_id'=>'required',
+            'store_id'=>'required',
+            'cost'=>'required',
+            'unit_id'=>'required',
+            'user_id'=>'required'  
+        ]);
+
+        $products=store_dtl::create( [
+            'qty'=>$request->qty,
+            'active'=>$request->active,
+            'product_id'=>$request->product_id,
+            'store_id'=>$request->store_id,
+            'unit_id'=>$request->unit_id,
+            'cost'=>$request->cost,
+            'user_id'=>$request->user_id
+
+            
+        ]);
+
+            return redirect()->back()->with('success','Product Added successfully.');
+          
     }
 
     /**
@@ -55,9 +84,14 @@ class StoreDtlController extends Controller
      * @param  \App\Models\store_dtl  $store_dtl
      * @return \Illuminate\Http\Response
      */
-    public function edit(store_dtl $store_dtl)
+    public function edit($id)
     {
-        //
+        $entity=store_dtl::findOrfail($id);
+        $store=store_mstr::get()->where('active','=','1');
+        $product=product::get()->where('active','=','1');
+        $unit=unit::get()->where('active','=','1');
+        return view('store_dtl.edit')->with(['stores'=>$store,'units'=>$unit,'products'=>$product,'entity'=>$entity]);
+   
     }
 
     /**
@@ -67,9 +101,23 @@ class StoreDtlController extends Controller
      * @param  \App\Models\store_dtl  $store_dtl
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, store_dtl $store_dtl)
+    public function update(Request $request, $id)
     {
-        //
+        $entity=store_dtl::findOrfail($id);
+        $entity->update( [
+            'qty'=>$request->qty,
+            'active'=>$request->active,
+            'product_id'=>$request->product_id,
+            'store_id'=>$request->store_id,
+            'unit_id'=>$request->unit_id,
+            'cost'=>$request->cost,
+            'user_id'=>$request->user_id
+
+            
+        ]);
+
+            return redirect()->back()->with('success', 'Product Updated successfully.');
+          
     }
 
     /**
@@ -78,8 +126,12 @@ class StoreDtlController extends Controller
      * @param  \App\Models\store_dtl  $store_dtl
      * @return \Illuminate\Http\Response
      */
-    public function destroy(store_dtl $store_dtl)
+    public function destroy(request $request , $id)
     {
-        //
+        $entity=store_dtl::findOrfail($id);
+        $entity->update( [
+            'active'=>$request->input('active','0')
+        ]);
+        return redirect()->back()->with('success', 'Product Deleted successfully.');
     }
 }

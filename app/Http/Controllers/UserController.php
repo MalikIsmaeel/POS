@@ -18,7 +18,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $users =User::paginate(10);
+        $users =User::where('active','=','1')->paginate(10);
         // ->where('active','=',1);
         // dd($users);
         return view('user.showall',['users'=>$users]);

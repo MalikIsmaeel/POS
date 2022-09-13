@@ -26,4 +26,7 @@ class unit extends Model
     {
         return $this->hasMany(self::class);
     }
+    public function store_dtl(){
+        return $this->BlongsTomany(store_dtl::class); 
+    }
 }
