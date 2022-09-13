@@ -13,8 +13,12 @@ class SupplierController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    { $supplier =supplier::where('active','=','1')->paginate(10);
+        
+        // ->where('active','=',1);
+        // dd($users);
+        return view('supplier.index',['suppliers'=>$supplier]);
+    
     }
 
     /**

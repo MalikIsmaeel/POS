@@ -11,6 +11,7 @@ use App\Http\Controllers\UnitController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreMstrController;
 use App\Http\Controllers\StoreDtlController;
+use App\Http\Controllers\SupplierController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +38,7 @@ Route::resource('/city',CityController::class);
 Route::resource('/subcity',SubCityController::class);
 Route::resource('/store',StoreMstrController::class);
 Route::resource('/entity',StoreDtlController::class);
+Route::resource('/supplier',SupplierController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
