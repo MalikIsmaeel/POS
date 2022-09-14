@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\supplier;
 use Illuminate\Http\Request;
+use App\Models\sub_city;
 
 class SupplierController extends Controller
 {
@@ -28,7 +29,9 @@ class SupplierController extends Controller
      */
     public function create()
     {
+        $sub_city=sub_city::get()->where('active','=','1');
         
+        return view('supplier.insert')->with('sub_cities',$sub_city); 
     }
 
     /**
@@ -44,25 +47,25 @@ class SupplierController extends Controller
             'tax_id'=>'required',
             'reqister_id'=>'required',
             'phone'=>'required',
-            'active'=>'requird',
-            'type_id'=>in('شركة','فرد'), // is he company of indivdual;
+            'active'=>'required',
+            'type_id'=>'required', // is he company of indivdual or govermnet;
             'sub_city'=>'required',
-            'internal'=>['requird',in('محلي','خارجي')],// is he internal or external or hibrid
-            'user_id'=>'requird'
+            'internal'=>'required',// is he internal or external or hibrid
+            'user_id'=>'required'
           ]);
-        suppliers::create([ 
+        supplier::create([ 
         'company_name'=>$request->company_name,
         'tax_id'=>$request->tax_id,
-        'reqister_id'=>$requestreqister_id,
+        'reqister_id'=>$request->reqister_id,
         'phone'=>$request->phone,
-        'active'=>$request->acive ?? 0,
+        'active'=>$request->active ?? 0,
         'type_id'=>$request->type_id ?? 'فرد' ,// is he company of indivdual or goverment;
         'sub_city'=>$request->sub_city,
         'internal'=>$request->internal ?? 'داخلي',// is he internal or external or hibrid
-        'user_id'=>'requird'
+        'user_id'=>$request->user_id
       ]);
       
-      return redirect()->back()->with('success', 'Supplier'.$request->company_name .' Added successfully.');
+      return redirect()->back()->with('success',$request->company_name .' Added successfully.');
     }
 
     /**
@@ -84,7 +87,9 @@ class SupplierController extends Controller
      */
     public function edit(supplier $supplier)
     {
-        //
+        $sub_city=sub_city::get()->where('active','=','1');
+        
+        return view('supplier.edit')->with('sub_cities',$sub_city); 
     }
 
     /**
@@ -94,9 +99,23 @@ class SupplierController extends Controller
      * @param  \App\Models\supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, supplier $supplier)
+    public function update(Request $request,  $id)
     {
-        //
+      $supplier=supplier::findOrfail($id);
+        $supplier->update([ 
+            'company_name'=>$request->company_name,
+            'tax_id'=>$request->tax_id,
+            'reqister_id'=>$request->reqister_id,
+            'phone'=>$request->phone,
+            'active'=>$request->active ?? 0,
+            'type_id'=>$request->type_id ?? 'فرد' ,// is he company of indivdual or goverment;
+            'sub_city'=>$request->sub_city,
+            'internal'=>$request->internal ?? 'داخلي',// is he internal or external or hibrid
+            'user_id'=>$request->user_id
+          ]);
+          
+          return redirect()->back()->with('success',$request->company_name .' Updated successfully.');
+        
     }
 
     /**

@@ -66,5 +66,7 @@ public function countery()
 {
     return $this->belongsTo(countery::class);
 }
-
+public function supplier(){
+    return $this->has(supplier::class); 
+}
 }

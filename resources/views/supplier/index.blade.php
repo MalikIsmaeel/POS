@@ -8,6 +8,7 @@
 						<div class="d-flex">
 							<h4 class="content-title mb-0 my-auto">Pages</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Empty</span>
 						</div>
+					
 					</div>
 					<div class="d-flex my-xl-auto right-content">
 						<div class="pr-1 mb-3 mb-xl-0">
@@ -51,43 +52,52 @@
 								</div>
 								<p class="tx-12 tx-gray-500 mb-2">Example of Valex Striped Rows.. <a href="">Learn more</a></p>
 							</div>
-
-					<a href="{{route('store.create')}}" class="btn btn-primary">new store</a>
+					<a href="{{route('supplier.create')}}" class="btn btn-primary">new city</a>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table table-striped mg-b-0 text-md-nowrap">
 										<thead>
-											
+												<!-- 'company_name',
+    'tax_id',
+    'reqister_id',
+    'phone',
+    'active',
+    'type_id' ,// is he company of indivdual or goverment;
+    'sub_city',
+    'internal',// is he internal or external or hibrid
+    'user_id' -->
 											<tr>
 												<th>#</th>
-												<th>Name</th>
+												<th>company name</th>
 												
-												<th> sub_city</th>
-												<th>active</th>
+												<th>supplier type</th>
+												<th>tax id</th>
+												<th>supplier region</th>
 											</tr>
 										</thead>
 										<tbody>
-										 @foreach($stores as $store ) 
+										 @foreach($suppliers as $supplier ) 
 											 <tr>
 											 <th scope="row">{{++$i}}</th>
-												<td>{{$store->storecode }} 
+												<td>{{$supplier->company_name }} 
 													</td>
-												
-												<td>{{$store->region->sub_cities_name}}</td>
+													<td>{{$supplier->internal}}</td>
+												<td>{{$supplier->tax_id}}</td>
+												<td>{{$supplier->region->sub_cities_name}}</td>
 												<td>
 											
 												<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
 										
             							    
 										
-										<option value="{{$store->active}}" selected>{{$store->active == 1 ? 'active' : 'unactive'  }} </option>
-										<option value="{{$store->active == 1 ?   '0' : '1' }}">{{$store->active == 1 ?   'unactive' : 'active' }}</option>
+										<option value="{{$supplier->active}}" selected>{{$supplier->active == 1 ? 'active' : 'unactive'  }} </option>
+										<option value="{{$supplier->active == 1 ?   '0' : '1' }}">{{$supplier->active == 1 ?   'unactive' : 'active' }}</option>
 									</select>
 									
 												</td>
 												<td>
-												<a href="{{route('store.edit',$store->id)}}" class="btn btn-primary">edit</a>
-												<form id="delete" action="{{route('store.destroy',$store->id)}}" method="post">
+												<a href="{{route('supplier.edit',$supplier->id)}}" class="btn btn-primary">edit</a>
+												<form id="delete" action="{{route('supplier.destroy',$supplier->id)}}" method="post">
 														@csrf
 														@method('DELETE')
 											<button id="btnSend" class="btn btn-danger">مسح</button>
@@ -104,7 +114,7 @@
 						</div><!-- bd -->
 					</div>
 					<!--/div-->
-					<tfoot>{{ $stores->links() }}</tfoot>
+					<tfoot>{{ $suppliers->links() }}</tfoot>
 				</div>
 				<!-- row closed -->
 			</div>
