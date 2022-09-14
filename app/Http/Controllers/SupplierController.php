@@ -28,7 +28,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -39,7 +39,30 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([ 
+            'company_name'=>'required|unique:suppliers',
+            'tax_id'=>'required',
+            'reqister_id'=>'required',
+            'phone'=>'required',
+            'active'=>'requird',
+            'type_id'=>in('شركة','فرد'), // is he company of indivdual;
+            'sub_city'=>'required',
+            'internal'=>['requird',in('محلي','خارجي')],// is he internal or external or hibrid
+            'user_id'=>'requird'
+          ]);
+        suppliers::create([ 
+        'company_name'=>$request->company_name,
+        'tax_id'=>$request->tax_id,
+        'reqister_id'=>$requestreqister_id,
+        'phone'=>$request->phone,
+        'active'=>$request->acive ?? 0,
+        'type_id'=>$request->type_id ?? 'فرد' ,// is he company of indivdual or goverment;
+        'sub_city'=>$request->sub_city,
+        'internal'=>$request->internal ?? 'داخلي',// is he internal or external or hibrid
+        'user_id'=>'requird'
+      ]);
+      
+      return redirect()->back()->with('success', 'Supplier'.$request->company_name .' Added successfully.');
     }
 
     /**

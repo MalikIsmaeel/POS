@@ -19,21 +19,16 @@ return new class extends Migration
             $table->string('meddile_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('company_name')->uniqe();
-            
-            $table->text('address')->nullable();
+            $table->string('tax_id')->uniqe();
+            $table->string('reqister_id')->uniqe();
             $table->string('phone')->nullable();
-            $table->string('email')->nullable();
             $table->unsignedInteger('active');
-            $table->foreignId('type_id') // is he company of indivdual
-            ->references('id')->on('options')
-            ->onDelete('cascade');
-            $table->foreignId('location') // is he internal or external
-            ->references('id')->on('options')
-            ->onDelete('cascade');
-            $table->foreignId('user_id')
-            ->references('id')->on('users')
-            ->onDelete('cascade');
+            $table->string('type_id') ; // is he company of indivdual;
+            $table->foreignId('sub_city')->references('id')->on('sub_cities')->onDelete('cascade');
+            $table->string('internal') ;// is he internal or external or hibrid
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('photo')->nullable();
+            $table->string('account_id')->nullable(); // for grernal tree accounts
             $table->timestamps();
         });
     }
