@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('qty');
             $table->string('action_type');
-            $table->string('action_type');
+            $table->string('action_owner');
             $table->float('cost');
             $table->unsignedInteger('active');
             $table->foreignId('store_id')
