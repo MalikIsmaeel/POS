@@ -85,11 +85,11 @@ class SupplierController extends Controller
      * @param  \App\Models\supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function edit(supplier $supplier)
+    public function edit($id)
     {
         $sub_city=sub_city::get()->where('active','=','1');
-        
-        return view('supplier.edit')->with('sub_cities',$sub_city); 
+        $supplier=supplier::findOrfail($id);
+        return view('supplier.edit')->with(['sub_cities'=>$sub_city,'supplier'=>$supplier]); 
     }
 
     /**
@@ -124,8 +124,13 @@ class SupplierController extends Controller
      * @param  \App\Models\supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(supplier $supplier)
+    public function destroy($id , request $request)
     {
-        //
+        $supplier= supplier::findorfail($id);
+        $supplier->update([
+            'active'=>$request->input('active','0')
+        ]);
+
+        return redirect()->back()->with('success', 'Unit deleted successfully.');
     }
 }

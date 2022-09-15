@@ -83,17 +83,17 @@
 										
 										{{ method_field('PUT') }}	
 									<div class="form-group">
-										<input type="text" name="company_name" class="form-control"  value="{{$supplier->company_name)}}" id="inputName" placeholder="Name">
+										<input type="text" name="company_name" class="form-control"  value="{{$supplier->company_name}}" id="inputName" placeholder="Name">
 									</div>
 									
 									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="Tax id" value="{{supplier->tax_id)}}" name="tax_id">
+										<input type="textarea" class="form-control"  placeholder="Tax id" value="{{$supplier->tax_id}}" name="tax_id">
 									</div>
 									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="register id" value="{{supplier->register_id)}}" name="reqister_id">
+										<input type="textarea" class="form-control"  placeholder="register id" value="{{$supplier->reqister_id}}" name="reqister_id">
 									</div>
 									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="phone" value="{{supplier->phone}}" name="phone">
+										<input type="textarea" class="form-control"  placeholder="phone" value="{{$supplier->phone}}" name="phone">
 									</div>
 									<div class="form-group">
 										<input type="textarea" class="form-control"  placeholder="user id" value="1" name="user_id">
