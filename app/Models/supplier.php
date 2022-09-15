@@ -24,4 +24,8 @@ class supplier extends Model
     public function user(){
         return $this->belongsTo(user::class); 
     }
+    
+    public function purchase_invoice(){
+        return $this->has(purchase_invoice::class); 
+    }
 }
