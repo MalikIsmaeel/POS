@@ -14,7 +14,7 @@ class InvoiceParchaseEntityController extends Controller
      */
     public function index()
     {
-        // $catogery=catogery::
+        
     }
 
     /**

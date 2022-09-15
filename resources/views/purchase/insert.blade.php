@@ -146,15 +146,7 @@
 											@endforeach
             							    </select>
 									</div>
-									<div class="form-group">
-										
-												
-
-														
-												
-											
-            							    
-									</div>
+									
 									
 									<div class="form-group mb-0 mt-3 justify-content-end">
 									<div>
@@ -214,15 +206,7 @@
 											@endforeach
             							    </select>
 									</div>
-									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="quntity" value="{{old(invoice_number)}}" name="invoice_number">
-									</div>
-									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="quntity" value="{{old(invoice_number)}}" name="invoice_number">
-									</div>
-									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="quntity" value="{{old(invoice_number)}}" name="invoice_number">
-									</div>
+									
 									
 									<div class="form-group mb-0 mt-3 justify-content-end">
 									<div>
