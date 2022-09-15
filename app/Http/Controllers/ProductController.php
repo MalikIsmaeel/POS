@@ -23,8 +23,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product =product::where('active','=','1')->paginate(10);
-        // ->where('active','=',1);
+        $product =product::where('active','=','1')->where('active','=',1)->paginate(10);
+        // ;
         // dd($users);
         return view('product.index',['products'=>$product]);
     }
@@ -36,7 +36,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $catogeries= catogery::get();
+        $catogeries= catogery::where('active','=',1);
        return   view('product.insert')->with('catogeries',$catogeries);
     }
 

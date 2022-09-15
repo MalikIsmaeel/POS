@@ -29,4 +29,7 @@ class unit extends Model
     public function store_dtl(){
         return $this->BlongsTomany(store_dtl::class); 
     }
+    public function purchase_invoice(){
+        return $this->hasMany(invoice_parchase_entity::class); 
+    }
 }

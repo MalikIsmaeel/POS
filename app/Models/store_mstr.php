@@ -21,4 +21,7 @@ class store_mstr extends Model
        public function store_dtl(){
         return $this->hasMany(store_dtl::class); 
     }
+    public function purchase_invoice(){
+        return $this->hasMany(invoice_parchase_entity::class); 
+    }
 }

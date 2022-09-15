@@ -14,7 +14,7 @@ class InvoiceParchaseEntityController extends Controller
      */
     public function index()
     {
-        //
+        // $catogery=catogery::
     }
 
     /**
@@ -24,7 +24,9 @@ class InvoiceParchaseEntityController extends Controller
      */
     public function create()
     {
-        //
+        $unit=unit::where('active','=','1');
+        $catogeries= catogery::where('active','=','1');
+        return   view('purchase.insert')->with('catogeries',$catogeries);
     }
 
     /**
@@ -35,7 +37,30 @@ class InvoiceParchaseEntityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'qty'=>'required',
+            'active'=>'required',
+            'product_id'=>'required',
+            'store_id'=>'required',
+            'cost'=>'required',
+            'unit_id'=>'required',
+            'user_id'=>'required'  
+        ]);
+
+        $purchase=invoice_parchase_entity::create( [
+            'qty'=>$request->qty ?? 0,
+            'active'=>$request->active ?? 1,
+            'product_id'=>$request->product_id,
+            'store_id'=>$request->store_id,
+            'unit_id'=>$request->unit_id,
+            'cost'=>$request->cost ?? 0,
+            'user_id'=>$request->user_id,
+            'store_id'=>$request->store_id,
+            'tax'=>$request->tax ?? 0.15
+        ]);
+
+            return redirect()->back()->with('success','Product Added successfully.');
+          
     }
 
     /**

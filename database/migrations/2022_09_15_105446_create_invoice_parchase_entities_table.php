@@ -17,18 +17,22 @@ return new class extends Migration
             $table->id();
             $table->integer('qty');
             $table->float('cost');
+            $table->double('sub_total');
             $table->unsignedInteger('active');
             $table->foreignId('invoice_id')
             ->references('id')->on('purchase_invoices')
             ->onDelete('cascade');
             $table->foreignId('store_id')
-            ->references('id')->on('store_dtls')
+            ->references('id')->on('store_mstrs')
             ->onDelete('cascade');
             $table->foreignId('product_id')
             ->references('id')->on('products')
             ->onDelete('cascade');
             $table->foreignId('unit_id')
             ->references('id')->on('units')
+            ->onDelete('cascade');
+            $table->foreignId('tax')
+            ->references('id')->on('options')
             ->onDelete('cascade');
             $table->foreignId('user_id')
             ->references('id')->on('users')

@@ -69,4 +69,7 @@ public function countery()
 public function supplier(){
     return $this->has(supplier::class); 
 }
+public function purchase_invoice(){
+    return $this->hasMany(invoice_parchase_entity::class); 
+}
 }

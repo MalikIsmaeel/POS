@@ -20,5 +20,8 @@ class purchase_invoice extends Model
     public function supplier(){
         return $this->blong(supplier::class); 
     }
+    public function purchase_invoice(){
+        return $this->hasMany(invoice_parchase_entity::class); 
+    }
     
 }

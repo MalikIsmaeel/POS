@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('date_due');
             $table->integer('total');
             $table->integer('total_vat');
+            $table->integer('total_with_vat');
             $table->foreignId('supplier_id')
             ->references('id')->on('suppliers')
             ->onDelete('cascade');
