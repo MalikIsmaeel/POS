@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\supplier;
 use Illuminate\Http\Request;
 use App\Models\sub_city;
-
+use App\Models\option;
 class SupplierController extends Controller
 {
     /**
@@ -30,8 +30,8 @@ class SupplierController extends Controller
     public function create()
     {
         $sub_city=sub_city::get()->where('active','=','1');
-        
-        return view('supplier.insert')->with('sub_cities',$sub_city); 
+        $type_id=option::get()->where('option_table','=','suppliers')->where('option_name','=','type_id');
+        return view('supplier.insert')->with(['sub_cities'=>$sub_city,'types'=>$type_id]); 
     }
 
     /**
@@ -89,7 +89,9 @@ class SupplierController extends Controller
     {
         $sub_city=sub_city::get()->where('active','=','1');
         $supplier=supplier::findOrfail($id);
-        return view('supplier.edit')->with(['sub_cities'=>$sub_city,'supplier'=>$supplier]); 
+        $type_id=option::get()->where('option_table','=','suppliers')->where('option_name','=','type_id');
+
+        return view('supplier.edit')->with(['sub_cities'=>$sub_city,'supplier'=>$supplier,'types'=>$type_id]); 
     }
 
     /**

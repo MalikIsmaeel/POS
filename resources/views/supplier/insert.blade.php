@@ -103,18 +103,18 @@
 										
             							    
 										
-										<option value="داخلي" selected>داخلي</option>
+										<option value="خارجي" selected>خارجي</option>
 										<option value="داخلي">داخلي</option>
 									</select>
 									</div>
 									<div class="form-group">
 									<select class="form-control selectpicker" name='type_id'>
+									@foreach($types as $type)
+            							
 										
-            							    
-										
-										<option value="حكومي" selected>حكومي</option>
-										<option value="فرد">فرد</option>
-										<option value="شركة">شركة</option>
+										<option value="{{$type->option_value}}" >{{$type->option_value}}</option>
+									@endforeach
+									
 									</select>
 									</div>
 									<div class="form-group">
