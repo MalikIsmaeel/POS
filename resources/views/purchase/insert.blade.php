@@ -72,35 +72,56 @@
 					<div class="col-md-12 col-sm-12">
 						<div class="card  box-shadow-0">
 							<div class="card-header">
+								<!--
+								//  enters for invoice details
+            
+            'active'=>'required',
+            
+           
+            // enters for invoice maser
+            
+            'invoice_date'=>'required',
+            'date_due'=>'required',
+            'total'=>'required',
+            'total_vat'=>'required',
+            
+            
+            'user_id'=>'required'-->
+								<h4 class="card-title mb-1">Default Form</h4>
+								<p class="mb-2">It is Very Easy to Customize and it uses in your website apllication.</p>
+							</div>
+							<form action="{{route('purchase.store')}}" method="POST">
+										@csrf
+
+										<div class="col-md-6 col-sm-6">
+						<div class="card  box-shadow-0">
+							<div class="card-header">
 								<h4 class="card-title mb-1">Default Form</h4>
 								<p class="mb-2">It is Very Easy to Customize and it uses in your website apllication.</p>
 							</div>
 							<div class="card-body pt-0">
-								
-								<form action="{{route('entity.update',$entity->id)}}" method="POST">
-										@csrf
-										{{ method_field('PUT') }}
+							<div class="form-group">
+										<input type="textarea" class="form-control"  placeholder="quntity" value="{{old(invoice_number)}}" name="invoice_number">
+									</div>
 									
 										<div class="form-group">
-										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="product_id">
-										<option value="{{$entity->product_id}}">{{$entity->product->name}}</option>
-										@foreach($products as $product)
-												<option value="{{$product->id}}">{{$product->name}}</option>
+										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="supplier_id">
+										
+										@foreach($suppliers as $supplier)
+										<option value="{{$supplier->product_id}}">{{$supplier->name}}</option>
 
 
 											@endforeach
             							    </select>
 									</div>
-									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="quntity" value="{{$entity->qty}}" name="qty">
-									</div>
+									
 									<div class="form-group">
 										<input type="textarea" class="form-control"  placeholder="user_id" value="1" name="user_id">
 									</div>
 									<div class="form-group">
 									<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
 										
-									<option value="{{$entity->active}}" selected>{{$entity->active == 1 ? 'active' : 'unactive'  }} </option>
+									<option value="{{$entity->active}}">{{$entity->active == 1 ? 'active' : 'unactive'  }} </option>
 										<option value="{{$entity->active == 1 ?   '0' : '1' }}">{{$entity->active == 1 ?   'unactive' : 'active' }}</option>
 										</select>
 									</div>
@@ -137,11 +158,81 @@
 									
 									<div class="form-group mb-0 mt-3 justify-content-end">
 									<div>
+												</div>
+									</div>
+								
+							</div>
+						</div>
+					</div>
+							<div class="card-body pt-0">
+								
+								
+										
+									
+										<div class="form-group">
+										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="product_id">
+											@foreach($products as $product)
+												<option value="{{$product->id}}">{{$product->name}}</option>
+
+
+											@endforeach
+            							    </select>
+									</div>
+									<div class="form-group">
+										<input type="textarea" class="form-control"  placeholder="quntity" value="{{old('qty')}}" name="qty">
+									</div>
+									<div class="form-group">
+										<input type="textarea" class="form-control"  placeholder="quntity" value="1" name="user_id">
+									</div>
+									<div class="form-group">
+									<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
+										
+            							    
+										
+										<option value="1" selected>active</option>
+										<option value="0">unactive</option>
+									</select>
+									</div>
+
+										<div class="form-group">
+										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="unit_id">
+											
+										@foreach($units as $unit)
+												<option value="{{$unit->id}}">{{$unit->unit_name}}</option>
+
+
+											@endforeach
+            							    </select>
+									</div>
+								   
+									<div class="form-group">
+										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="store_id">
+											@foreach($stores as $store)
+												<option value="{{$store->id}}">{{$store->storecode}}</option>
+
+
+											@endforeach
+            							    </select>
+									</div>
+									<div class="form-group">
+										<input type="textarea" class="form-control"  placeholder="quntity" value="{{old(invoice_number)}}" name="invoice_number">
+									</div>
+									<div class="form-group">
+										<input type="textarea" class="form-control"  placeholder="quntity" value="{{old(invoice_number)}}" name="invoice_number">
+									</div>
+									<div class="form-group">
+										<input type="textarea" class="form-control"  placeholder="quntity" value="{{old(invoice_number)}}" name="invoice_number">
+									</div>
+									
+									<div class="form-group mb-0 mt-3 justify-content-end">
+									<div>
 													<input type="submit" class='btn btn-primary' value="حفظ">
 											</div>
+
 									</div>
-								</form>
+								
 							</div>
+							</form>
 						</div>
 					</div>
 					

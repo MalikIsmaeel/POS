@@ -11,4 +11,7 @@ class option extends Model
     public function purchase_invoice(){
         return $this->hasMany(invoice_parchase_entity::class); 
     }
+    public function supplier(){
+        return $this->hasMany(supplier::class); 
+    }
 }

@@ -39,6 +39,7 @@ Route::resource('/subcity',SubCityController::class);
 Route::resource('/store',StoreMstrController::class);
 Route::resource('/entity',StoreDtlController::class);
 Route::resource('/supplier',SupplierController::class);
+Route::resource('/purchase',StoreDtlController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
