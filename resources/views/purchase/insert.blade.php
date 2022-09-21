@@ -52,58 +52,82 @@
 				<form action="#" method="post" id="form_insert">
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
-						<div class="card">
+					<div class="card">
 							<div class="card-body">
-								<div>
-									<h6 class="card-title mb-1">Single Select Style</h6>
-									<p class="text-muted card-sub-title">First import a latest version of jquery in your page. Then the jquery.sumoselect.min.js and its css (sumoselect.css)</p>
+								<div class="main-content-label mg-b-5">
+									Select<span class="tx-sserif">2</span>
 								</div>
-								<div class="mb-4">
-									<p class="mg-b-10">Single Select</p>
-									<select name="somename" class="form-control SlectBox" onclick="console.log($(this).val())" onchange="console.log('change is firing')">
-										<!--placeholder-->
-										<option title="Volvo is a car"  value="volvo">Volvo</option>
-										<option value="saab">Saab</option>
-										<option value="mercedes">Mercedes</option>
-										<option value="audi">Audi</option>
-									</select>
+								<p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
+								<div class="row row-sm mg-b-20">
+								<div class="col-lg-4 mg-t-20 mg-lg-t-0">
+										<p class="mg-b-10">Single Select with Search</p><select class="form-control select2">
+											<option label="Choose one">
+											</option>
+											<option value="Firefox">
+												Firefox
+											</option>
+											<option value="Chrome">
+												Chrome
+											</option>
+											<option value="Safari">
+												Safari
+											</option>
+											<option value="Opera">
+												Opera
+											</option>
+											<option value="Internet Explorer">
+												Internet Explorer
+											</option>
+										</select>
+									</div><!-- col-4 -->
+									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
+										<p class="mg-b-10">Single Select with Search</p><select class="form-control select2">
+											<option label="Choose one">
+											</option>
+											<option value="Firefox">
+												Firefox
+											</option>
+											<option value="Chrome">
+												Chrome
+											</option>
+											<option value="Safari">
+												Safari
+											</option>
+											<option value="Opera">
+												Opera
+											</option>
+											<option value="Internet Explorer">
+												Internet Explorer
+											</option>
+										</select>
+									</div><!-- col-4 -->
+									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
+										<p class="mg-b-10">Single Select with Search</p><select class="form-control select2">
+											<option label="Choose one">
+											</option>
+											<option value="Firefox">
+												Firefox
+											</option>
+											<option value="Chrome">
+												Chrome
+											</option>
+											<option value="Safari">
+												Safari
+											</option>
+											<option value="Opera">
+												Opera
+											</option>
+											<option value="Internet Explorer">
+												Internet Explorer
+											</option>
+										</select>
+									</div><!-- col-4 -->
+									
 								</div>
-								<div class="mb-4">
-									<p class="mg-b-10">Disabled Select</p>
-									<select class="SlectBox form-control" disabled>
-										<option value="volvo">Volvo</option>
-										<option selected value="saab">Saab</option>
-										<option value="mercedes">Mercedes</option>
-										<option value="audi">Audi</option>
-										<option disabled value="opt1">option1</option>
-										<option value="opt2">option2</option>
-										<option value="opt3">option3</option>
-									</select>
-								</div>
-								<div col-md-3 mb-3>
-									<p class="mg-b-10">Inline Select</p>
-									<select class="SlectBox form-control">
-										<option>selected</option>
-										<option>Volvo</option>
-										<option>Saab</option>
-										<option value="mercedes">Mercedes</option>
-										<option value="audi">Audi</option>
-										<option>Volvo</option>
-										<option>Saab</option>
-										<option value="mercedes">Mercedes</option>
-										<option value="audi">Audi</option>
-										<option>Volvo</option>
-										<option>Saab</option>
-										<option value="mercedes">Mercedes</option>
-										<option value="audi">Audi</option>
-										<option>Volvo</option>
-										<option>Saab</option>
-										<option value="mercedes">Mercedes</option>
-										<option value="audi">Audi</option>
-									</select>
-								</div>
+								<div class=" mb-1  d-grid">
+                                            <button class="btn btn-success add_item_btn w-25">Add</button>
+                                        </div> 
 							</div>
-							
 						</div>
 					</div>
 				
@@ -116,9 +140,7 @@
 									
 								<div>
 									<h6 class="card-title p-3">Single Select Style</h6>
-									<div class=" mb-1 mr-4 d-grid">
-                                            <button class="btn btn-success add_item_btn w-25">Add More</button>
-                                        </div>   
+									  
                         
 						
 								</div>  
@@ -129,7 +151,8 @@
 							
 							</div>
 						</div>
-						<div>
+						 <div class=" mb-1  d-grid">
+                            
                             <input type="submit" value="save" class="btn btn-primary w-25" id="add_btn">
                         </div>
 
@@ -198,7 +221,7 @@
                                  </div>
                                         <div class="col-md-2 mb-3">
                                             <button class="btn btn-danger remove_item_btn">1</button>
-											<button class="btn btn-primary remove_item_btn">2</button>
+											<button class="btn btn-primary add_item_btn">2</button>
 											
 											</div>
 									 </div>`);

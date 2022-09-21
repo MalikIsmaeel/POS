@@ -43,48 +43,48 @@ class InvoiceParchaseEntityController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            //  enters for invoice details
-            'qty'=>'required',
-            'active'=>'required',
-            'product_id'=>'required',
-            'store_id'=>'required',
-            'cost'=>'required',
-            'unit_id'=>'required',
-            'user_id'=>'required',
-            // enters for invoice maser
-            'invoice_number'=>'required|unique:invoice_parchase',
-            'invoice_date'=>'required',
-            'date_due'=>'required',
-            'total'=>'required',
-            'total_vat'=>'required',
-            'supplier_id'=>'required',
-            'suppliers'=>'required',
-            'user_id'=>'required'  
-        ]);
+    //     $request->validate([
+    //         //  enters for invoice details
+    //         'qty'=>'required',
+    //         'active'=>'required',
+    //         'product_id'=>'required',
+    //         'store_id'=>'required',
+    //         'cost'=>'required',
+    //         'unit_id'=>'required',
+    //         'user_id'=>'required',
+    //         // enters for invoice maser
+    //         'invoice_number'=>'required|unique:invoice_parchase',
+    //         'invoice_date'=>'required',
+    //         'date_due'=>'required',
+    //         'total'=>'required',
+    //         'total_vat'=>'required',
+    //         'supplier_id'=>'required',
+    //         'suppliers'=>'required',
+    //         'user_id'=>'required'  
+    //     ]);
         
-      $invoice_parchase=inovice_parchase::create([
-        'invoice_number'=>$request->invoice_number,
-        'invoice_date'=>$request->invoice_date,
-        'date_due'=>$request->date_due,
-        'total'=>$request->total,
-        'total_vat'=>$request->total_vat,
-        'supplier_id'=>$request->supplier_id,
+    //   $invoice_parchase=inovice_parchase::create([
+    //     'invoice_number'=>$request->invoice_number,
+    //     'invoice_date'=>$request->invoice_date,
+    //     'date_due'=>$request->date_due,
+    //     'total'=>$request->total,
+    //     'total_vat'=>$request->total_vat,
+    //     'supplier_id'=>$request->supplier_id,
         
-        'user_id'=>$request->user_id 
-      ]);
-        $purchase->invoice_parchase_entity()::create( [
-            'qty'=>$request->qty ?? 0,
-            'active'=>$request->active ?? 1,
-            'product_id'=>$request->product_id,
-            'store_id'=>$request->store_id,
-            'unit_id'=>$request->unit_id,
-            'cost'=>$request->cost ?? 0,
-            'user_id'=>$request->user_id,
-            'store_id'=>$request->store_id,
-            'tax'=>$request->tax ?? 0.15,
-            'sub_total'=>$request->sub_total ?? $request->qty * $request->cost
-        ]);
+    //     'user_id'=>$request->user_id 
+    //   ]);
+    //     $purchase->invoice_parchase_entity()::create( [
+    //         'qty'=>$request->qty ?? 0,
+    //         'active'=>$request->active ?? 1,
+    //         'product_id'=>$request->product_id,
+    //         'store_id'=>$request->store_id,
+    //         'unit_id'=>$request->unit_id,
+    //         'cost'=>$request->cost ?? 0,
+    //         'user_id'=>$request->user_id,
+    //         'store_id'=>$request->store_id,
+    //         'tax'=>$request->tax ?? 0.15,
+    //         'sub_total'=>$request->sub_total ?? $request->qty * $request->cost
+    //     ]);
 
             return redirect()->back()->with('success',$request->invoice_number.' Added successfully.');
           
