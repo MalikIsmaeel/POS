@@ -49,7 +49,7 @@
 @endsection
 @section('content')
 				<!-- row -->
-				<form action="#" method="post" id="form_insert">
+				<form action="#" method="post" id="form_insert" class="H-100">
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
 					<div class="card">
@@ -132,7 +132,7 @@
 					</div>
 				
 				</div>
-				<div class="row">
+				<div class="row h-75">
 					<div class="col-lg-12 col-md-12">
 						<div class="card">
 						
