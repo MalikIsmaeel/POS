@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\unit;
+use App\Models\catogery;
 use App\Models\invoice_parchase_entity;
+use App\Models\supplier;
+use App\Models\store_mstr;
 use Illuminate\Http\Request;
 
 class InvoiceParchaseEntityController extends Controller
@@ -24,9 +27,12 @@ class InvoiceParchaseEntityController extends Controller
      */
     public function create()
     {
+        $store=store_mstr::where('active','=','1');
         $unit=unit::where('active','=','1');
+        $supplier=supplier::where('active','=','1');
         $catogeries= catogery::where('active','=','1');
-        return   view('purchase.insert')->with('catogeries',$catogeries);
+        return   view('purchase.insert')->with(['catogeries'=>$catogeries, 'suppliers'=>$supplier,
+        'units'=>$unit, 'stores'=>$store]);
     }
 
     /**

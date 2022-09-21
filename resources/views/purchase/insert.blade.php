@@ -1,19 +1,22 @@
 @extends('layouts.master')
 @section('css')
+<!--- Internal Select2 css-->
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
-<!--Internal  Datetimepicker-slider css -->
-<link href="{{URL::asset('assets/plugins/amazeui-datetimepicker/css/amazeui.datetimepicker.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/pickerjs/picker.min.css')}}" rel="stylesheet">
-<!-- Internal Spectrum-colorpicker css -->
-<link href="{{URL::asset('assets/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
+<!---Internal Fileupload css-->
+<link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
+<!---Internal Fancy uploader css-->
+<link href="{{URL::asset('assets/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet" />
+<!--Internal Sumoselect css-->
+<link rel="stylesheet" href="{{URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css')}}">
+<!--Internal  TelephoneInput css-->
+<link rel="stylesheet" href="{{URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css')}}">
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">Pages</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Empty</span>
+							<h4 class="content-title mb-0 my-auto">Forms</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Form-Advanced</span>
 						</div>
 					</div>
 					<div class="d-flex my-xl-auto right-content">
@@ -46,206 +49,166 @@
 @endsection
 @section('content')
 				<!-- row -->
+				<form action="#" method="post" id="form_insert">
 				<div class="row">
-				@if ($errors->any())
-		@foreach ($errors->all() as $error)
-					<div class="alert alert-danger alert-dismissible" role="alert">
-						<button type="button" class="close" data-dismiss="alert">
-							<i class="fa fa-times"></i>
-						</button>
-						<strong>danger !</strong> {{$error}}
-					</div>
-</br>
-					@endforeach
-				
-				{{-- Message --}}
-@else
-@if (Session::has('success'))
-    <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert">
-            <i class="fa fa-times"></i>
-        </button>
-        <strong>Success !</strong> {{ session('success') }}
-   </div>
-	@endif
-@endif
-					<div class="col-md-12 col-sm-12">
-						<div class="card  box-shadow-0">
-							<div class="card-header">
-								<!--
-								//  enters for invoice details
-            
-            'active'=>'required',
-            
-           
-            // enters for invoice maser
-            
-            'invoice_date'=>'required',
-            'date_due'=>'required',
-            'total'=>'required',
-            'total_vat'=>'required',
-            
-            
-            'user_id'=>'required'-->
-								<h4 class="card-title mb-1">Default Form</h4>
-								<p class="mb-2">It is Very Easy to Customize and it uses in your website apllication.</p>
-							</div>
-							<form action="{{route('purchase.store')}}" method="POST">
-										@csrf
-
-										<div class="col-md-6 col-sm-6">
-						<div class="card  box-shadow-0">
-							<div class="card-header">
-								<h4 class="card-title mb-1">Default Form</h4>
-								<p class="mb-2">It is Very Easy to Customize and it uses in your website apllication.</p>
-							</div>
-							<div class="card-body pt-0">
-							<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="quntity" value="{{old(invoice_number)}}" name="invoice_number">
-									</div>
-									
-										<div class="form-group">
-										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="supplier_id">
-										
-										@foreach($suppliers as $supplier)
-										<option value="{{$supplier->product_id}}">{{$supplier->name}}</option>
-
-
-											@endforeach
-            							    </select>
-									</div>
-									
-									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="user_id" value="1" name="user_id">
-									</div>
-									<div class="form-group">
-									<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
-										
-									<option value="{{$entity->active}}">{{$entity->active == 1 ? 'active' : 'unactive'  }} </option>
-										<option value="{{$entity->active == 1 ?   '0' : '1' }}">{{$entity->active == 1 ?   'unactive' : 'active' }}</option>
-										</select>
-									</div>
-									
-
-										<div class="form-group">
-										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="unit_id">
-												@foreach($units as $unit)
-												<option value="{{$unit->id}}" {{$unit->id= $entity->unit_id ? 'SELECTED' : ' ' }}>{{$unit->unit_name}}</option>
-
-
-											@endforeach
-            							    </select>
-									</div>
-								   
-									<div class="form-group">
-										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="store_id">
-										@foreach($stores as $store)
-												<option value="{{$store->id}}" {{$store->id= $entity->store_id ? 'SELECTED' : ' ' }}>{{$store->storecode}}</option>
-
-
-											@endforeach
-            							    </select>
-									</div>
-									
-									
-									<div class="form-group mb-0 mt-3 justify-content-end">
-									<div>
-												</div>
-									</div>
-								
-							</div>
-						</div>
-					</div>
-							<div class="card-body pt-0">
-								
-								
-										
-									
-										<div class="form-group">
-										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="product_id">
-											@foreach($products as $product)
-												<option value="{{$product->id}}">{{$product->name}}</option>
-
-
-											@endforeach
-            							    </select>
-									</div>
-									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="quntity" value="{{old('qty')}}" name="qty">
-									</div>
-									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="quntity" value="1" name="user_id">
-									</div>
-									<div class="form-group">
-									<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
-										
-            							    
-										
-										<option value="1" selected>active</option>
-										<option value="0">unactive</option>
+					<div class="col-lg-12 col-md-12">
+						<div class="card">
+							<div class="card-body">
+								<div>
+									<h6 class="card-title mb-1">Single Select Style</h6>
+									<p class="text-muted card-sub-title">First import a latest version of jquery in your page. Then the jquery.sumoselect.min.js and its css (sumoselect.css)</p>
+								</div>
+								<div class="mb-4">
+									<p class="mg-b-10">Single Select</p>
+									<select name="somename" class="form-control SlectBox" onclick="console.log($(this).val())" onchange="console.log('change is firing')">
+										<!--placeholder-->
+										<option title="Volvo is a car"  value="volvo">Volvo</option>
+										<option value="saab">Saab</option>
+										<option value="mercedes">Mercedes</option>
+										<option value="audi">Audi</option>
 									</select>
-									</div>
-
-										<div class="form-group">
-										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="unit_id">
-											
-										@foreach($units as $unit)
-												<option value="{{$unit->id}}">{{$unit->unit_name}}</option>
-
-
-											@endforeach
-            							    </select>
-									</div>
-								   
-									<div class="form-group">
-										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="store_id">
-											@foreach($stores as $store)
-												<option value="{{$store->id}}">{{$store->storecode}}</option>
-
-
-											@endforeach
-            							    </select>
-									</div>
-									
-									
-									<div class="form-group mb-0 mt-3 justify-content-end">
-									<div>
-													<input type="submit" class='btn btn-primary' value="حفظ">
-											</div>
-
-									</div>
-								
+								</div>
+								<div class="mb-4">
+									<p class="mg-b-10">Disabled Select</p>
+									<select class="SlectBox form-control" disabled>
+										<option value="volvo">Volvo</option>
+										<option selected value="saab">Saab</option>
+										<option value="mercedes">Mercedes</option>
+										<option value="audi">Audi</option>
+										<option disabled value="opt1">option1</option>
+										<option value="opt2">option2</option>
+										<option value="opt3">option3</option>
+									</select>
+								</div>
+								<div col-md-3 mb-3>
+									<p class="mg-b-10">Inline Select</p>
+									<select class="SlectBox form-control">
+										<option>selected</option>
+										<option>Volvo</option>
+										<option>Saab</option>
+										<option value="mercedes">Mercedes</option>
+										<option value="audi">Audi</option>
+										<option>Volvo</option>
+										<option>Saab</option>
+										<option value="mercedes">Mercedes</option>
+										<option value="audi">Audi</option>
+										<option>Volvo</option>
+										<option>Saab</option>
+										<option value="mercedes">Mercedes</option>
+										<option value="audi">Audi</option>
+										<option>Volvo</option>
+										<option>Saab</option>
+										<option value="mercedes">Mercedes</option>
+										<option value="audi">Audi</option>
+									</select>
+								</div>
 							</div>
-							</form>
+							
 						</div>
 					</div>
-					
+				
 				</div>
-				<!-- row -->
+				<div class="row">
+					<div class="col-lg-12 col-md-12">
+						<div class="card">
+						
+                                <div class="">
+									
+								<div>
+									<h6 class="card-title p-3">Single Select Style</h6>
+									<div class=" mb-1 mr-4 d-grid">
+                                            <button class="btn btn-success add_item_btn w-25">Add More</button>
+                                        </div>   
+                        
+						
+								</div>  
+                        </div>
+							<div class="card-body">
+							<div id="show_item">
+                            <div class="row">
+							
+							</div>
+						</div>
+						<div>
+                            <input type="submit" value="save" class="btn btn-primary w-25" id="add_btn">
+                        </div>
 
+					</div>
+					</div>
 				</div>
+			
+				<!-- /row -->
+
+			
+
+				<!-- row -->
+				</form>
 				<!-- row closed -->
 			</div>
 			<!-- Container closed -->
-		
+		</div>
 		<!-- main-content closed -->
 @endsection
 @section('js')
+<!--Internal  Datepicker js -->
 <script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
-<!--Internal  jquery.maskedinput js -->
-<script src="{{URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js')}}"></script>
-<!--Internal  spectrum-colorpicker js -->
-<script src="{{URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js')}}"></script>
-<!-- Internal Select2.min js -->
+<!-- Internal Select2 js-->
 <script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
-<!--Internal Ion.rangeSlider.min js -->
-<script src="{{URL::asset('assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
-<!--Internal  jquery-simple-datetimepicker js -->
-<script src="{{URL::asset('assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js')}}"></script>
-<!-- Ionicons js -->
-<script src="{{URL::asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js')}}"></script>
-<!--Internal  pickerjs js -->
-<script src="{{URL::asset('assets/plugins/pickerjs/picker.min.js')}}"></script>
-<!-- Internal form-elements js -->
+<!--Internal Fileuploads js-->
+<script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
+<!--Internal Fancy uploader js-->
+<script src="{{URL::asset('assets/plugins/fancyuploder/jquery.ui.widget.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/fancyuploder/jquery.fileupload.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/fancyuploder/jquery.iframe-transport.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
+<!--Internal  Form-elements js-->
+<script src="{{URL::asset('assets/js/advanced-form-elements.js')}}"></script>
+<script src="{{URL::asset('assets/js/select2.js')}}"></script>
+<!--Internal Sumoselect js-->
+<script src="{{URL::asset('assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script>
+<!-- Internal TelephoneInput js-->
+<script src="{{URL::asset('assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
 <script src="{{URL::asset('assets/js/form-elements.js')}}"></script>
+<script>
+	$(document).ready(function()
+        {
+            $(".add_item_btn").click(function(e){
+            e.preventDefault();
+            
+            
+            $("#show_item").prepend(`<div class="row">
+                                <div class="col-md-2 mb-3">
+								
+                                            <input type="text" name="product_name[]" class="form-control" id="product" placeholder="product name">
+                                </div>
+                                 <div class="col-md-2 mb-3">
+                                            <input type="text" name="qty[]" id="qty" class="form-control" placeholder="product quntites">
+                                 </div>
+                                <div class="col-md-2 mb-3">
+                                            <input type="text" name="price[]" id="price" class="form-control" placeholder="product price">
+                                 </div>
+								 <div class="col-md-2 mb-3">
+                                            <input type="text" name="tax[]" id="tax" class="form-control" placeholder="product tax">
+                                 </div>
+								 <div class="col-md-2 mb-3">
+                                            <input type="text" name="sub_total[]" id="tax" class="form-control" placeholder="product tax">
+                                 </div>
+                                        <div class="col-md-2 mb-3">
+                                            <button class="btn btn-danger remove_item_btn">1</button>
+											<button class="btn btn-primary remove_item_btn">2</button>
+											
+											</div>
+									 </div>`);
+            
+        });
+        $(document).on('click','.remove_item_btn',function(e){
+            e.preventDefault();
+            let row_counter=$(this).parent().parent();
+            $(row_counter).remove();
+        });
+    });
+</script>
 @endsection

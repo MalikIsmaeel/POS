@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreMstrController;
 use App\Http\Controllers\StoreDtlController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\InvoiceParchaseEntityController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +28,7 @@ use App\Http\Controllers\SupplierController;
 
   Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    // Route::get('/{page}', [AdminController::class, 'index']);
+     Route::get('/{page}', [AdminController::class, 'index']);
 
 Route::resource('/user',UserController::class);
 Route::resource('/catogrey',CatogeryController::class);
@@ -39,7 +40,7 @@ Route::resource('/subcity',SubCityController::class);
 Route::resource('/store',StoreMstrController::class);
 Route::resource('/entity',StoreDtlController::class);
 Route::resource('/supplier',SupplierController::class);
-Route::resource('/purchase',StoreDtlController::class);
+Route::resource('/purchase',InvoiceParchaseEntityController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
