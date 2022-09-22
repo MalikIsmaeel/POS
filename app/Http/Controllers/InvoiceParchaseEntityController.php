@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\unit;
 use App\Models\catogery;
 use App\Models\invoice_parchase_entity;
+use App\Models\purchase_invoice;
 use App\Models\supplier;
 use App\Models\store_mstr;
 use Illuminate\Http\Request;
@@ -27,12 +28,15 @@ class InvoiceParchaseEntityController extends Controller
      */
     public function create()
     {
+        
+        $number=purchase_invoice::latest()->get();
+        $invoice_number = empty($number->invoice_number)? 1 : $number->invoice_number;
         $store=store_mstr::where('active','=','1');
         $unit=unit::where('active','=','1');
         $supplier=supplier::where('active','=','1');
         $catogeries= catogery::where('active','=','1');
         return   view('purchase.insert')->with(['catogeries'=>$catogeries, 'suppliers'=>$supplier,
-        'units'=>$unit, 'stores'=>$store]);
+        'units'=>$unit, 'stores'=>$store , 'number'=>$invoice_number]);
     }
 
     /**
@@ -85,8 +89,8 @@ class InvoiceParchaseEntityController extends Controller
     //         'tax'=>$request->tax ?? 0.15,
     //         'sub_total'=>$request->sub_total ?? $request->qty * $request->cost
     //     ]);
-
-            return redirect()->back()->with('success',$request->invoice_number.' Added successfully.');
+dd($request);
+            // return redirect()->back()->with('success',$request->invoice_number.' Added successfully.');
           
     }
 

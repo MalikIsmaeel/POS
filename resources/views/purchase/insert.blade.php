@@ -46,10 +46,17 @@
 					</div>
 				</div>
 				<!-- breadcrumb -->
-@endsection
-@section('content')
-				<!-- row -->
-				<form action="#" method="post" id="form_insert" class="H-100">
+		@endsection
+		@section('content')
+						<!-- row -->
+
+						<!-- 'invoice_number'=>$request->invoice_number, -->
+			<!-- //     'invoice_date'=>$request->invoice_date,
+			//     'date_due'=>$request->date_due,
+			//     'total'=>$request->total,
+			//     'total_vat'=>$request->total_vat,
+			//     'supplier_id'=>$request->supplier_id, -->
+						<form action="#" method="post" id="form_insert" class="H-100">
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
 					<div class="card">
@@ -60,66 +67,69 @@
 								<p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
 								<div class="row row-sm mg-b-20">
 								<div class="col-lg-4 mg-t-20 mg-lg-t-0">
-										<p class="mg-b-10">Single Select with Search</p><select class="form-control select2">
-											<option label="Choose one">
-											</option>
-											<option value="Firefox">
-												Firefox
-											</option>
-											<option value="Chrome">
-												Chrome
-											</option>
-											<option value="Safari">
-												Safari
-											</option>
-											<option value="Opera">
-												Opera
-											</option>
-											<option value="Internet Explorer">
-												Internet Explorer
-											</option>
-										</select>
+										<p class="mg-b-10">invoice number</p><div class="form-group"> <!-- Date input -->
+									    <div class="form-group"> 
+										<div class="input-group mb-3">
+										<input class="form-control" id="date" name="invoice_number" placeholder="{{$number}}" type="text" readonly/><div class="input-group-append">
+												
+											</div>
+										</div>
+										<span></span>
+										
+									
+     										 </div>
+											  </div>
 									</div><!-- col-4 -->
 									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
-										<p class="mg-b-10">Single Select with Search</p><select class="form-control select2">
-											<option label="Choose one">
-											</option>
-											<option value="Firefox">
-												Firefox
-											</option>
-											<option value="Chrome">
-												Chrome
-											</option>
-											<option value="Safari">
-												Safari
-											</option>
-											<option value="Opera">
-												Opera
-											</option>
-											<option value="Internet Explorer">
-												Internet Explorer
-											</option>
-										</select>
+										<p class="mg-b-10">invoice date</p><div class="form-group"> <!-- Date input -->
+									    <div class="form-group"> 
+										<div class="input-group mb-3">
+										<input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="date"/><div class="input-group-append">
+												<span class="input-group-text" id="basic-addon2"><i class="far fa-calendar"></i></span>
+											</div>
+										</div>
+										<span></span>
+										
+									
+     										 </div>
+											  </div>
 									</div><!-- col-4 -->
 									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
-										<p class="mg-b-10">Single Select with Search</p><select class="form-control select2">
+										<p class="mg-b-10">invoice date due</p><div class="form-group"> <!-- Date input -->
+									    <div class="form-group"> 
+										<div class="input-group mb-3">
+										<input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="date"/><div class="input-group-append">
+												<span class="input-group-text" id="basic-addon2"><i class="far fa-calendar"></i></span>
+											</div>
+										</div>
+										<span></span>
+										
+									
+     										 </div>
+											  </div>
+									</div><!-- col-4 -->
+									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
+										<p class="mg-b-10">Select supplier</p><select class="form-control select2">
 											<option label="Choose one">
 											</option>
-											<option value="Firefox">
-												Firefox
+											@foreach ($suppliers as $supplier)
+											<option value="$supplier->id">
+												$supplier->name
 											</option>
-											<option value="Chrome">
-												Chrome
+											@endforeach
+											
+										</select>
+										
+									</div><!-- col-4 -->
+									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
+										<p class="mg-b-10">Select Store</p><select class="form-control select2">
+											<option label="Choose one">
 											</option>
-											<option value="Safari">
-												Safari
+											@foreach ($stores as $store)
+											<option value="$store->id">
+												$supplier->name
 											</option>
-											<option value="Opera">
-												Opera
-											</option>
-											<option value="Internet Explorer">
-												Internet Explorer
-											</option>
+											@endforeach
 										</select>
 									</div><!-- col-4 -->
 									
@@ -132,44 +142,96 @@
 					</div>
 				
 				</div>
-				<div class="row h-75">
+				<div class="row">
 					<div class="col-lg-12 col-md-12">
-						<div class="card">
-						
-                                <div class="">
-									
-								<div>
-									<h6 class="card-title p-3">Single Select Style</h6>
-									  
-                        
-						
-								</div>  
-                        </div>
+					<div class="card">
 							<div class="card-body">
+								<div class="main-content-label mg-b-5">
+									Select<span class="tx-sserif">2</span>
+								</div>
+								<p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
+								<div class="card-body">
 							<div id="show_item">
                             <div class="row">
 							
 							</div>
 						</div>
-						 <div class=" mb-1  d-grid">
+						 
+
+					</div>
+				<div class="row h-50">
+					<div class="col-lg-12 col-md-12">
+					<div class="card">
+							<div class="card-body">
+								<div class="main-content-label mg-b-5">
+									Select<span class="tx-sserif">2</span>
+								</div>
+								<p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
+								<div class="row row-sm mg-b-20">
+								<div class="col-lg-4 mg-t-20 mg-lg-t-0">
+										<p class="mg-b-10">Total</p><div class="form-group"> <!-- Date input -->
+									    <div class="form-group"> 
+										<div class="input-group mb-3">
+										<input class="form-control" id="date" name="invoice_number" placeholder="{{$number}}" type="text" readonly/><div class="input-group-append">
+												
+											</div>
+										</div>
+										<span></span>
+										
+									
+     										 </div>
+											  </div>
+									</div><!-- col-4 -->
+									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
+										<p class="mg-b-10">Total VAT</p><div class="form-group"> <!-- Date input -->
+									    <div class="form-group"> 
+										<div class="input-group mb-3">
+										<input class="form-control" id="date" name="invoice_number" placeholder="{{$number}}" type="text" readonly/><div class="input-group-append">
+												
+											</div>
+										</div>
+										<span></span>
+										
+									
+     										 </div>
+											  </div>
+									</div><!-- col-4 -->
+									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
+										<p class="mg-b-10">Total with VAT </p><div class="form-group"> <!-- Date input -->
+									    <div class="form-group"> 
+										<div class="input-group mb-3">
+										<input class="form-control" id="date" name="invoice_number" placeholder="{{$number}}" type="text" readonly/><div class="input-group-append">
+												
+											</div>
+										</div>
+										<span></span>
+										
+									
+     										 </div>
+											  </div>
+											  <div class=" mb-1  d-grid">
                             
                             <input type="submit" value="save" class="btn btn-primary w-25" id="add_btn">
                         </div>
-
+									</div><!-- col-4 -->
+									
+								
+							</div>
+						</div>
 					</div>
+				
+				</div>
 					</div>
 				</div>
 			
 				<!-- /row -->
-
-			
-
+				
 				<!-- row -->
 				</form>
 				<!-- row closed -->
-			</div>
+		  </div>
 			<!-- Container closed -->
-		</div>
+		
 		<!-- main-content closed -->
 @endsection
 @section('js')
@@ -207,17 +269,24 @@
 								
                                             <input type="text" name="product_name[]" class="form-control" id="product" placeholder="product name">
                                 </div>
-                                 <div class="col-md-2 mb-3">
-                                            <input type="text" name="qty[]" id="qty" class="form-control" placeholder="product quntites">
-                                 </div>
                                 <div class="col-md-2 mb-3">
                                             <input type="text" name="price[]" id="price" class="form-control" placeholder="product price">
                                  </div>
 								 <div class="col-md-2 mb-3">
-                                            <input type="text" name="tax[]" id="tax" class="form-control" placeholder="product tax">
+                                            <input type="text" name="qty[]" id="qty" class="form-control" value='1' placeholder="product quntites">
                                  </div>
+								 <div class="col-lg-2 mg-t-20 mg-lg-t-0">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<div class="input-group-text">
+													15%
+												</div><!-- input-group-text -->
+											</div><!-- input-group-prepend -->
+											<input class="form-control" id="ssnMask"  placeholder="" type="text" name="vat" readonly>
+										</div>
+									</div>
 								 <div class="col-md-2 mb-3">
-                                            <input type="text" name="sub_total[]" id="tax" class="form-control" placeholder="product tax">
+                                            <input type="text" name="subtotal[]" id="subtotal" value="0.00" class="form-control" placeholder="">
                                  </div>
                                         <div class="col-md-2 mb-3">
                                             <button class="btn btn-danger remove_item_btn">1</button>
@@ -232,6 +301,28 @@
             let row_counter=$(this).parent().parent();
             $(row_counter).remove();
         });
+		$("input[name='price']").on('input', function(){
+    var subtot=0;
+    var vat=0;
+	var qty = parent.find("input[name=qty]").val();
+    var vat = parent.find("input[name=vat]").val();
+	var price = parent.find("input[name=price]").val();
+    subtot += parseInt($(this).val()) * qty * price;
+    parent.find("input[name=subtotal]").val(subtot);
+
+    					
+  });
+  $("input[name='vat']").on('price', function(){
+    var subtot=0;
+    var vat=0;
+   
+    var qty = parent.find("input[name=qty]").val();
+	var price = parent.find("input[name=price]").val();
+    vat += parseInt($(this).val()) * qty * price *0.15;
+    parent.find("input[name=subtotal]").val(subtot);
+
+    					
+  });
     });
 </script>
 @endsection
