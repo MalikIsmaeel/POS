@@ -166,7 +166,6 @@
 								<div class="main-content-label mg-b-5">
 									Select<span class="tx-sserif">2</span>
 								</div>
-								<p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
 								<div class="row row-sm mg-b-20">
 								<div class="col-lg-4 mg-t-20 mg-lg-t-0">
 										<p class="mg-b-10">Total</p><div class="form-group"> <!-- Date input -->
