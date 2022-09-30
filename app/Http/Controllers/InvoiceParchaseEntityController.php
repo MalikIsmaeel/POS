@@ -29,14 +29,15 @@ class InvoiceParchaseEntityController extends Controller
     public function create()
     {
         
-        $number=purchase_invoice::latest()->get();
-        $invoice_number = empty($number->invoice_number)? 1 : $number->invoice_number;
-        $store=store_mstr::where('active','=','1');
+        $number="INV ".purchase_invoice::latest()->get()->invoice_number+1;
+        
+        $store=store_mstr::get();
         $unit=unit::where('active','=','1');
-        $supplier=supplier::where('active','=','1');
-        $catogeries= catogery::where('active','=','1');
-        return   view('purchase.insert')->with(['catogeries'=>$catogeries, 'suppliers'=>$supplier,
-        'units'=>$unit, 'stores'=>$store , 'number'=>$invoice_number]);
+        $supplier=supplier::get();
+        $catogeries= catogery::where('active','=',1);
+        return view('purchase.insert')->with(['catogeries'=>$catogeries, 'suppliers'=>$supplier,
+        'units'=>$unit, 'stores'=>$store , 'numbers'=>$number]);
+        
     }
 
     /**
@@ -47,36 +48,36 @@ class InvoiceParchaseEntityController extends Controller
      */
     public function store(Request $request)
     {
-    //     $request->validate([
-    //         //  enters for invoice details
-    //         'qty'=>'required',
-    //         'active'=>'required',
-    //         'product_id'=>'required',
-    //         'store_id'=>'required',
-    //         'cost'=>'required',
-    //         'unit_id'=>'required',
-    //         'user_id'=>'required',
-    //         // enters for invoice maser
-    //         'invoice_number'=>'required|unique:invoice_parchase',
-    //         'invoice_date'=>'required',
-    //         'date_due'=>'required',
-    //         'total'=>'required',
-    //         'total_vat'=>'required',
-    //         'supplier_id'=>'required',
-    //         'suppliers'=>'required',
-    //         'user_id'=>'required'  
-    //     ]);
+        $request->validate([
+    //        //  enters for invoice details
+    // //         'qty'=>'required',
+    // //         'active'=>'required',
+    // //         'product_id'=>'required',
+    // //         'store_id'=>'required',
+    // //         'cost'=>'required',
+    // //         'unit_id'=>'required',
+    // //         'user_id'=>'required',
+    // //         // enters for invoice maser
+         'invoice_number'=>'required|unique:purchase_invoices',
+          'invoice_date'=>'required',
+           'date_due'=>'required',
+           'total'=>'required',
+           'total_vat'=>'required',
+          'supplier_id'=>'required',
+           
+            'user_id'=>'required'  
+     ]);
         
-    //   $invoice_parchase=inovice_parchase::create([
-    //     'invoice_number'=>$request->invoice_number,
-    //     'invoice_date'=>$request->invoice_date,
-    //     'date_due'=>$request->date_due,
-    //     'total'=>$request->total,
-    //     'total_vat'=>$request->total_vat,
-    //     'supplier_id'=>$request->supplier_id,
+      $purchase_invoice=purchase_invoice::create([
+        'invoice_number'=>$request->invoice_number,
+        'invoice_date'=>$request->invoice_date,
+        'date_due'=>$request->date_due,
+        'total'=>$request->total,
+        'total_vat'=>$request->total_vat,
+        'supplier_id'=>$request->supplier_id,
         
-    //     'user_id'=>$request->user_id 
-    //   ]);
+        'user_id'=>$request->user_id 
+      ]);
     //     $purchase->invoice_parchase_entity()::create( [
     //         'qty'=>$request->qty ?? 0,
     //         'active'=>$request->active ?? 1,
@@ -89,7 +90,9 @@ class InvoiceParchaseEntityController extends Controller
     //         'tax'=>$request->tax ?? 0.15,
     //         'sub_total'=>$request->sub_total ?? $request->qty * $request->cost
     //     ]);
-dd($request);
+    
+    return redirect()->back()->with('success', $request->invoice_number.'Product Added successfully.');
+        
             // return redirect()->back()->with('success',$request->invoice_number.' Added successfully.');
           
     }
