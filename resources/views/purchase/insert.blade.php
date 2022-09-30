@@ -134,9 +134,7 @@
 									</div><!-- col-4 -->
 									
 								</div>
-								<div class=" mb-1  d-grid">
-                                            <button class="btn btn-success add_item_btn w-25">Add</button>
-                                        </div> 
+								
 							</div>
 						</div>
 					</div>
@@ -153,10 +151,42 @@
 								<div class="card-body">
 							<div id="show_item">
                             <div class="row">
-							
+                                <div class="col-md-2 mb-3">
+								
+                                            <input type="text" name="product_name[]" class="form-control" id="product" placeholder="product name">
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                            <input type="text" name="price[]" id="price" class="form-control" placeholder="product price">
+                                 </div>
+								 <div class="col-md-2 mb-3">
+                                            <input type="text" name="qty[]" id="qty" class="form-control" value='1' placeholder="product quntites">
+                                 </div>
+								 <div class="col-lg-2 mg-t-20 mg-lg-t-0">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<div class="input-group-text">
+													15%
+												</div><!-- input-group-text -->
+											</div><!-- input-group-prepend -->
+											<input class="form-control" id="vat"  placeholder="" type="text" name="vat" readonly>
+										</div>
+									</div>
+								 <div class="col-md-2 mb-3">
+                                            <input type="text" name="subtotal[]" id="subtotal" value="0.00" class="form-control" placeholder="">
+                                 </div>
+								 <div class="col-md-2 mb-3">
+                                            <button class="btn btn-danger remove_item_btn">1</button>
+											
+											
+											</div>
+									 </div>
+									 
 							</div>
+							
 						</div>
-						 
+						<div class=" mb-1 ">
+                                            <button class="btn btn-success add_item_btn w-25">Add</button>
+                                        </div>
 
 					</div>
 				<div class="row h-50">
@@ -171,7 +201,7 @@
 										<p class="mg-b-10">Total</p><div class="form-group"> <!-- Date input -->
 									    <div class="form-group"> 
 										<div class="input-group mb-3">
-										<input class="form-control" id="date" name="invoice_number" placeholder="{{$number}}" type="text" readonly/><div class="input-group-append">
+										<input class="form-control" id="total" name="total" placeholder="0.00" type="text" readonly/><div class="input-group-append">
 												
 											</div>
 										</div>
@@ -185,7 +215,7 @@
 										<p class="mg-b-10">Total VAT</p><div class="form-group"> <!-- Date input -->
 									    <div class="form-group"> 
 										<div class="input-group mb-3">
-										<input class="form-control" id="date" name="invoice_number" placeholder="{{$number}}" type="text" readonly/><div class="input-group-append">
+										<input class="form-control" id="totalvat" name="total_vat" placeholder="{{$number}}" type="text" readonly/><div class="input-group-append">
 												
 											</div>
 										</div>
@@ -259,6 +289,8 @@
 <script>
 	$(document).ready(function()
         {
+			let vat2 = 0;
+			let sumtotal=0;
             $(".add_item_btn").click(function(e){
             e.preventDefault();
             
@@ -281,7 +313,7 @@
 													15%
 												</div><!-- input-group-text -->
 											</div><!-- input-group-prepend -->
-											<input class="form-control" id="ssnMask"  placeholder="" type="text" name="vat" readonly>
+											<input class="form-control" id="vat"  placeholder="" type="text" name="vat" readonly>
 										</div>
 									</div>
 								 <div class="col-md-2 mb-3">
@@ -294,34 +326,57 @@
 											</div>
 									 </div>`);
             
-        });
+        
         $(document).on('click','.remove_item_btn',function(e){
             e.preventDefault();
             let row_counter=$(this).parent().parent();
             $(row_counter).remove();
         });
-		$("input[name='price']").on('input', function(){
-    var subtot=0;
-    var vat=0;
-	var qty = parent.find("input[name=qty]").val();
-    var vat = parent.find("input[name=vat]").val();
-	var price = parent.find("input[name=price]").val();
-    subtot += parseInt($(this).val()) * qty * price;
-    parent.find("input[name=subtotal]").val(subtot);
+		
+  
+    
+});
+$(document).on("change", "#price, #qty", function(e) {
+	e.preventDefault();
+var subtotal=0;
+// alert("Malik");
 
-    					
-  });
-  $("input[name='vat']").on('price', function(){
-    var subtot=0;
-    var vat=0;
-   
-    var qty = parent.find("input[name=qty]").val();
-	var price = parent.find("input[name=price]").val();
-    vat += parseInt($(this).val()) * qty * price *0.15;
-    parent.find("input[name=subtotal]").val(subtot);
+var vat =0;
+let price=$("#price").val();
 
-    					
-  });
-    });
+vat =  ($("#price").val()*$("#qty").val()*0.15).toFixed(2);
+subtotal+=+( $("#price").val()*$("#qty").val())+ ($("#price").val()*$("#qty").val()*0.15);
+$("#vat").val(vat);
+$("#subtotal").val(subtotal);
+sumvat();
+ total();
+ 
+// totalvat();
+})
+function total()
+{
+	
+	
+	   $("#subtotal").each(function(){
+			
+	       sumtotal +=+$("#subtotal").val();
+		   $("#total").val(sumtotal);
+	  });
+	//     
+}
+
+function sumvat()
+{
+	
+	 
+	   $("#vat").each(function(){
+		
+	       vat2 +=+$("#vat").val();
+		   alert(vat2);
+	   $("#totalvat").val(vat2);
+	  });
+	//     
+}
+});         
 </script>
 @endsection
