@@ -195,9 +195,18 @@
 							<div id="show_item">
                             <div class="row">
                                 <div class="col-md-2 mb-3">
-								
-                                            <input type="text" name="product_name[]" class="form-control" id="product" placeholder="product name">
-                                </div>
+								<select class="form-control select2" name="product_name[]">
+											<option label="products..">
+											</option>
+											@foreach ($products as $product)
+											<option value="{{$product->id}}">
+												{{$product->name}}
+											</option>
+											@endforeach
+											
+										</select>   
+										           
+									 </div>
                                 <div class="col-md-2 mb-3">
                                             <input type="text" name="price[]" id="price" class="form-control" placeholder="product price">
                                  </div>
@@ -381,6 +390,7 @@
 });
 $(document).on("change", "#price, #qty", function(e) {
 	e.preventDefault();
+	
 var subtotal=0;
 // alert("Malik");
 
@@ -415,7 +425,7 @@ function sumvat()
 	   $("#vat").each(function(){
 		
 	       vat2 +=+$("#vat").val();
-		   alert(vat2);
+		   
 	   $("#totalvat").val(vat2);
 	  });
 	//     

@@ -6,6 +6,7 @@ use App\Models\catogery;
 use App\Models\invoice_parchase_entity;
 use App\Models\purchase_invoice;
 use App\Models\supplier;
+use App\Models\product;
 use App\Models\store_mstr;
 use Illuminate\Http\Request;
 
@@ -29,15 +30,15 @@ class InvoiceParchaseEntityController extends Controller
     public function create()
     {
         
-        $number="INV ".purchase_invoice::latest()->get()->invoice_number+1;
-        
+        $number="INV ".(purchase_invoice::get()->last()->id ?? 1);
+        $product =product::get();
         $store=store_mstr::get();
         $unit=unit::where('active','=','1');
         $supplier=supplier::get();
         $catogeries= catogery::where('active','=',1);
-        return view('purchase.insert')->with(['catogeries'=>$catogeries, 'suppliers'=>$supplier,
-        'units'=>$unit, 'stores'=>$store , 'numbers'=>$number]);
-        
+        return view('purchase.insert')->with(['catogeries'=>$catogeries,'suppliers'=>$supplier,
+        'units'=>$unit, 'stores'=>$store , 'numbers'=>$number ,'products'=>$product]);
+       dd($number) ;
     }
 
     /**
