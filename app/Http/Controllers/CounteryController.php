@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\countery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Excel;
+use App\Imports\countriesImport;
+
+
 class CounteryController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
+         $this->middleware('auth');
         
     }
     /**
@@ -56,7 +60,7 @@ class CounteryController extends Controller
             'countery_name'=>$request->countery_name,
             'description'=>$request->description,
             'active'=>$request->active ?? 0,
-            'user_id'=>Auth::user()->id ?? 1,
+            'user_id'=>Auth::user()->id,
       
             ]);
                  
@@ -122,4 +126,19 @@ class CounteryController extends Controller
 
         return redirect()->back()->with('success', 'countery deleted successfully.');
     }
+
+    public function fileImportExport()
+    {
+       return view('file-import')->with('success', 'countery uploaded successfully.');
+    }
+   
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function fileImport(Request $request) 
+    {
+        Excel::import(new countriesImport, $request->file('file')->store('temp'));
+        return back()->with('success', 'countery uploaded successfully.');;
+    }
+
 }

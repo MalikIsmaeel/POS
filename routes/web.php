@@ -28,7 +28,7 @@ use App\Http\Controllers\InvoiceParchaseEntityController;
 
   Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-     Route::get('/{page}', [AdminController::class, 'index']);
+    //  Route::get('/{page}', [AdminController::class, 'index']);
 
 Route::resource('/user',UserController::class);
 Route::resource('/catogrey',CatogeryController::class);
@@ -42,5 +42,10 @@ Route::resource('/entity',StoreDtlController::class);
 Route::resource('/supplier',SupplierController::class);
 Route::resource('/purchase',InvoiceParchaseEntityController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('file-import-export', [UserController::class, 'fileImportExport']);
 
+Route::post('file-import', [UserController::class, 'fileImport'])->name('file-import');
+Route::get('file-export', [UserController::class, 'fileExport'])->name('file-export');
+Route::post('file-import', [UserController::class, 'fileImport'])->name('file-import');
+Route::post('file-import-countery', [counteryController::class, 'fileImport'])->name('file-import-countery');
 

@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role; 
 use Illuminate\Support\Facades\Input;
-
+use Excel;
+use App\Imports\UsersImport;
 use function PHPUnit\Framework\returnCallback;
 
 class UserController extends Controller
@@ -150,4 +151,20 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'User deleted successfully.');
     }
+    public function fileImportExport()
+    {
+       return view('file-import');
+    }
+   
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function fileImport(Request $request) 
+    {
+        Excel::import(new UsersImport, $request->file('file')->store('temp'));
+        return back();
+    }
+
+
+
 }

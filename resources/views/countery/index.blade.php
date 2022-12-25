@@ -68,7 +68,7 @@
 										 @foreach($counteries as $countery ) 
 											 <tr>
 											 <th scope="row">{{++$i}}</th>
-												<td>{{$countery->name }} 
+												<td>{{$countery->countery_name }} 
 													</td>
 												<td>{{$countery->description}}</td>
 												<td>
