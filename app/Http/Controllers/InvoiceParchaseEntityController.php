@@ -19,7 +19,9 @@ class InvoiceParchaseEntityController extends Controller
      */
     public function index()
     {
-        
+        $entity=invoice_parchase_entity::paginate(10);
+      return  view('purchase.index',['entities'=>$entity]);
+     
     }
 
     /**

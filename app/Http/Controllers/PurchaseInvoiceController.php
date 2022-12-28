@@ -14,7 +14,7 @@ class PurchaseInvoiceController extends Controller
      */
     public function index()
     {
-        
+      return  view('purchase.index',['entities'=>$entity]);
     }
 
     /**

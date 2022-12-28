@@ -77,7 +77,7 @@
 							</div>
 							<div class="card-body pt-0">
 								
-								<form action="{{route('entity.update',$entity->id)}}" method="POST">
+								<form action="{{route('purchase.update',$entity->id)}}" method="POST">
 										@csrf
 										{{ method_field('PUT') }}
 									

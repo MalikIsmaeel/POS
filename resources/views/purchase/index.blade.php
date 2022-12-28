@@ -69,7 +69,7 @@
 
 
 							
-										 @foreach($entites as $entity ) 
+										 @foreach($entities as $entity ) 
 											 <tr>
 											 <th scope="row">{{++$i}}</th>
 												<td>{{$entity->product->name }} 
@@ -82,8 +82,8 @@
 												
 												
 												<td>
-												<a href="{{route('entity.edit',$entity->id)}}" class="btn btn-primary">yes</a>
-												<form id="delete" action="{{route('entity.destroy',$entity->id)}}" method="post">
+												<a href="{{route('purchase.edit',$entity->id)}}" class="btn btn-primary">yes</a>
+												<form id="delete" action="{{route('purshase.destroy',$purshase->id)}}" method="post">
 														@csrf
 														@method('DELETE')
 											<button id="btnSend" class="btn btn-danger">مسح</button>
@@ -100,7 +100,7 @@
 						</div><!-- bd -->
 					</div>
 					<!--/div-->
-					<tfoot>{{ $entites->links() }}</tfoot>
+					<tfoot>{{ $entities->links() }}</tfoot>
 				</div>
 				<!-- row closed -->
 			</div>
