@@ -208,10 +208,10 @@
 										           
 									 </div>
                                 <div class="col-md-2 mb-3">
-                                            <input type="text" name="price[]" id="price" class="form-control" placeholder="product price">
+                                            <input type="text" name="price[]" id="price" class="form-control" placeholder="product price" onchange="calculate();">
                                  </div>
 								 <div class="col-md-2 mb-3">
-                                            <input type="text" name="qty[]" id="qty" class="form-control" value='1' placeholder="product quntites">
+                                            <input type="text" name="qty[]" id="qty" class="form-control" value='1' placeholder="product quntites" onchange="calculate();">
                                  </div>
 								 <div class="col-lg-2 mg-t-20 mg-lg-t-0">
 										<div class="input-group">
@@ -224,7 +224,7 @@
 										</div>
 									</div>
 								 <div class="col-md-2 mb-3">
-                                            <input type="text" name="subtotal[]" id="subtotal" value="0.00" class="form-control" placeholder="">
+                                            <input type="text" name="subtotal[]" id="subtotal"  class="form-control" placeholder="">
                                  </div>
 								 <div class="col-md-2 mb-3">
                                             <button class="btn btn-danger remove_item_btn">1</button>
@@ -339,10 +339,8 @@
 <script src="{{URL::asset('assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
 <script src="{{URL::asset('assets/js/form-elements.js')}}"></script>
 <script>
-	$(document).ready(function()
-        {
-			let vat2 = 0;
-			let sumtotal=0;
+let total=0;
+let totalvat=0;			
             $(".add_item_btn").click(function(e){
             e.preventDefault();
             
@@ -353,10 +351,10 @@
                                             <input type="text" name="product_name[]" class="form-control" id="product" placeholder="product name">
                                 </div>
                                 <div class="col-md-2 mb-3">
-                                            <input type="text" name="price[]" id="price" class="form-control" placeholder="product price">
+                                            <input type="text" name="price[]" id="price" class="form-control" placeholder="product price" onchange='calculate()'>
                                  </div>
 								 <div class="col-md-2 mb-3">
-                                            <input type="text" name="qty[]" id="qty" class="form-control" value='1' placeholder="product quntites">
+                                            <input type="text" name="qty[]" id="qty" class="form-control"  placeholder="product quntites" onchange='calculate()'>
                                  </div>
 								 <div class="col-lg-2 mg-t-20 mg-lg-t-0">
 										<div class="input-group">
@@ -381,6 +379,9 @@
         
         $(document).on('click','.remove_item_btn',function(e){
             e.preventDefault();
+			 total=0;
+			 totalvat=0;
+			calculate();
             let row_counter=$(this).parent().parent();
             $(row_counter).remove();
         });
@@ -388,48 +389,78 @@
   
     
 });
-$(document).on("change", "#price, #qty", function(e) {
-	e.preventDefault();
+// // $(document).on("change", "#price, #qty", function(e) {
+// // 	 e.preventDefault();
 	
-var subtotal=0;
-// alert("Malik");
+// // var subtotal=0;
+// // // alert("Malik");
 
-var vat =0;
-let price=$("#price").val();
+// // var vat =0;
+// // let price=$("#price").val();
 
-vat =  ($("#price").val()*$("#qty").val()*0.15).toFixed(2);
-subtotal+=+( $("#price").val()*$("#qty").val())+ ($("#price").val()*$("#qty").val()*0.15);
-$("#vat").val(vat);
-$("#subtotal").val(subtotal);
-sumvat();
- total();
+// // vat =  ($("#price").val()*$("#qty").val()*0.15).toFixed(2);
+// // subtotal+=+( $("#price").val()*$("#qty").val())+ ($("#price").val()*$("#qty").val()*0.15);
+// // $("#vat").val(vat);
+// // $("#subtotal").val(subtotal);
+// // sumvat();
+// //  total();
  
-// totalvat();
-})
-function total()
-{
+// // // totalvat();
+// // })
+// function total()
+// {
 	
 	
-	   $("#subtotal").each(function(){
+// 	   $("#subtotal").each(function(){
 			
-	       sumtotal +=+$("#subtotal").val();
-		   $("#total").val(sumtotal);
-	  });
-	//     
-}
+// 	       sumtotal +=+$("#subtotal").val();
+// 		   $("#total").val(sumtotal);
+// 	  });
+// 	//     
+// }
 
-function sumvat()
-{
+// function sumvat()
+// {
 	
 	 
-	   $("#vat").each(function(){
+// 	   $("#vat").each(function(){
 		
-	       vat2 +=+$("#vat").val();
+// 	       vat2 +=+$("#vat").val();
 		   
-	   $("#totalvat").val(vat2);
-	  });
-	//     
-}
-});         
+// 	   $("#totalvat").val(vat2);
+// 	  });
+// 	//     
+// }
+// });        
+
+
+    function calculate () {
+		
+		
+	
+    var unit =  $('#price').val();
+     var qty =  $('#qty').val();
+     var val =  parseFloat(unit * qty);
+	  var vat =  (parseFloat(val*.015));
+
+     $('#subtotal').val(val);
+     $('#vat').val(vat);
+    var update = false;
+    $('#subtotal').each(function () {
+        val = parseInt($(this).val());
+		
+        total =total + val;
+    });
+	$('#vat').each(function () {
+        vat = parseFloat($(this).val());
+        totalvat=parseFloat(totalvat + vat);
+    });
+    $('#total').val(total);
+	$('#totalvat').val(totalvat);
+  };
+
+
+
+
 </script>
 @endsection
