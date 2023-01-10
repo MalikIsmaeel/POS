@@ -281,8 +281,9 @@
 										<p class="mg-b-10">Total with VAT </p><div class="form-group"> <!-- Date input -->
 									    <div class="form-group"> 
 										<div class="input-group mb-3">
-										<input class="form-control" id="date" name="totalvat" placeholder="0.00" value="0.00"  type="text" readonly/><div class="input-group-append">
-												
+										<!-- <input class="form-control" id="text" name="totalvat" placeholder="0.00"  type="text" id="sum" readonly/><div class="input-group-append"> -->
+										<input class="form-control" id="total_vat" name="total_vat" placeholder="0.00" value="0.00" type="text" readonly/><div class="input-group-append">
+											
 											</div>
 										</div>
 										<span></span>
@@ -341,6 +342,7 @@
 <script>
 let total=0;
 let totalvat=0;			
+
             $(".add_item_btn").click(function(e){
             e.preventDefault();
             
@@ -457,6 +459,7 @@ let totalvat=0;
     });
     $('#total').val(total);
 	$('#totalvat').val(totalvat);
+  $('#total_vat').val(total+totalvat);   
   };
 
 
