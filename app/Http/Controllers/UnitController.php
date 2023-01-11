@@ -24,7 +24,7 @@ class UnitController extends Controller
     {
         $unit=  DB::table('units as main_unit')
        ->select('sub_unit.unit_name as unit_name', 'sub_unit.no_of_units as no_of_unit','main_unit.unit_name as main_unit','main_unit.id as parent_id')
-       ->LeftJoin('units as sub_unit', 'main_unit.parent_id','=','sub_unit.id')::where('active','=','1')->paginate(10);
+       ->LeftJoin('units as sub_unit', 'main_unit.parent_id','=','sub_unit.id')->paginate(10);
       return   view('unit.index')->with('units',$unit);
     }
 

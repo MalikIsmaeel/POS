@@ -15,10 +15,10 @@ class countriesImport implements ToModel
     public function model(array $row)
     {
         return new countery([
-            'countery_name'=>'',
+            'countery_name'=>$row[0],
             'description'=>$row[1],
             'active'=>1,
-            'user_id'=>Auth::user()->id ?? 1,
+            'user_id'=>Auth::user()->id,
         ]);
     }
 }

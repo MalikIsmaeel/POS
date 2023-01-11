@@ -10,6 +10,7 @@ class store_mstr extends Model
     use HasFactory;
     protected $fillable =[
         'storecode',
+        'type',
        'sub_city_id',
        'user_id'];
        public function sub_city(){
@@ -24,4 +25,8 @@ class store_mstr extends Model
     public function purchase_invoice(){
         return $this->hasMany(invoice_parchase_entity::class); 
     }
+    public function type(){
+        return $this->belongsTo(option::class); 
+    }
+
 }

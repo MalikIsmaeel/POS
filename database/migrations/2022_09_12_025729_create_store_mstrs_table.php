@@ -17,13 +17,16 @@ return new class extends Migration
             $table->id();
             
             $table->string('storecode');
-            $table->string('type'); // adding to options type of storeage materals finish products ...
+           
             $table->unsignedInteger('active');
             $table->foreignId('sub_city_id')
             ->references('id')->on('sub_cities')
             ->onDelete('cascade'); 
             $table->foreignId('user_id')
             ->references('id')->on('users')
+            ->onDelete('cascade');
+            $table->foreignId('type')
+            ->references('id')->on('options')
             ->onDelete('cascade');
             $table->timestamps();
         });

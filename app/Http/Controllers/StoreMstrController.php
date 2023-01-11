@@ -14,7 +14,7 @@ class StoreMstrController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
+     $this->middleware('auth');
         
     }
     /**
@@ -53,7 +53,7 @@ class StoreMstrController extends Controller
         $request->validate([
             'storecode'=>'required|unique:store_mstrs|min:5',
             'description'=>'max:200',
-            
+            'type'=>'required',        
             'active'=>'required',
             'sub_city_id'=>'required'
         ]);

@@ -102,7 +102,7 @@
             $table->string('active','1'); -->
             
 									<div class="form-group">
-										<input type="text" name="countery_name" class="form-control"  value="{{old('countery_name')}}" id="inputName" placeholder="Name">
+										<input type="text" name="catogery_name" class="form-control"  value="{{old('countery_name')}}" id="inputName" placeholder="Name">
 									</div>
 									<div class="form-group">
 										<input type="textarea" class="form-control"  placeholder="description" value="{{old('description')}}" name="description">
