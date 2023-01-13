@@ -17,10 +17,12 @@ class InvoiceParchaseEntityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(purchase_invoice $purchase_invoice)
     {
+       
+       
         $entity=invoice_parchase_entity::paginate(10);
-      return  view('purchase.index',['entities'=>$entity]);
+      return  view('purchase.index',['entities'=>$entity,'purchase'=>$purchase_invoice]);
      
     }
 
@@ -32,15 +34,13 @@ class InvoiceParchaseEntityController extends Controller
     public function create()
     {
         
-        $number="INV ".(purchase_invoice::get()->last()->id ?? 1);
-        $product =product::get();
-        $store=store_mstr::get();
-        $unit=unit::where('active','=','1');
-        $supplier=supplier::get();
-        $catogeries= catogery::where('active','=',1);
-        return view('purchase.insert')->with(['catogeries'=>$catogeries,'suppliers'=>$supplier,
-        'units'=>$unit, 'stores'=>$store , 'numbers'=>$number ,'products'=>$product]);
-       dd($number) ;
+        $data['numbers']="INV ".(purchase_invoice::get()->last()->id ?? 1);
+        $data['products'] =product::get();
+        $data['stores']=store_mstr::get();
+        $data['units']=unit::where('active','=','1');
+        $data['suppliers']=supplier::get();
+        $data['catogeriess']= catogery::where('active','=',1);
+        return view('purchase.insert')->with(['data'=>$data]);    //    with('catogeries','suppliers','units','units','stores','numbers','products')->with($catogeries,$supplier,$unit,$store,$number,$product);
     }
 
     /**
@@ -53,13 +53,13 @@ class InvoiceParchaseEntityController extends Controller
     {
         $request->validate([
     //        //  enters for invoice details
-    // //         'qty'=>'required',
-    // //         'active'=>'required',
-    // //         'product_id'=>'required',
-    // //         'store_id'=>'required',
-    // //         'cost'=>'required',
-    // //         'unit_id'=>'required',
-    // //         'user_id'=>'required',
+             'qty'=>'required',
+             'active'=>'required',
+             'product_id'=>'required',
+             'store_id'=>'required',
+             'cost'=>'required',
+             'unit_id'=>'required',
+             'user_id'=>'required',
     // //         // enters for invoice maser
          'invoice_number'=>'required|unique:purchase_invoices',
           'invoice_date'=>'required',
@@ -67,11 +67,10 @@ class InvoiceParchaseEntityController extends Controller
            'total'=>'required',
            'total_vat'=>'required',
           'supplier_id'=>'required',
-           
             'user_id'=>'required'  
      ]);
         
-      $purchase_invoice=purchase_invoice::create([
+      $purchase=purchase_invoice::create([
         'invoice_number'=>$request->invoice_number,
         'invoice_date'=>$request->invoice_date,
         'date_due'=>$request->date_due,
@@ -81,18 +80,18 @@ class InvoiceParchaseEntityController extends Controller
         
         'user_id'=>$request->user_id 
       ]);
-    //     $purchase->invoice_parchase_entity()::create( [
-    //         'qty'=>$request->qty ?? 0,
-    //         'active'=>$request->active ?? 1,
-    //         'product_id'=>$request->product_id,
-    //         'store_id'=>$request->store_id,
-    //         'unit_id'=>$request->unit_id,
-    //         'cost'=>$request->cost ?? 0,
-    //         'user_id'=>$request->user_id,
-    //         'store_id'=>$request->store_id,
-    //         'tax'=>$request->tax ?? 0.15,
-    //         'sub_total'=>$request->sub_total ?? $request->qty * $request->cost
-    //     ]);
+        $purchase->invoice_parchase_entity()::create( [
+            'qty'=>$request->qty ?? 0,
+            'active'=>$request->active ?? 1,
+            'product_id'=>$request->product_id,
+            'store_id'=>$request->store_id,
+            'unit_id'=>$request->unit_id,
+            'cost'=>$request->cost ?? 0,
+            'user_id'=>$request->user_id,
+            'store_id'=>$request->store_id,
+            'tax'=>$request->tax ?? 0.15,
+            'sub_total'=>$request->sub_total ?? $request->qty * $request->cost
+        ]);
     
     return redirect()->back()->with('success', $request->invoice_number.'Product Added successfully.');
         

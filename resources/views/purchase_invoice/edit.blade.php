@@ -77,30 +77,49 @@
 							</div>
 							<div class="card-body pt-0">
 								
-								<form action="{{route('product.store')}}" method="POST">
+								<form action="{{route('purchase.update',$entity->id)}}" method="POST">
 										@csrf
-										
+										{{ method_field('PUT') }}
 									
-									<div class="form-group">
-										<input type="text" name="name" class="form-control"  value="{{old('name')}}" id="inputName" placeholder="Name">
+										<div class="form-group">
+										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="product_id">
+										<option value="{{$entity->product_id}}">{{$entity->product->name}}</option>
+										@foreach($products as $product)
+												<option value="{{$product->id}}">{{$product->name}}</option>
+
+
+											@endforeach
+            							    </select>
 									</div>
 									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="insert new photo" value="{{old('photo')}}" name="photo">
+										<input type="textarea" class="form-control"  placeholder="quntity" value="{{$entity->qty}}" name="qty">
+									</div>
+									<div class="form-group">
+										<input type="textarea" class="form-control"  placeholder="user_id" value="1" name="user_id">
 									</div>
 									<div class="form-group">
 									<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
 										
-            							    
-										
-										<option value="1" selected>active</option>
-										<option value="0">unactive</option>
-									</select>
+									<option value="{{$entity->active}}" selected>{{$entity->active == 1 ? 'active' : 'unactive'  }} </option>
+										<option value="{{$entity->active == 1 ?   '0' : '1' }}">{{$entity->active == 1 ?   'unactive' : 'active' }}</option>
+										</select>
 									</div>
+									
 
+										<div class="form-group">
+										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="unit_id">
+												@foreach($units as $unit)
+												<option value="{{$unit->id}}" {{$unit->id= $entity->unit_id ? 'SELECTED' : ' ' }}>{{$unit->unit_name}}</option>
+
+
+											@endforeach
+            							    </select>
+									</div>
+								   
 									<div class="form-group">
-										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="catogery_id">
-											@foreach($catogeries as $catogery)
-												<option value="{{$catogery->id}}">{{$catogery->catogery_name}}</option>
+										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="store_id">
+										@foreach($stores as $store)
+												<option value="{{$store->id}}" {{$store->id= $entity->store_id ? 'SELECTED' : ' ' }}>{{$store->storecode}}</option>
 
 
 											@endforeach

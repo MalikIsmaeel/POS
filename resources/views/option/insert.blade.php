@@ -69,7 +69,6 @@
    </div>
 	@endif
 @endif
-
 					<div class="col-md-12 col-sm-12">
 						<div class="card  box-shadow-0">
 							<div class="card-header">
@@ -78,54 +77,30 @@
 							</div>
 							<div class="card-body pt-0">
 								
-								<form action="{{route('store.store')}}" method="POST">
+								<form action="{{route('option.store')}}" method="POST">
 										@csrf
-										
-										<!-- $table->string('countery_name');
-            $table->text('description');
-            $table->string('active','1'); -->
-            
-									<div class="form-group">
-										<input type="text" name="storecode" class="form-control"  value="{{old('storecode')}}" id="inputName" placeholder="Name">
-									</div>
-									<div class="form-group">
-										<input type="text" name="user_id" class="form-control"  value="1" id="inputName" placeholder="Name">
-									</div>
+																	<!-- $table->string('option_name');
+            $table->string('option_table');
+            $table->string('option_value');
+             -->	
 									
 									<div class="form-group">
-									<select class="form-control selectpicker" name='active'>
-										
-            							    
-										
-										<option value="1" selected>active</option>
-										<option value="0">unactive</option>
-									</select>
+										<input type="text" name="option_name" class="form-control"  value="{{old('option_name')}}" id="inputName" placeholder="option_name">
 									</div>
 									<div class="form-group">
-										<select class="form-control selectpicker" id="select-city" data-live-search="true" name="sub_city_id">
-											@foreach($sub_cities as $sub_city)
-												<option value="{{$sub_city->id}}">{{$sub_city->sub_cities_name}}</option>
-
-
-											@endforeach
-            							    </select>
+										<input type="text" class="form-control"  placeholder="option table" value="{{old('option_table')}}" name="option_table">
 									</div>
 									<div class="form-group">
-										<select class="form-control selectpicker" id="select-city" data-live-search="true" name="type_id">
-											@foreach($types as $type)
-												<option value="{{$type->id}}">{{$type->option_value}}</option>
-
-
-											@endforeach
-            							    </select>
+										<input type="text" class="form-control"  placeholder="option value" value="{{old('option_value')}}" name="option_value">
 									</div>
-									
-									
-									
-									<div class="form-group mb-0 mt-3 justify-content-end">
 									<div>
 													<input type="submit" class='btn btn-primary' value="حفظ">
 											</div>
+									</div>
+
+									
+									<div class="form-group mb-0 mt-3 justify-content-end">
+									
 									</div>
 								</form>
 							</div>

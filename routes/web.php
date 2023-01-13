@@ -8,11 +8,13 @@ use App\Http\Controllers\CounteryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CatogeryController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\OptionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreMstrController;
 use App\Http\Controllers\StoreDtlController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\InvoiceParchaseEntityController;
+use App\Http\Controllers\PurchaseInvoiceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,9 +40,11 @@ Route::resource('/countery',CounteryController::class);
 Route::resource('/city',CityController::class);
 Route::resource('/subcity',SubCityController::class);
 Route::resource('/store',StoreMstrController::class);
+Route::resource('/option',OptionController::class);
 Route::resource('/entity',StoreDtlController::class);
 Route::resource('/supplier',SupplierController::class);
-Route::resource('/purchase',InvoiceParchaseEntityController::class);
+Route::resource('/purchase',PurchaseInvoiceController::class);
+Route::resource('/pur_entity',InvoiceParchaseEntityController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('file-import-export', [UserController::class, 'fileImportExport']);
 

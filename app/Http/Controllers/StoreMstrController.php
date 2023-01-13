@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\sub_city;
 use App\Models\store_mstr;
-
+use App\Models\option;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,10 +35,10 @@ class StoreMstrController extends Controller
      */
     public function create()
     {
-
+     $type_id=option::get();
      $sub_city=sub_city::get()->where('active','=','1');
 
-     return view('store_mstr.insert',['sub_cities'=>$sub_city]);
+     return view('store_mstr.insert',['sub_cities'=>$sub_city],['types'=>$type_id]);
     }
 
     /**
@@ -53,7 +53,7 @@ class StoreMstrController extends Controller
         $request->validate([
             'storecode'=>'required|unique:store_mstrs|min:5',
             'description'=>'max:200',
-            'type'=>'required',        
+            'type_id'=>'required',        
             'active'=>'required',
             'sub_city_id'=>'required'
         ]);
@@ -66,8 +66,8 @@ class StoreMstrController extends Controller
             'user_id'=>$request->user_id,
 
         
-            'active'=>$request->active ?? 0,
-            'user_id'=>$request->user_id,
+            'active'=>$request->active ?? 1,
+            'type_id'=>$request->type_id,
 
             'sub_city_id'=>$request->sub_city_id
         ]);

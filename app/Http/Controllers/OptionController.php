@@ -14,7 +14,8 @@ class OptionController extends Controller
      */
     public function index()
     {
-        //
+        $option =option::paginate(10);
+        return view('option.index')->with(['options'=>$option]);
     }
 
     /**
@@ -24,8 +25,15 @@ class OptionController extends Controller
      */
     public function create()
     {
-        //
+        return view('option.insert');
     }
+//     <td>{{$option->option_name }} 
+//     </td>
+// <td>
+
+// {{$option->option_table}}</td>
+// <td>
+// {{$option->option_value}}
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +43,22 @@ class OptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'option_name'=>'required|unique:options',
+            'option_table'=>'required', 
+            'option_value'=>'required'
+        ]);
+
+        $option=option::create( [
+            'option_name'=>$request->option_name,
+            'option_table'=>$request->option_table,
+            'option_value'=>$request->option_value ,
+
+            
+        ]);
+
+            return redirect()->back()->with('success', $request->name.'Product Added successfully.');
+     
     }
 
     /**

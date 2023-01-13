@@ -11,10 +11,18 @@ class PurchaseInvoiceController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */   public function __construct()
+    {
+        $this->middleware('auth');
+        
+    }
+
     public function index()
     {
-      return  view('purchase.index',['entities'=>$entity]);
+     $purchase=purchase_invoice::paginate(10);
+      $number =purchase_invoice::max('id')??1;
+      return  view('purchase_invoice.index',['purchases'=>$purchase],['max_number'=>$number]);
+//    dd($number);
     }
 
     /**
@@ -24,7 +32,7 @@ class PurchaseInvoiceController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

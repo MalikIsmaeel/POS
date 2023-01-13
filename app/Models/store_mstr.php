@@ -10,9 +10,12 @@ class store_mstr extends Model
     use HasFactory;
     protected $fillable =[
         'storecode',
-        'type',
+        'type_id',
        'sub_city_id',
-       'user_id'];
+       'user_id',
+    'active'
+    
+    ];
        public function sub_city(){
            return $this->belongsTo(sub_city::class); 
        }

@@ -101,7 +101,7 @@
 										<p class="mg-b-10">invoice number</p><div class="form-group"> <!-- Date input -->
 									    <div class="form-group"> 
 										<div class="input-group mb-3">
-										<input class="form-control"  name="invoice_number" placeholder="{{$numbers}}" value="{{$numbers}}" type="text"/><div class="input-group-append">
+										<input class="form-control"  name="invoice_number" placeholder="{{$data['numbers']}}" value="{{$data['numbers']}}" type="text"/><div class="input-group-append">
 												
 											</div>
 										</div>
@@ -143,7 +143,7 @@
 										<p class="mg-b-10">Select supplier</p><select class="form-control select2" name="supplier_id">
 											<option label="Choose one">
 											</option>
-											@foreach ($suppliers as $supplier)
+											@foreach ($data['suppliers'] as $supplier)
 											<option value="{{$supplier->id}}">
 												{{$supplier->company_name}}
 											</option>
@@ -156,7 +156,7 @@
 										<p class="mg-b-10">Select Store</p><select class="form-control select2">
 											<option label="Choose one">
 											</option>
-											@foreach ($stores as $store)
+											@foreach ($data['stores'] as $store)
 											<option value="{{$store->id}}">
 												{{$store->storecode}}
 											</option>
@@ -198,7 +198,7 @@
 								<select class="form-control select2" name="product_name[]">
 											<option label="products..">
 											</option>
-											@foreach ($products as $product)
+											@foreach ($data['products'] as $product)
 											<option value="{{$product->id}}">
 												{{$product->name}}
 											</option>
