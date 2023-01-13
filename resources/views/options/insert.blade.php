@@ -75,41 +75,17 @@
 								<h4 class="card-title mb-1">Default Form</h4>
 								<p class="mb-2">It is Very Easy to Customize and it uses in your website apllication.</p>
 							</div>
-
-							<div class="container mt-5 text-center">
-        <h2 class="mb-4">
-            Laravel 7 Import and Export CSV & Excel to Database Example
-        </h2>
-        <form action="{{ route('file-import-countery') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group mb-4" style="max-width: 500px; margin: 0 auto;">
-                <div class="custom-file text-left">
-                    <input type="file" name="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
-                </div>
-            </div>
-            <button class="btn btn-primary">Import data</button>
-            <a class="btn btn-success" href="{{ route('file-export') }}">Export data</a>
-        </form>
-    </div>
-	<div class="text-center">
-  <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Launch
-   Import Data</a>
-</div>
 							<div class="card-body pt-0">
 								
-								<form action="{{route('countery.store')}}" method="POST">
+								<form action="{{route('product.store')}}" method="POST">
 										@csrf
 										
-										<!-- $table->string('countery_name');
-            $table->text('description');
-            $table->string('active','1'); -->
-            
+									
 									<div class="form-group">
-										<input type="text" name="countery_name" class="form-control"  value="{{old('countery_name')}}" id="inputName" placeholder="Name">
+										<input type="text" name="name" class="form-control"  value="{{old('name')}}" id="inputName" placeholder="Name">
 									</div>
 									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="description" value="{{old('description')}}" name="description">
+										<input type="textarea" class="form-control"  placeholder="insert new photo" value="{{old('photo')}}" name="photo">
 									</div>
 									<div class="form-group">
 									<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
@@ -121,10 +97,18 @@
 									</select>
 									</div>
 
-									
+									<div class="form-group">
+										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="catogery_id">
+											@foreach($catogeries as $catogery)
+												<option value="{{$catogery->id}}">{{$catogery->catogery_name}}</option>
+
+
+											@endforeach
+            							    </select>
+									</div>
 									<div class="form-group">
 										
-												<input type="text" value="1" name="user_id">
+												
 
 														
 												
@@ -144,45 +128,9 @@
 					
 				</div>
 				<!-- row -->
-				<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="defaultForm-email" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
-        </div>
-
-        <div class="md-form mb-4">
-          <i class="fas fa-lock prefix grey-text"></i>
-          <input type="password" id="defaultForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
-        </div>
-
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-default">Login</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 				</div>
 				<!-- row closed -->
-			
-			
-			
-			
-			
 			</div>
 			<!-- Container closed -->
 		

@@ -25,7 +25,7 @@ class store_mstr extends Model
     public function purchase_invoice(){
         return $this->hasMany(invoice_parchase_entity::class); 
     }
-    public function type(){
+    public function type_id(){
         return $this->belongsTo(option::class); 
     }
 
