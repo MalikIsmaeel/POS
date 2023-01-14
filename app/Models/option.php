@@ -22,6 +22,9 @@ class option extends Model
     public function supplier(){
         return $this->hasMany(supplier::class); 
     }
+    public function internal(){
+        return $this->hasMany(supplier::class); 
+    }
     public function store(){
         return $this->hasMany(store::class); 
     }
