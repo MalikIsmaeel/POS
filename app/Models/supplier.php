@@ -31,6 +31,9 @@ class supplier extends Model
     public function type_id(){
         return $this->belongsTo(option::class); 
     }
+    public function supplier(){
+        return $this->belongsTo(option::class); 
+    }
     public function internal(){
         return $this->belongsTo(option::class); 
     }

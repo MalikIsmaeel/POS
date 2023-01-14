@@ -30,8 +30,10 @@ class SupplierController extends Controller
     public function create()
     {
         $sub_city=sub_city::get()->where('active','=','1');
-        $type_id=option::get()->where('option_table','=','suppliers')->where('option_name','=','type_id');
-        return view('supplier.insert')->with(['sub_cities'=>$sub_city,'types'=>$type_id]); 
+        $type_id=option::get()->where('option_name','=','type_supplier');
+        $internal=option::get()->where('option_name','=','internal');
+         return view('supplier.insert')->with(['sub_cities'=>$sub_city,'types'=>$type_id,'internals'=>$internal]); 
+        // dd($type_id,$internal);
     }
 
     /**
@@ -59,9 +61,9 @@ class SupplierController extends Controller
         'reqister_id'=>$request->reqister_id,
         'phone'=>$request->phone,
         'active'=>$request->active ?? 0,
-        'type_id'=>$request->type_id ?? 'فرد' ,// is he company of indivdual or goverment;
+        'type_id'=>$request->type_id ,// is he company of indivdual or goverment;
         'sub_city'=>$request->sub_city,
-        'internal'=>$request->internal ?? 'داخلي',// is he internal or external or hibrid
+        'internal'=>$request->internal ,// is he internal or external or hibrid
         'user_id'=>$request->user_id
       ]);
       

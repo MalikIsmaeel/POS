@@ -102,17 +102,20 @@
 									<select class="form-control selectpicker" name='internal'>
 										
             							    
+									@foreach($types as $type)
+            							
 										
-										<option value="خارجي" selected>خارجي</option>
-										<option value="داخلي">داخلي</option>
+										<option value="{{$type->id}}" >{{$type->option_value}}</option>
+									@endforeach
+									
 									</select>
 									</div>
 									<div class="form-group">
 									<select class="form-control selectpicker" name='type_id'>
-									@foreach($types as $type)
+									@foreach($internals as $internal)
             							
 										
-										<option value="{{$type->option_value}}" >{{$type->option_value}}</option>
+										<option value="{{$internal->id}}" >{{$internal->option_value}}</option>
 									@endforeach
 									
 									</select>

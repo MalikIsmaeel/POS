@@ -80,21 +80,22 @@ class InvoiceParchaseEntityController extends Controller
         
         'user_id'=>$request->user_id 
       ]);
-        $purchase->invoice_parchase_entity()::create( [
-            'qty'=>$request->qty ?? 0,
-            'active'=>$request->active ?? 1,
-            'product_id'=>$request->product_id,
-            'store_id'=>$request->store_id,
-            'unit_id'=>$request->unit_id,
-            'cost'=>$request->cost ?? 0,
-            'user_id'=>$request->user_id,
-            'store_id'=>$request->store_id,
-            'tax'=>$request->tax ?? 0.15,
-            'sub_total'=>$request->sub_total ?? $request->qty * $request->cost
-        ]);
+
+        // $purchase->invoice_parchase_entity()::create( [
+        //     'qty'=>$request->qty ?? 0,
+        //     'active'=>$request->active ?? 1,
+        //     'product_id'=>$request->product_id,
+        //     'store_id'=>$request->store_id,
+        //     'unit_id'=>$request->unit_id,
+        //     'cost'=>$request->cost ?? 0,
+        //     'user_id'=>$request->user_id,
+        //     'store_id'=>$request->store_id,
+        //     'tax'=>$request->tax ?? 0.15,
+        //     'sub_total'=>$request->sub_total ?? $request->qty * $request->cost
+        // ]);
     
-    return redirect()->back()->with('success', $request->invoice_number.'Product Added successfully.');
-        
+    // return redirect()->back()->with('success', $request->invoice_number.'Product Added successfully.');
+dd($purchase);        
             // return redirect()->back()->with('success',$request->invoice_number.' Added successfully.');
           
     }

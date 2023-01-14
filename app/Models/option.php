@@ -19,7 +19,7 @@ class option extends Model
     public function purchase_invoice(){
         return $this->hasMany(invoice_parchase_entity::class); 
     }
-    public function supplier(){
+    public function type_suupplier(){
         return $this->hasMany(supplier::class); 
     }
     public function internal(){

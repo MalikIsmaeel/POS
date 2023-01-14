@@ -20,11 +20,10 @@ return new class extends Migration
             $table->string('reqister_id')->uniqe();
             $table->string('phone')->nullable();
             $table->unsignedInteger('active');
-            $table->string('type_id') ; // is he company of indivdual;
+         
             $table->foreignId('type_id')->references('id')->on('options')->onDelete('cascade');
             $table->foreignId('internal')->references('id')->on('options')->onDelete('cascade');
             $table->foreignId('sub_city')->references('id')->on('sub_cities')->onDelete('cascade');
-            $table->string('internal') ;// is he internal or external or hibrid
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('photo')->nullable();
             $table->string('account_id')->nullable(); // for grernal tree accounts

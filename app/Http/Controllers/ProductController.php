@@ -36,8 +36,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $catogeries= catogery::where('active','=',1);
+        $catogeries= catogery::get()->where("active",'=',1);
        return   view('product.insert')->with('catogeries',$catogeries);
+    // dd($catogeries);
     }
 
     /**
