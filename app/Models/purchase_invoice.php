@@ -18,7 +18,7 @@ class purchase_invoice extends Model
     'total_with_vat',
     'user_id'];
     public function supplier(){
-        return $this->blong(supplier::class); 
+        return $this->belongsTo(supplier::class); 
     }
     public function invoice_parchase_entity(){
         return $this->hasMany(invoice_parchase_entity::class); 

@@ -44,8 +44,10 @@ Route::resource('/option',OptionController::class);
 Route::resource('/entity',StoreDtlController::class);
 Route::resource('/supplier',SupplierController::class);
 Route::resource('/purchase',PurchaseInvoiceController::class);
-Route::resource('/pur_entity',InvoiceParchaseEntityController::class);
+// Route::resource('/pur_entity',InvoiceParchaseEntityController::class);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/pur_entity/{id}', [InvoiceParchaseEntityController::class, 'index']);
 Route::get('file-import-export', [UserController::class, 'fileImportExport']);
 
 Route::post('file-import', [UserController::class, 'fileImport'])->name('file-import');

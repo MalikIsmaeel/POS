@@ -52,7 +52,7 @@
 								</div>
 								<p class="tx-12 tx-gray-500 mb-2">Example of Valex Striped Rows.. <a href="">Learn more</a></p>
 							</div>
-					<a href="{{route('supplier.create')}}" class="btn btn-primary">new city</a>
+					<a href="{{route('purchase.create')}}" class="btn btn-primary">new invoice</a>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table table-striped mg-b-0 text-md-nowrap">
@@ -76,28 +76,29 @@
 											</tr>
 										</thead>
 										<tbody>
-										 @foreach($suppliers as $supplier ) 
+										 @foreach($entities as $entity ) 
 											 <tr>
 											 <th scope="row">{{++$i}}</th>
-												<td>{{$supplier->company_name }} 
-													</td>
-													<td>{{$supplier->internal}}</td>
-												<td>{{$supplier->tax_id}}</td>
-												<td>{{$supplier->region->sub_cities_name}}</td>
+								
+												<td>{{$entity->product->name}}</td>
+												<td>{{$entity->qty}}</td>
+												<td>{{$entity->cost}}</td>
+												<td>{{$entity->vat}}</td>
+                                                <td>{{$entity->unit->unit_name}}</td>
 												<td>
 											
 												<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
 										
             							    
 										
-										<option value="{{$supplier->active}}" selected>{{$supplier->active == 1 ? 'active' : 'unactive'  }} </option>
-										<option value="{{$supplier->active == 1 ?   '0' : '1' }}">{{$supplier->active == 1 ?   'unactive' : 'active' }}</option>
+										<option value="{{$entity->active}}" selected>{{$entity->active == 1 ? 'active' : 'unactive'  }} </option>
+										<option value="{{$entity->active == 1 ?   '0' : '1' }}">{{$entity->active == 1 ?   'unactive' : 'active' }}</option>
 									</select>
 									
 												</td>
 												<td>
-												<a href="{{route('supplier.edit',$supplier->id)}}" class="btn btn-primary">edit</a>
-												<form id="delete" action="{{route('supplier.destroy',$supplier->id)}}" method="post">
+												<a href="{{route('purchase.edit',$entity->id)}}" class="btn btn-primary">edit</a>
+												<form id="delete" action="{{route('purchase.destroy',$entity->id)}}" method="post">
 														@csrf
 														@method('DELETE')
 											<button id="btnSend" class="btn btn-danger">مسح</button>
@@ -114,7 +115,7 @@
 						</div><!-- bd -->
 					</div>
 					<!--/div-->
-					<tfoot>{{ $suppliers->links() }}</tfoot>
+					<tfoot>{{ $entities->links() }}</tfoot>
 				</div>
 				<!-- row closed -->
 			</div>

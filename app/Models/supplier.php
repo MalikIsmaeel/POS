@@ -26,7 +26,7 @@ class supplier extends Model
     }
     
     public function purchase_invoice(){
-        return $this->has(purchase_invoice::class); 
+        return $this->hasmany(purchase_invoice::class); 
     }
     public function type_id(){
         return $this->belongsTo(option::class); 

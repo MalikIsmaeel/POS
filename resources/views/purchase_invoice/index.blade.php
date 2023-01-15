@@ -74,7 +74,7 @@
 											 <tr>
 											 <th scope="row">{{++$i}}</th>
 												<td>{{$purchase->invoice_number }}  </td>
-												<td>{{$purchase->supplier()->name}}</td>
+												<td>{{$purchase->supplier->company_name}}</td>
 													<td>{{$purchase->invoice_date}}</td>
 												<td>{{$purchase->date_due}}</td>
 												
@@ -83,11 +83,13 @@
 											
 												</td>
 												<td>
-												<!-- <a href="{{route('supplier.edit',$supplier->id)}}" class="btn btn-primary">edit</a>
-												<form id="delete" action="{{route('supplier.destroy',$supplier->id)}}" method="post">
+												<a href="{{route('pur_entity.index')}}" class="btn btn-primary">entity</a>
+													
+												<a href="{{route('purchase.edit',$purchase->id)}}" class="btn btn-primary">edit</a>
+												<form id="delete" action="{{route('purchase.destroy',$purchase->id)}}" method="post">
 														@csrf
 														@method('DELETE')
-											<button id="btnSend" class="btn btn-danger">مسح</button> -->
+											<button id="btnSend" class="btn btn-danger">مسح</button> 
 											</form>	
 											</td>
 												</tr> 
