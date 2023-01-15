@@ -86,7 +86,7 @@
     
     'user_id' -->
 @endif
-						<form action="{{route('pur_entity.store')}}" method="post" id="form_insert" class="H-100" name="entity">
+						<form action="{{route('purchase.store')}}" method="post" id="form_insert" class="H-100" name="entity">
 						@csrf
 				<div class="row">
 					<div class="col-lg-12 col-md-12">

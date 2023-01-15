@@ -46,7 +46,7 @@ class PurchaseInvoiceController extends Controller
         $data['suppliers']=supplier::get();
         $data['catogeriess']= catogery::where('active','=',1);
         return view('purchase.insert')->with(['data'=>$data]);    //    with('catogeries','suppliers','units','units','stores','numbers','products')->with($catogeries,$supplier,$unit,$store,$number,$product);
-       
+    //    dd($data);
     }
 
     /**
