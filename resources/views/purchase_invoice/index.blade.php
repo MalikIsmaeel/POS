@@ -52,7 +52,7 @@
 								</div>
 								<p class="tx-12 tx-gray-500 mb-2">Example of Valex Striped Rows.. <a href="">Learn more</a></p>
 							</div>
-							<a href="{{route('pur_entity.create')}}" class="btn btn-primary">Purchase Invoice</a>
+							<a href="{{route('purchase.create')}}" class="btn btn-primary">Purchase Invoice</a>
 								<div class="card-body">
 								<div class="table-responsive">
 									<table class="table table-striped mg-b-0 text-md-nowrap">
@@ -83,7 +83,7 @@
 											
 												</td>
 												<td>
-												<a href="{{route('pur_entity.index')}}" class="btn btn-primary">entity</a>
+												<a href="{{route('pur_entity',$purchase->id)}}" class="btn btn-primary">entity</a>
 													
 												<a href="{{route('purchase.edit',$purchase->id)}}" class="btn btn-primary">edit</a>
 												<form id="delete" action="{{route('purchase.destroy',$purchase->id)}}" method="post">
