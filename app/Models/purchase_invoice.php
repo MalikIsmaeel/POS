@@ -15,7 +15,7 @@ class purchase_invoice extends Model
     'total',
     'total_vat',
     'supplier_id',
-    
+    'total_with_vat',
     'user_id'];
     public function supplier(){
         return $this->blong(supplier::class); 

@@ -16,7 +16,8 @@ class invoice_parchase_entity extends Model
    'product_id',
    'unit_id',
     'tax',
-    'user_id'
+    'user_id',
+    'sub_total'
 ];
 public function purchase_invoice(){
     return $this->belongsTo(purchase_invoice::class); 

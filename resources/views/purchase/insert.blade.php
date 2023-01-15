@@ -86,7 +86,7 @@
     
     'user_id' -->
 @endif
-						<form action="{{route('pur_entity.store')}}" method="post" id="form_insert" class="H-100">
+						<form action="{{route('pur_entity.store')}}" method="post" id="form_insert" class="H-100" name="entity">
 						@csrf
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
@@ -153,7 +153,7 @@
 										
 									</div><!-- col-4 -->
 									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
-										<p class="mg-b-10">Select Store</p><select class="form-control select2">
+										<p class="mg-b-10">Select Store</p><select class="form-control select2" name="store_id">
 											<option label="Choose one">
 											</option>
 											@foreach ($data['stores'] as $store)
@@ -195,7 +195,7 @@
 							<div id="show_item">
                             <div class="row">
                                 <div class="col-md-2 mb-3">
-								<select class="form-control select2" name="product_name[]">
+								<select class="form-control select2" name="product_id[]">
 											<option label="products..">
 											</option>
 											@foreach ($data['products'] as $product)
@@ -205,10 +205,20 @@
 											@endforeach
 											
 										</select>   
-										           
+										<select class="form-control select2" name="unit_id[]">
+											<option label="products..">
+											</option>
+											@foreach ($data['units'] as $unit)
+											<option value="{{$unit->id}}">
+												{{$unit->unit_name}}
+											</option>
+											@endforeach
+											
+										</select> 	           
+
 									 </div>
                                 <div class="col-md-2 mb-3">
-                                            <input type="text" name="price[]" id="price" class="form-control" placeholder="product price" onchange="calculate();">
+                                            <input type="text" name="cost[]" id="price" class="form-control" placeholder="product price" onchange="calculate();">
                                  </div>
 								 <div class="col-md-2 mb-3">
                                             <input type="text" name="qty[]" id="qty" class="form-control" value='1' placeholder="product quntites" onchange="calculate();">
@@ -220,11 +230,11 @@
 													15%
 												</div><!-- input-group-text -->
 											</div><!-- input-group-prepend -->
-											<input class="form-control" id="vat"  placeholder="" type="text" name="vat" readonly>
+											<input class="form-control" id="vat"  placeholder="" type="text" name="vat[]" readonly>
 										</div>
 									</div>
 								 <div class="col-md-2 mb-3">
-                                            <input type="text" name="subtotal[]" id="subtotal"  class="form-control" placeholder="">
+                                            <input type="text" name="sub_total[]" id="subtotal"  class="form-control" placeholder="">
                                  </div>
 								 <div class="col-md-2 mb-3">
                                             <button class="btn btn-danger remove_item_btn">1</button>
@@ -278,11 +288,11 @@
 											  </div>
 									</div><!-- col-4 -->
 									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
-										<p class="mg-b-10">Total with VAT </p><div class="form-group"> <!-- Date input -->
+										<p class="mg-b-10">total_with_vat </p><div class="form-group"> <!-- Date input -->
 									    <div class="form-group"> 
 										<div class="input-group mb-3">
 										<!-- <input class="form-control" id="text" name="totalvat" placeholder="0.00"  type="text" id="sum" readonly/><div class="input-group-append"> -->
-										<input class="form-control" id="total_vat" name="total_vat" placeholder="0.00" value="0.00" type="text" readonly/><div class="input-group-append">
+										<input class="form-control" id="total_vat" name="total_with_vat" placeholder="0.00" value="0.00" type="text" readonly/><div class="input-group-append">
 											
 											</div>
 										</div>
@@ -291,6 +301,7 @@
 									
      										 </div>
 											  </div>
+										
 											  <div class=" mb-1  d-grid">
                             
                             <input type="submit" value="save" class="btn btn-primary w-25" id="add_btn">
@@ -348,15 +359,35 @@ let totalvat=0;
             
             
             $("#show_item").prepend(`<div class="row">
+                                
+			<div class="col-md-2 mb-3">
+								<select class="form-control select2" name="product_id[]">
+											<option label="products..">
+											</option>
+											@foreach ($data['products'] as $product)
+											<option value="{{$product->id}}">
+												{{$product->name}}
+											</option>
+											@endforeach
+											
+										</select>   
+										<select class="form-control select2" name="unit_id[]">
+											<option label="products..">
+											</option>
+											@foreach ($data['units'] as $unit)
+											<option value="{{$unit->id}}">
+												{{$unit->name}}
+											</option>
+											@endforeach
+											
+										</select> 	           
+
+									 </div>
                                 <div class="col-md-2 mb-3">
-								
-                                            <input type="text" name="product_name[]" class="form-control" id="product" placeholder="product name">
-                                </div>
-                                <div class="col-md-2 mb-3">
-                                            <input type="text" name="price[]" id="price" class="form-control" placeholder="product price" onchange='calculate()'>
+                                            <input type="text" name="cost[]" id="price" class="form-control" placeholder="product price" onchange="calculate();">
                                  </div>
 								 <div class="col-md-2 mb-3">
-                                            <input type="text" name="qty[]" id="qty" class="form-control"  placeholder="product quntites" onchange='calculate()'>
+                                            <input type="text" name="qty[]" id="qty" class="form-control" value='1' placeholder="product quntites" onchange="calculate();">
                                  </div>
 								 <div class="col-lg-2 mg-t-20 mg-lg-t-0">
 										<div class="input-group">
@@ -365,18 +396,21 @@ let totalvat=0;
 													15%
 												</div><!-- input-group-text -->
 											</div><!-- input-group-prepend -->
-											<input class="form-control" id="vat"  placeholder="" type="text" name="vat" readonly>
+											<input class="form-control" id="vat"  placeholder="" type="text" name="vat[]" readonly>
 										</div>
 									</div>
 								 <div class="col-md-2 mb-3">
-                                            <input type="text" name="subtotal[]" id="subtotal" value="0.00" class="form-control" placeholder="">
+                                            <input type="text" name="sub_total[]" id="subtotal"  class="form-control" placeholder="">
                                  </div>
-                                        <div class="col-md-2 mb-3">
+								 <div class="col-md-2 mb-3">
                                             <button class="btn btn-danger remove_item_btn">1</button>
-											<button class="btn btn-primary add_item_btn">2</button>
+											
 											
 											</div>
-									 </div>`);
+									 </div>
+									 
+							</div>
+								 </div>`);
             
         
         $(document).on('click','.remove_item_btn',function(e){

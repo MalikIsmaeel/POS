@@ -21,7 +21,7 @@ class PurchaseInvoiceController extends Controller
     {
      $purchase=purchase_invoice::paginate(10);
       $number =purchase_invoice::max('id')??1;
-      return  view('purchase_invoice.index',['purchases'=>$purchase],['max_number'=>$number]);
+      return  view('purchase.index',['purchases'=>$purchase],['max_number'=>$number]);
 //    dd($number);
     }
 

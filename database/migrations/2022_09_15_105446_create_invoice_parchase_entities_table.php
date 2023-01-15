@@ -31,9 +31,7 @@ return new class extends Migration
             $table->foreignId('unit_id')
             ->references('id')->on('units')
             ->onDelete('cascade');
-            $table->foreignId('tax')
-            ->references('id')->on('options')
-            ->onDelete('cascade');
+            $table->double('tax');
             $table->foreignId('user_id')
             ->references('id')->on('users')
             ->onDelete('cascade');
