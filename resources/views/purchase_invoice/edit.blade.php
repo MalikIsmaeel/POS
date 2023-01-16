@@ -175,12 +175,13 @@
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
 					<div class="card">
-							<div class="card-body">
+					@foreach ($data['entities'] as $entity)		
+					<div class="card-body">
 								<div class="main-content-label mg-b-5">
 									Select<span class="tx-sserif">2</span>
 								</div>
 								<p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
-								@foreach ($data['entities'] as $entity)
+								
 								<div class="card-body">
 								
 								<div id="show_item">
