@@ -135,9 +135,17 @@ class PurchaseInvoiceController extends Controller
      * @param  \App\Models\purchase_invoice  $purchase_invoice
      * @return \Illuminate\Http\Response
      */
-    public function edit(purchase_invoice $purchase_invoice)
+    public function edit($id)
     {
-        //
+        $data['purchases'] =purchase_invoice::findorfail($id);
+        $data['numbers']="INV ".($id);
+        $data['products'] =product::get();
+        $data['stores']=store_mstr::get();
+        $data['units']=unit::get()->where('active','=','1');
+        $data['suppliers']=supplier::get();
+        $data['catogeriess']= catogery::where('active','=',1);
+        return view('purchase.insert')->with(['data'=>$data]);    //    with('catogeries','suppliers','units','units','stores','numbers','products')->with($catogeries,$supplier,$unit,$store,$number,$product);
+    
     }
 
     /**
