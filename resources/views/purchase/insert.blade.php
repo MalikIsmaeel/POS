@@ -153,17 +153,6 @@
 										
 									</div><!-- col-4 -->
 									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
-										<p class="mg-b-10">Select Store</p><select class="form-control select2" name="store_id">
-											<option label="Choose one">
-											</option>
-											@foreach ($data['stores'] as $store)
-											<option value="{{$store->id}}">
-												{{$store->storecode}}
-											</option>
-											@endforeach
-										</select>
-									</div><!-- col-4 -->
-									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
 										<p class="mg-b-10">user id </p><div class="form-group"> <!-- Date input -->
 									    <div class="form-group"> 
 										<div class="input-group mb-3">
@@ -194,6 +183,18 @@
 								<div class="card-body">
 							<div id="show_item">
                             <div class="row">
+							<div class="col-lg-4 mg-t-20 mg-lg-t-0">
+										<p class="mg-b-10">Select Store</p><select class="form-control select2" name="store_id">
+											<option label="Choose one">
+											</option>
+											@foreach ($data['stores'] as $store)
+											<option value="{{$store->id}}">
+												{{$store->storecode}}
+											</option>
+											@endforeach
+										</select>
+									</div><!-- col-4 -->
+
                                 <div class="col-md-2 mb-3">
 								<select class="form-control select2" name="product_id[]">
 											<option label="products..">

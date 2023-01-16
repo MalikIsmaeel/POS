@@ -115,7 +115,7 @@
 										<p class="mg-b-10">invoice date</p><div class="form-group"> <!-- Date input -->
 									    <div class="form-group"> 
 										<div class="input-group mb-3">
-										<input class="form-control" id="date" name="invoice_date" placeholder="MM/DD/YYY" type="date"/><div class="input-group-append">
+										<input class="form-control" id="date" name="invoice_date" value=<?php echo $data['purchase']->invoice_date ?> placeholder="MM/DD/YYY" type="date"/><div class="input-group-append">
 												<span class="input-group-text" id="basic-addon2"><i class="far fa-calendar"></i></span>
 											</div>
 										</div>
@@ -129,7 +129,7 @@
 										<p class="mg-b-10">invoice date due</p><div class="form-group"> <!-- Date input -->
 									    <div class="form-group"> 
 										<div class="input-group mb-3">
-										<input class="form-control" id="date" name="date_due" placeholder="MM/DD/YYY" type="date"/><div class="input-group-append">
+										<input class="form-control" id="date" value=<?php echo $data['purchase']->date_due ?> name="date_due" placeholder="MM/DD/YYY" type="date"/><div class="input-group-append">
 												<span class="input-group-text" id="basic-addon2"><i class="far fa-calendar"></i></span>
 											</div>
 										</div>
@@ -144,24 +144,13 @@
 											<option label="Choose one">
 											</option>
 											@foreach ($data['suppliers'] as $supplier)
-											<option value="{{$supplier->id}}">
+											<option value="{{$supplier->id}}" {{$supplier->id==$data['purchase']->supplier->id ? 'SELECTED': ' '}}>
 												{{$supplier->company_name}}
 											</option>
 											@endforeach
 											
 										</select>
 										
-									</div><!-- col-4 -->
-									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
-										<p class="mg-b-10">Select Store</p><select class="form-control select2" name="store_id">
-											<option label="Choose one">
-											</option>
-											@foreach ($data['stores'] as $store)
-											<option value="{{$store->id}}">
-												{{$store->storecode}}
-											</option>
-											@endforeach
-										</select>
 									</div><!-- col-4 -->
 									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
 										<p class="mg-b-10">user id </p><div class="form-group"> <!-- Date input -->
@@ -191,15 +180,35 @@
 									Select<span class="tx-sserif">2</span>
 								</div>
 								<p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
+								@foreach ($data['entities'] as $entity)
 								<div class="card-body">
-							<div id="show_item">
-                            <div class="row">
-                                <div class="col-md-2 mb-3">
+								
+								<div id="show_item">
+                           
+							<div class="row">
+							
+                            <div class="col-lg-4 mg-t-20 mg-lg-t-0">
+							
+							
+							<p class="mg-b-10">Select Store</p><select class="form-control select2" name="store_id">
+											<option label="Choose one">
+											</option>
+											@foreach ($data['stores'] as $store)
+											<option value="{{$store->id}}"  {{$store->id==$entity->store->id ? 'SELECTED' : ' '}}>
+												{{$store->storecode}}
+											</option>
+											@endforeach
+										</select>
+									</div><!-- col-4 -->
+									    
+							
+							
+							<div class="col-md-2 mb-3">
 								<select class="form-control select2" name="product_id[]">
 											<option label="products..">
 											</option>
 											@foreach ($data['products'] as $product)
-											<option value="{{$product->id}}">
+											<option value="{{$product->id}}"  {{$product->id==$entity->product->id ? 'SELECTED' : ' '}}>
 												{{$product->name}}
 											</option>
 											@endforeach
@@ -209,7 +218,7 @@
 											<option label="products..">
 											</option>
 											@foreach ($data['units'] as $unit)
-											<option value="{{$unit->id}}">
+											<option value="{{$unit->id}}"  {{$unit->id==$entity->unit->id ? 'SELECTED' : ' '}}>
 												{{$unit->unit_name}}
 											</option>
 											@endforeach
@@ -218,10 +227,10 @@
 
 									 </div>
                                 <div class="col-md-2 mb-3">
-                                            <input type="text" name="cost[]" id="price" class="form-control" placeholder="product price" onchange="calculate();">
+                                            <input type="text" name="cost[]"  value="{{$entity->price}}" id="price" class="form-control" placeholder="product price" onchange="calculate();">
                                  </div>
 								 <div class="col-md-2 mb-3">
-                                            <input type="text" name="qty[]" id="qty" class="form-control" value='1' placeholder="product quntites" onchange="calculate();">
+                                            <input type="text" name="qty[]" value="{{$entity->qty}}" id="qty" class="form-control" value='1' placeholder="product quntites" onchange="calculate();">
                                  </div>
 								 <div class="col-lg-2 mg-t-20 mg-lg-t-0">
 										<div class="input-group">
@@ -246,11 +255,13 @@
 							</div>
 							
 						</div>
+						
 						<div class=" mb-1 ">
                                             <button class="btn btn-success add_item_btn w-25">Add</button>
                                         </div>
 
 					</div>
+					@endforeach
 				<div class="row h-50">
 					<div class="col-lg-12 col-md-12">
 					<div class="card">

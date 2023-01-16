@@ -23,5 +23,7 @@ class purchase_invoice extends Model
     public function invoice_parchase_entity(){
         return $this->hasMany(invoice_parchase_entity::class); 
     }
-    
+    public function store(){
+        return $this->belongsTo(store_mstr::class); 
+    }
 }

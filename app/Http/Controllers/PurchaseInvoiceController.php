@@ -137,15 +137,16 @@ class PurchaseInvoiceController extends Controller
      */
     public function edit($id)
     {
-        $data['purchases'] =purchase_invoice::findorfail($id);
+        $data['purchase'] =purchase_invoice::findorfail($id);
         $data['numbers']="INV ".($id);
+        $data['entities']=invoice_parchase_entity::get()->where('invoice_id','=',$id);
         $data['products'] =product::get();
         $data['stores']=store_mstr::get();
         $data['units']=unit::get()->where('active','=','1');
         $data['suppliers']=supplier::get();
         $data['catogeriess']= catogery::where('active','=',1);
-        return view('purchase.edit')->with(['data'=>$data]);    //    with('catogeries','suppliers','units','units','stores','numbers','products')->with($catogeries,$supplier,$unit,$store,$number,$product);
-    
+         return view('purchase_invoice.edit')->with(['data'=>$data]);    //    with('catogeries','suppliers','units','units','stores','numbers','products')->with($catogeries,$supplier,$unit,$store,$number,$product);
+    // dd($data);
     }
 
     /**
