@@ -86,8 +86,9 @@
     
     'user_id' -->
 @endif
-						<form action="{{route('purchase.store')}}" method="post" id="form_insert" class="H-100" name="entity">
+						<form action="{{route('purchase.update',$data['purchase'])}}" method="post" id="form_insert" class="H-100" name="entity">
 						@csrf
+						@method('PUT')
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
 					<div class="card">
@@ -175,7 +176,7 @@
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
 					<div class="card">
-					@foreach ($data['entities'] as $entity)		
+					@foreach ($data['entities'] as $key=>$entity)		
 					<div class="card-body">
 								<div class="main-content-label mg-b-5">
 									Select<span class="tx-sserif">2</span>
@@ -228,7 +229,7 @@
 
 									 </div>
                                 <div class="col-md-2 mb-3">
-                                            <input type="text" name="cost[]"  value="{{$entity->price}}" id="price" class="form-control" placeholder="product price" onchange="calculate();">
+                                            <input type="text" name="cost[]"  value="{{$entity->cost}}" id="price" class="form-control" placeholder="product price" onchange="calculate();">
                                  </div>
 								 <div class="col-md-2 mb-3">
                                             <input type="text" name="qty[]" value="{{$entity->qty}}" id="qty" class="form-control" value='1' placeholder="product quntites" onchange="calculate();">
@@ -240,11 +241,11 @@
 													15%
 												</div><!-- input-group-text -->
 											</div><!-- input-group-prepend -->
-											<input class="form-control" id="vat"  placeholder="" type="text" name="vat[]" readonly>
+											<input class="form-control" id="vat"  placeholder="" type="text" value="{{$entity->tax}}" name="vat[]" readonly>
 										</div>
 									</div>
 								 <div class="col-md-2 mb-3">
-                                            <input type="text" name="sub_total[]" id="subtotal"  class="form-control" placeholder="">
+                                            <input type="text" name="sub_total[]" id="subtotal" value="{{$entity->sub_total}}" class="form-control" placeholder="">
                                  </div>
 								 <div class="col-md-2 mb-3">
                                             <button class="btn btn-danger remove_item_btn">1</button>

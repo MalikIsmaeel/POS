@@ -137,6 +137,7 @@ class PurchaseInvoiceController extends Controller
      */
     public function edit($id)
     {
+       
         $data['purchase'] =purchase_invoice::findorfail($id);
         $data['numbers']="INV ".($id);
         $data['entities']=invoice_parchase_entity::get()->where('invoice_id','=',$id);
@@ -144,9 +145,12 @@ class PurchaseInvoiceController extends Controller
         $data['stores']=store_mstr::get();
         $data['units']=unit::get()->where('active','=','1');
         $data['suppliers']=supplier::get();
-        $data['catogeriess']= catogery::where('active','=',1);
-         return view('purchase_invoice.edit')->with(['data'=>$data]);    //    with('catogeries','suppliers','units','units','stores','numbers','products')->with($catogeries,$supplier,$unit,$store,$number,$product);
-    // dd($data);
+        $data['catogeriess']= catogery::get()->where('active','=',1);
+       return view('purchase_invoice.edit')->with(['data'=>$data]);    //    with('catogeries','suppliers','units','units','stores','numbers','products')->with($catogeries,$supplier,$unit,$store,$number,$product);
+    //  return dd($data['entities'][0]->qty);
+
+ 
+    
     }
 
     /**
@@ -158,7 +162,39 @@ class PurchaseInvoiceController extends Controller
      */
     public function update(Request $request, purchase_invoice $purchase_invoice)
     {
-        //
+
+       $qty=$request->qty;
+        $purchase_invoice->update([
+            'invoice_number'=>$request->invoice_number,
+            'invoice_date'=>$request->invoice_date,
+            'date_due'=>$request->date_due,
+            'total'=>$request->total,
+            'total_vat'=>$request->total_vat,
+            "total_with_vat"=>$request->total_with_vat,
+            'supplier_id'=>$request->supplier_id,
+            'active'=>$request->active ?? 1,
+            'user_id'=>$request->user_id 
+          ]);
+          $options_data = [];
+                
+          foreach ($qty as $key => $value) {
+               $options_data['qty']=$request->qty[$key] ;
+               $options_data['active']=$request->active;
+               $options_data['product_id']=$request->product_id[$key];
+               $options_data['store_id']=$request->store_id;
+               $options_data['active']=$request->active ?? 1;
+               $options_data['unit_id']=$request->unit_id[$key];
+               $options_data['cost']=$request->cost[$key] ?? 0;
+               $options_data['user_id']=$request->user_id;
+            //     'store_id'=>$request->store_id,
+               $options_data['invoice_id']=$purchase->id ?? 1;
+               $options_data['tax']=$request->tax[$key] ?? 0.15;
+               $options_data['sub_total']=$request->sub_total[$key];
+            
+            invoice_parchase_entity::updateOrcreate($options_data);
+          }
+          return redirect()->back()->with('success', $request->invoice_number.' Invoice Updated successfully.');
+    
     }
 
     /**
@@ -169,6 +205,6 @@ class PurchaseInvoiceController extends Controller
      */
     public function destroy(purchase_invoice $purchase_invoice)
     {
-        //
+        
     }
 }
