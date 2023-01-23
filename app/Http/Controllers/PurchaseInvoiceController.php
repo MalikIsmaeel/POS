@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\unit;
 use App\Models\catogery;
 use App\Models\invoice_parchase_entity;
-
+use App\Http\Controllers\QRController;
 use App\Models\supplier;
 use App\Models\product;
 use App\Models\store_mstr;
@@ -112,7 +112,7 @@ class PurchaseInvoiceController extends Controller
                 
               }
         
-        
+               $qr_code= new QRController();
         
              return redirect()->back()->with('success', $request->invoice_number.' Invoice Added successfully.');
               
