@@ -180,10 +180,7 @@
 									Select<span class="tx-sserif">2</span>
 								</div>
 								<p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
-								<div class="card-body">
-							<div id="show_item">
-                            <div class="row">
-							<div class="col-lg-4 mg-t-20 mg-lg-t-0">
+								<div class="col-lg-4 mg-t-20 mg-lg-t-0">
 										<p class="mg-b-10">Select Store</p><select class="form-control select2" name="store_id">
 											<option label="Choose one">
 											</option>
@@ -194,6 +191,11 @@
 											@endforeach
 										</select>
 									</div><!-- col-4 -->
+								<div class="card-body">
+								
+							<div id="show_item">
+                            <div class="row">
+							
 
                                 <div class="col-md-2 mb-3">
 								<select class="form-control select2" name="product_id[]">

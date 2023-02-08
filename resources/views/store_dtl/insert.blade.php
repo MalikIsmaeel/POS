@@ -88,98 +88,8 @@
 @endif
 						<form action="{{route('entity.store')}}" method="post" id="form_insert" class="H-100">
 						@csrf
-				<div class="row">
-					<div class="col-lg-12 col-md-12">
-					<div class="card">
-							<div class="card-body">
-								<div class="main-content-label mg-b-5">
-									Select<span class="tx-sserif">2</span>
-								</div>
-								<p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
-								<div class="row row-sm mg-b-20">
-								
-									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
-										<p class="mg-b-10">invoice date</p><div class="form-group"> <!-- Date input -->
-									    <div class="form-group"> 
-										<div class="input-group mb-3">
-										<input class="form-control" id="date" name="invoice_date" placeholder="MM/DD/YYY" type="date"/><div class="input-group-append">
-												<span class="input-group-text" id="basic-addon2"><i class="far fa-calendar"></i></span>
-											</div>
-										</div>
-										<span></span>
-										
-									
-     										 </div>
-											  </div>
-									</div><!-- col-4 -->
-									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
-										<p class="mg-b-10">City</p><div class="form-group"> <!-- Date input -->
-									    <div class="form-group"> 
-										<div class="input-group mb-3">
-										<input class="form-control" id="date" name="" placeholder="MM/DD/YYY" type="date"/><select class="form-control select2" name="supplier_id">
-											<option label="Choose one">
-											</option>
-											@foreach ($citys as $city)
-											<option value="{{$city->id}}">
-												{{$city->city_name}}
-											</option>
-											@endforeach
-											
-										</select>
-										
-											</div>
-										</div>
-										<span></span>
-										
-									
-     										 </div>
-											  </div>
-									</div><!-- col-4 -->
-							
-									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
-										<p class="mg-b-10"> sub city</p><select class="form-control select2" name="supplier_id">
-											<option label="Choose one">
-											</option>
-											@foreach ($types as $types)
-											<option value="{{$type->id}}">
-												{{$type->option_name}}
-											</option>
-											@endforeach
-											
-										</select>
-										
-									</div><!-- col-4 -->
-									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
-										<p class="mg-b-10">Select Store</p><select class="form-control select2">
-											<option label="Choose one">
-											</option>
-											@foreach ($stores as $store)
-											<option value="{{$store->id}}">
-												{{$store->storecode}}
-											</option>
-											@endforeach
-										</select>
-									</div><!-- col-4 -->
-									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
-										<p class="mg-b-10">user id </p><div class="form-group"> <!-- Date input -->
-									    <div class="form-group"> 
-										<div class="input-group mb-3">
-										<input class="form-control" id="date" name="user_id" placeholder="" type="text" value="1" readonly/><div class="input-group-append">
-												
-											</div>
-										</div>
-										<span></span>
-										
-									
-     										 </div>
-											  </div>
-								</div>
-								
-							</div>
-						</div>
-					</div>
+		
 				
-				</div>
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
 					<div class="card">
@@ -188,14 +98,29 @@
 									Select<span class="tx-sserif">2</span>
 								</div>
 								<p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
+								<div class="col-sm-2 mb-3">
+								<select class="form-control select2">
+											<option label="products..">
+											</option>
+											@foreach ($data['catogeries'] as $catogery)
+											<option value="{{$catogery->id}}">
+												{{$catogery->name}}
+											</option>
+											@endforeach
+											
+										</select>   
+										           
+									 </div>
 								<div class="card-body">
+							
 							<div id="show_item">
                             <div class="row">
+			
                                 <div class="col-md-2 mb-3">
 								<select class="form-control select2" name="product_name[]">
 											<option label="products..">
 											</option>
-											@foreach ($products as $product)
+											@foreach ($data['products'] as $product)
 											<option value="{{$product->id}}">
 												{{$product->name}}
 											</option>
@@ -238,7 +163,101 @@
                                         </div>
 
 					</div>
-				<div class="row h-50">
+				 <div class="row h-50">
+					<div class="col-lg-12 col-md-12">
+					<div class="card">
+							<div class="card-body">
+								<div class="main-content-label mg-b-5">
+									Select<span class="tx-sserif">2</span>
+								</div>
+								<div class="row row-sm mg-b-20">
+								
+									
+								
+							</div>
+						</div>
+					</div>
+				
+				</div>
+					</div>
+				</div>
+			
+				<!-- /row -->
+				
+				<div class="row">
+					<div class="col-lg-12 col-md-12">
+					<div class="card">
+							<div class="card-body">
+								<div class="main-content-label mg-b-5">
+									Select<span class="tx-sserif">2</span>
+								</div>
+								<p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
+								<div class="col-sm-2 mb-3">
+								<select class="form-control select2">
+											<option label="products..">
+											</option>
+											@foreach ($data['catogeries'] as $catogery)
+											<option value="{{$catogery->id}}">
+												{{$catogery->name}}
+											</option>
+											@endforeach
+											
+										</select>   
+										           
+									 </div>
+								<div class="card-body">
+							
+							<div id="show_item">
+                            <div class="row">
+			
+                                <div class="col-md-2 mb-3">
+								<select class="form-control select2" name="product_name[]">
+											<option label="products..">
+											</option>
+											@foreach ($data['products'] as $product)
+											<option value="{{$product->id}}">
+												{{$product->name}}
+											</option>
+											@endforeach
+											
+										</select>   
+										           
+									 </div>
+                                <div class="col-md-2 mb-3">
+                                            <input type="text" name="price[]" id="price" class="form-control" placeholder="product price">
+                                 </div>
+								 <div class="col-md-2 mb-3">
+                                            <input type="text" name="qty[]" id="qty" class="form-control" value='1' placeholder="product quntites">
+                                 </div>
+								 <div class="col-lg-2 mg-t-20 mg-lg-t-0">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<div class="input-group-text">
+													15%
+												</div><!-- input-group-text -->
+											</div><!-- input-group-prepend -->
+											<input class="form-control" id="vat"  placeholder="" type="text" name="vat" readonly>
+										</div>
+									</div>
+								 <div class="col-md-2 mb-3">
+                                            <input type="text" name="subtotal[]" id="subtotal" value="0.00" class="form-control" placeholder="">
+                                 </div>
+								 <div class="col-md-2 mb-3">
+                                            <button class="btn btn-danger remove_item_btn">1</button>
+											
+											
+											</div>
+									 </div>
+									 
+							</div>
+							
+						</div>
+						<div class=" mb-1 ">
+                                            <button class="btn btn-success add_item_btn w-25">Add</button>
+                                        </div>
+
+					</div>
+				 <div class="row h-50">
 					<div class="col-lg-12 col-md-12">
 					<div class="card">
 							<div class="card-body">
@@ -302,8 +321,6 @@
 					</div>
 				</div>
 			
-				<!-- /row -->
-				
 				<!-- row -->
 				</form>
 				<!-- row closed -->

@@ -42,6 +42,7 @@ Route::resource('/subcity',SubCityController::class);
 Route::resource('/store',StoreMstrController::class);
 Route::resource('/option',OptionController::class);
 Route::resource('/entity',StoreDtlController::class);
+
 Route::resource('/supplier',SupplierController::class);
 Route::resource('/purchase',PurchaseInvoiceController::class);
 // Route::resource('/pur_entity',InvoiceParchaseEntityController::class);
@@ -54,4 +55,5 @@ Route::post('file-import', [UserController::class, 'fileImport'])->name('file-im
 Route::get('file-export', [UserController::class, 'fileExport'])->name('file-export');
 Route::post('file-import', [UserController::class, 'fileImport'])->name('file-import');
 Route::post('file-import-countery', [counteryController::class, 'fileImport'])->name('file-import-countery');
-
+// ajax routes
+Route::get('file-import-export', [UserController::class, 'fileImportExport']);
