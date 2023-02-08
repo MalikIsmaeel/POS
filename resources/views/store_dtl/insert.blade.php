@@ -98,63 +98,84 @@
 									Select<span class="tx-sserif">2</span>
 								</div>
 								<p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
-								<div class="col-sm-2 mb-3">
-								<select class="form-control select2">
-											<option label="products..">
-											</option>
-											@foreach ($data['catogeries'] as $catogery)
-											<option value="{{$catogery->id}}">
-												{{$catogery->name}}
-											</option>
-											@endforeach
-											
-										</select>   
-										           
-									 </div>
+								
 								<div class="card-body">
 							
-							<div id="show_item">
+							<div>
                             <div class="row">
 			
-                                <div class="col-md-2 mb-3">
-								<select class="form-control select2" name="product_name[]">
+                                <div class="col-md-4 mb-3">
+									<p>Countery</p>
+								<select class="form-control select2">
 											<option label="products..">
+
 											</option>
-											@foreach ($data['products'] as $product)
-											<option value="{{$product->id}}">
-												{{$product->name}}
+											@foreach ($data['counteries'] as $countery)
+											<option value="{{$countery->id}}">
+												{{$countery->countery_name}}
 											</option>
 											@endforeach
 											
 										</select>   
 										           
 									 </div>
-                                <div class="col-md-2 mb-3">
-                                            <input type="text" name="price[]" id="price" class="form-control" placeholder="product price">
-                                 </div>
-								 <div class="col-md-2 mb-3">
-                                            <input type="text" name="qty[]" id="qty" class="form-control" value='1' placeholder="product quntites">
-                                 </div>
-								 <div class="col-lg-2 mg-t-20 mg-lg-t-0">
-										<div class="input-group">
-											<div class="input-group-prepend">
-												<div class="input-group-text">
-													15%
-												</div><!-- input-group-text -->
-											</div><!-- input-group-prepend -->
-											<input class="form-control" id="vat"  placeholder="" type="text" name="vat" readonly>
-										</div>
-									</div>
-								 <div class="col-md-2 mb-3">
-                                            <input type="text" name="subtotal[]" id="subtotal" value="0.00" class="form-control" placeholder="">
-                                 </div>
-								 <div class="col-md-2 mb-3">
-                                            <button class="btn btn-danger remove_item_btn">1</button>
+                                <div class="col-md-4 mb-3">
+									<p>City</p>
+								<select class="form-control select2">
+											<option label="city..">
+											</option>
+											@foreach ($data['citys'] as $city)
+											<option value="{{$city->id}}">
+												{{$city->city_name}}
+											</option>
+											@endforeach
 											
+										</select>   
+										           
+									 </div>  
+								 <div class="col-md-4 mb-3">
+									<p>Subcity</p>
+								 <select class="form-control select2">
+											<option label="products..">
+											</option>
+											@foreach ($data['subcites'] as $subcity)
+											<option value="{{$subcity->id}}">
+												{{$subcity->sub_cities_name}}
+											</option>
+											@endforeach
 											
-											</div>
+										</select>   
+										           
+									 </div>  
+								 <div class="col-md-4 mb-3">
+									<p>Store Type</p>
+								 <select class="form-control select2">
+											<option label="products..">
+											</option>
+											@foreach ($data['types'] as $type)
+											<option value="{{$type->id}}">
+												{{$type->option_value}}
+											</option>
+											@endforeach
+											
+										</select>   
+										           
 									 </div>
-									 
+									 <div class="col-md-4 mb-3">
+										 <p>Store Name</p>
+								 <select class="form-control select2">
+											<option label="products..">
+											</option>
+											@foreach ($data['stores'] as $store)
+											<option value="{{$store->id}}">
+												{{$store->storecode}}
+											</option>
+											@endforeach
+											
+										</select>   
+										           
+									 </div>
+								 	 
 							</div>
 							
 						</div>
@@ -163,22 +184,7 @@
                                         </div>
 
 					</div>
-				 <div class="row h-50">
-					<div class="col-lg-12 col-md-12">
-					<div class="card">
-							<div class="card-body">
-								<div class="main-content-label mg-b-5">
-									Select<span class="tx-sserif">2</span>
-								</div>
-								<div class="row row-sm mg-b-20">
-								
-									
-								
-							</div>
-						</div>
-					</div>
 				
-				</div>
 					</div>
 				</div>
 			
@@ -192,7 +198,11 @@
 									Select<span class="tx-sserif">2</span>
 								</div>
 								<p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
-								<div class="col-sm-2 mb-3">
+								<div class="card-body">
+							
+							<div id="show_item">
+                            <div class="row">
+							<div class="col-sm-2 mb-3">
 								<select class="form-control select2">
 											<option label="products..">
 											</option>
@@ -205,11 +215,7 @@
 										</select>   
 										           
 									 </div>
-								<div class="card-body">
 							
-							<div id="show_item">
-                            <div class="row">
-			
                                 <div class="col-md-2 mb-3">
 								<select class="form-control select2" name="product_name[]">
 											<option label="products..">
@@ -223,10 +229,10 @@
 										</select>   
 										           
 									 </div>
-                                <div class="col-md-2 mb-3">
+                                <div class="col-md-1 mb-3">
                                             <input type="text" name="price[]" id="price" class="form-control" placeholder="product price">
                                  </div>
-								 <div class="col-md-2 mb-3">
+								 <div class="col-md-1 mb-3">
                                             <input type="text" name="qty[]" id="qty" class="form-control" value='1' placeholder="product quntites">
                                  </div>
 								 <div class="col-lg-2 mg-t-20 mg-lg-t-0">
@@ -239,11 +245,12 @@
 											<input class="form-control" id="vat"  placeholder="" type="text" name="vat" readonly>
 										</div>
 									</div>
-								 <div class="col-md-2 mb-3">
+								 <div class="col-md-3 mb-3">
                                             <input type="text" name="subtotal[]" id="subtotal" value="0.00" class="form-control" placeholder="">
                                  </div>
-								 <div class="col-md-2 mb-3">
-                                            <button class="btn btn-danger remove_item_btn">1</button>
+								 <div class="col-md-1 mb-3">
+                                            <button class="btn btn-danger remove_item_btn">1
+										</button>
 											
 											
 											</div>
@@ -362,14 +369,37 @@
             
             
             $("#show_item").prepend(`<div class="row">
+			<div class="col-sm-2 mb-3">
+								<select class="form-control select2">
+											<option label="products..">
+											</option>
+											@foreach ($data['catogeries'] as $catogery)
+											<option value="{{$catogery->id}}">
+												{{$catogery->name}}
+											</option>
+											@endforeach
+											
+										</select>   
+										           
+									 </div>
+							
                                 <div class="col-md-2 mb-3">
-								
-                                            <input type="text" name="product_name[]" class="form-control" id="product" placeholder="product name">
-                                </div>
-                                <div class="col-md-2 mb-3">
+								<select class="form-control select2" name="product_name[]">
+											<option label="products..">
+											</option>
+											@foreach ($data['products'] as $product)
+											<option value="{{$product->id}}">
+												{{$product->name}}
+											</option>
+											@endforeach
+											
+										</select>   
+										           
+									 </div>
+                            <div class="col-md-1 mb-3">
                                             <input type="text" name="price[]" id="price" class="form-control" placeholder="product price">
                                  </div>
-								 <div class="col-md-2 mb-3">
+								 <div class="col-md-1 mb-3">
                                             <input type="text" name="qty[]" id="qty" class="form-control" value='1' placeholder="product quntites">
                                  </div>
 								 <div class="col-lg-2 mg-t-20 mg-lg-t-0">
@@ -382,12 +412,12 @@
 											<input class="form-control" id="vat"  placeholder="" type="text" name="vat" readonly>
 										</div>
 									</div>
-								 <div class="col-md-2 mb-3">
+								 <div class="col-md-3 mb-3">
                                             <input type="text" name="subtotal[]" id="subtotal" value="0.00" class="form-control" placeholder="">
                                  </div>
-                                        <div class="col-md-2 mb-3">
+                                        <div class="col-md-1 mb-3">
                                             <button class="btn btn-danger remove_item_btn">1</button>
-											<button class="btn btn-primary add_item_btn">2</button>
+											
 											
 											</div>
 									 </div>`);

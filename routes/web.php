@@ -30,7 +30,7 @@ use App\Http\Controllers\PurchaseInvoiceController;
 
   Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    //  Route::get('/{page}', [AdminController::class, 'index']);
+     Route::get('/{page}', [AdminController::class, 'index']);
 
 Route::resource('/user',UserController::class);
 Route::resource('/catogrey',CatogeryController::class);

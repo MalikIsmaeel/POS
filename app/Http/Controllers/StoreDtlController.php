@@ -32,11 +32,11 @@ class StoreDtlController extends Controller
      */
     public function create()
     {
-        $data['counteries']=countery::get()->where(['active','=','1']);
-        $data['stores']=store_mstr::get()->where('active','=','1');
-        $data['citys']=city::get()->where(['active','=','1']);
-        $data['catogeries']=catogery::get()->where(['active','=','1']);
-        $data['countery']=countery::get()->where(['active','=','1']);
+        $data['counteries']=countery::get()->where('active','=',1);
+        $data['stores']=store_mstr::get()->where('active','=',1);
+        $data['citys']=city::get()->where('active','=',1);
+        $data['catogeries']=catogery::get()->where('active','=',1);
+        $data['countery']=countery::get()->where('active','=',1);
         $data['subcites']=sub_city::get()->where('active','=','1');
         $data['products']=product::get()->where('active','=','1');
         $data['types']=option::get()->where('option_name','=','store_type');

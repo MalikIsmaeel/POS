@@ -122,7 +122,9 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   margin-top: 0;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem; 
+font-weight: bold!important;
+}
 
 abbr[title], abbr[data-original-title] {
   text-decoration: underline;
@@ -485,7 +487,9 @@ pre {
   position: relative;
   width: 100%;
   padding-right: 0.75rem;
-  padding-left: 0.75rem; }
+  padding-left: 0.75rem;
+
+}
 
 .col {
   flex-basis: 0;
@@ -737,7 +741,8 @@ pre {
     max-width: 8.33333%; }
   .col-md-2 {
     flex: 0 0 16.66667%;
-    max-width: 16.66667%; }
+    max-width: 16.66667%; 
+  }
   .col-md-3 {
     flex: 0 0 25%;
     max-width: 25%; }
