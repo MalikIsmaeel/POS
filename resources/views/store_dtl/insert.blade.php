@@ -86,7 +86,7 @@
     
     'user_id' -->
 @endif
-						<form action="{{route('purchase.store')}}" method="post" id="form_insert" class="H-100">
+						<form action="{{route('entity.store')}}" method="post" id="form_insert" class="H-100">
 						@csrf
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
@@ -97,20 +97,7 @@
 								</div>
 								<p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
 								<div class="row row-sm mg-b-20">
-								<div class="col-lg-4 mg-t-20 mg-lg-t-0">
-										<p class="mg-b-10">invoice number</p><div class="form-group"> <!-- Date input -->
-									    <div class="form-group"> 
-										<div class="input-group mb-3">
-										<input class="form-control"  name="invoice_number" placeholder="{{$numbers}}" value="{{$numbers}}" type="text"/><div class="input-group-append">
-												
-											</div>
-										</div>
-										<span></span>
-										
-									
-     										 </div>
-											  </div>
-									</div><!-- col-4 -->
+								
 									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
 										<p class="mg-b-10">invoice date</p><div class="form-group"> <!-- Date input -->
 									    <div class="form-group"> 
@@ -126,11 +113,20 @@
 											  </div>
 									</div><!-- col-4 -->
 									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
-										<p class="mg-b-10">invoice date due</p><div class="form-group"> <!-- Date input -->
+										<p class="mg-b-10">City</p><div class="form-group"> <!-- Date input -->
 									    <div class="form-group"> 
 										<div class="input-group mb-3">
-										<input class="form-control" id="date" name="date_due" placeholder="MM/DD/YYY" type="date"/><div class="input-group-append">
-												<span class="input-group-text" id="basic-addon2"><i class="far fa-calendar"></i></span>
+										<input class="form-control" id="date" name="" placeholder="MM/DD/YYY" type="date"/><select class="form-control select2" name="supplier_id">
+											<option label="Choose one">
+											</option>
+											@foreach ($citys as $city)
+											<option value="{{$city->id}}">
+												{{$city->city_name}}
+											</option>
+											@endforeach
+											
+										</select>
+										
 											</div>
 										</div>
 										<span></span>
@@ -139,13 +135,14 @@
      										 </div>
 											  </div>
 									</div><!-- col-4 -->
+							
 									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
-										<p class="mg-b-10">Select supplier</p><select class="form-control select2" name="supplier_id">
+										<p class="mg-b-10"> sub city</p><select class="form-control select2" name="supplier_id">
 											<option label="Choose one">
 											</option>
-											@foreach ($suppliers as $supplier)
-											<option value="{{$supplier->id}}">
-												{{$supplier->company_name}}
+											@foreach ($types as $types)
+											<option value="{{$type->id}}">
+												{{$type->option_name}}
 											</option>
 											@endforeach
 											

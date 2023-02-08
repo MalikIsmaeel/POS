@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\store_mstr;
 use App\Models\product;
 use App\Models\unit;
+use App\Models\option;
+use App\Models\countery;
+use App\Models\catogery;
+use App\Models\city;
+use App\Models\sub_city;
 class StoreDtlController extends Controller
 {
     /**
@@ -27,10 +32,16 @@ class StoreDtlController extends Controller
      */
     public function create()
     {
-        $store=store_mstr::get()->where('active','=','1');
-        $product=product::get()->where('active','=','1');
-        $unit=unit::get()->where('active','=','1');
-        return view('store_dtl.insert',['products'=>$product],['units'=>$unit])->with(['stores'=>$store]);
+        $data['counteries']=countery::get()->where(['active','=','1']);
+        $data['stores']=store_mstr::get()->where('active','=','1');
+        $data['citys']=city::get()->where(['active','=','1']);
+        $data['countery']=countery::get()->where(['active','=','1']);
+        $data['subcites']=sub_city::get()->where('active','=','1');
+        $data['products']=product::get()->where('active','=','1');
+        $data['types']=option::get()->where('option_name','=','store_type');
+        $data['unit']=unit::get()->where('active','=','1');
+        
+        return view('store_dtl.insert',['data'=>$data]);
     }
 
     /**
