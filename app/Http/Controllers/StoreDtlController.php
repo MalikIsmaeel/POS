@@ -40,7 +40,7 @@ class StoreDtlController extends Controller
         $data['subcites']=sub_city::get()->where('active','=','1');
         $data['products']=product::get()->where('active','=','1');
         $data['types']=option::get()->where('option_name','=','store_type');
-        $data['unit']=unit::get()->where('active','=','1');
+        $data['units']=unit::get()->where('active','=','1');
         
         return view('store_dtl.insert',['data'=>$data]);
     }

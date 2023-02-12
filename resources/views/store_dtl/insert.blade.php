@@ -217,12 +217,24 @@
 									 </div>
 							
                                 <div class="col-md-2 mb-3">
+									
 								<select class="form-control select2" name="product_name[]">
 											<option label="products..">
 											</option>
 											@foreach ($data['products'] as $product)
 											<option value="{{$product->id}}">
 												{{$product->name}}
+											</option>
+											@endforeach
+											
+										</select>
+										  
+							         	<select class="form-control select2" name="unit_id[]">
+											<option label="products..">
+											</option>
+											@foreach ($data['units'] as $unit)
+											<option value="{{$unit->id}}">
+												{{$unit->name}}
 											</option>
 											@endforeach
 											
