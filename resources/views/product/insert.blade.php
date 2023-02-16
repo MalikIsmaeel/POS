@@ -77,17 +77,15 @@
 							</div>
 							<div class="card-body pt-0">
 								
-								<form action="{{route('product.store')}}" method="POST">
+								<form action="{{route('product.store')}}" method="POST"  enctype="multipart/form-data">
 										@csrf
 										
 									
 									<div class="form-group">
 										<input type="text" name="name" class="form-control"  value="{{old('name')}}" id="inputName" placeholder="Name">
 									</div>
-									<div class="form-group">
-										<input type="textarea" class="form-control"  placeholder="insert new photo" value="{{old('photo')}}" name="photo">
-									</div>
-									<div class="form-group">
+							
+						<div class="form-group">
 									<select class="form-control selectpicker"  name="active" id="select-country" data-live-search="true">
 										
             							    
@@ -96,7 +94,7 @@
 										<option value="0">unactive</option>
 									</select>
 									</div>
-
+			
 									<div class="form-group">
 										<select class="form-control selectpicker" id="select-country" data-live-search="true" name="catogery_id">
 											@foreach($catogeries as $catogery)
@@ -109,10 +107,10 @@
 									<div class="form-group">
 										
 												
-
+									<div>
+									<input id="demo" type="file" name="photo">
+								</div>
 														
-												
-											
             							    
 									</div>
 									
@@ -154,4 +152,15 @@
 <script src="{{URL::asset('assets/plugins/pickerjs/picker.min.js')}}"></script>
 <!-- Internal form-elements js -->
 <script src="{{URL::asset('assets/js/form-elements.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
+<!--Internal Fancy uploader js-->
+<script src="{{URL::asset('assets/plugins/fancyuploder/jquery.ui.widget.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/fancyuploder/jquery.fileupload.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/fancyuploder/jquery.iframe-transport.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
+<!--Internal  Form-elements js-->
+<script src="{{URL::asset('assets/js/advanced-form-elements.js')}}"></script>
+<script src="{{URL::asset('assets/js/select2.js')}}"></script>
 @endsection

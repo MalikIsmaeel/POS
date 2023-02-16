@@ -49,23 +49,36 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+     
         $request->validate([
             'name'=>'required|unique:products',
+            'photo' => 'required|image|mimes:png,jpg,jpeg|max:2048',
             'active'=>'required', 
         ]);
+        $catogery= catogery::where('id',$request->catogery_id)->first();
+        $name = $request->name;
+        $imageName = $name .'.'.$request->photo->extension();
 
-        $products=product::create( [
-            'name'=>$request->name,
-            'active'=>$request->active ?? 0,
-            'photo'=>$request->photo ,
-            'catogery_id'=>$request->catogery_id,
-            'user_id'=>Auth()->user()->id,
+        // Public Folder
+        $request->photo->move(public_path($catogery->catogery_name), $imageName);
+        // $url = Storage::putFileAs('imgs', $file, $name . '.' . $file->extension());
+
+        
+
+        // // Public Folder
+        // $request->image->move(public_path('imgs'), $imageName);
+        // $products=product::create( [
+        //     'name'=>$request->name,
+        //     'active'=>$request->active ?? 0,
+        //     'photo'=>$filename,
+        //     'catogery_id'=>$request->catogery_id,
+        //     'user_id'=>Auth()->user()->id,
 
             
-        ]);
+        // ]);
 
-            return redirect()->back()->with('success', $request->name.'Product Added successfully.');
-        
+            // return redirect()->back()->with('success', $request->name.'Product Added successfully.');
+        return dd($imageName);
     }
 
     /**

@@ -15,6 +15,7 @@ use App\Http\Controllers\StoreDtlController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\InvoiceParchaseEntityController;
 use App\Http\Controllers\PurchaseInvoiceController;
+use App\Http\Controllers\POScontroller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,9 +31,10 @@ use App\Http\Controllers\PurchaseInvoiceController;
 
   Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    //  Route::get('/{page}', [AdminController::class, 'index']);
-
+     Route::get('/{page}', [AdminController::class, 'index']);
+// 
 Route::resource('/user',UserController::class);
+Route::resource('/POS',POScontroller::class);
 Route::resource('/catogrey',CatogeryController::class);
 Route::resource('/unit',UnitController::class);
 Route::resource('/product',ProductController::class);
