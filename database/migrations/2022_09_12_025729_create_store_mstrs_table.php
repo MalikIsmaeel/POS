@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreignId('user_id')
             ->references('id')->on('users')
             ->onDelete('cascade');
-            $table->foreignId('type_id')
+            $table->foreignId('type_id') // store type 
             ->references('id')->on('options')
             ->onDelete('cascade');
             $table->timestamps();

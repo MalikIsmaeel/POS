@@ -22,7 +22,24 @@ class StoreDtlController extends Controller
     public function index()
     {
         $entity=store_dtl::where('active','=','1')->paginate(10);
-        return view('store_dtl.index')->with(['entites'=>$entity]);
+        $path = storage_public('imgs/' . $entity->photo);
+
+   
+
+    if (!File::exists($path)) {
+
+        abort(404);
+
+    }
+
+  
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+        return view('POS.additems')->with(['entites'=>$entity]);
     }
 
     /**
@@ -42,7 +59,7 @@ class StoreDtlController extends Controller
         $data['types']=option::get()->where('option_name','=','store_type');
         $data['units']=unit::get()->where('active','=','1');
         
-        return view('store_dtl.insert',['data'=>$data]);
+        return view('POS.additems',['data'=>$data]);
     }
 
     /**

@@ -43,51 +43,15 @@
 				<!-- Gallery -->
 				<div class="demo-gallery">
 					<ul id="lightgallery" class="list-unstyled row row-sm pr-0">
-						<li class="col-sm-6 col-lg-4" data-sub-html="<h4>Gallery Image 1</h4>" >
+					        
+					<li class="col-sm-6 col-lg-4" data-sub-html="<h4>Gallery Image 1</h4>" >
+							@foreach($entities as $entity)
 							
-								<img src="{{URL::asset('assets/img/photos/1.jpg')}}" alt="Thumb-1">
-							
+							{{$entity->photo}}
+							{{URL::to('public/imgs').'/'.$entity->photo}}
+							<img class="img-responsive" src="{{URL::asset('assets/img/photos/2.jpg')}}" alt="Thumb-1">
 						</li>
-						<li class="col-sm-6 col-lg-4" data-responsive="{{URL::asset('assets/img/photos/2.jpg')}}" data-src="{{URL::asset('assets/img/photos/2.jpg')}}" data-sub-html="<h4>Gallery Image 2</h4>" >
-							<a href="">
-								<img class="img-responsive" src="{{URL::asset('assets/img/photos/2.jpg')}}" alt="Thumb-1">
-							</a>
-						</li>
-						<li class="col-sm-6 col-lg-4" data-responsive="{{URL::asset('assets/img/photos/3.jpg')}}" data-src="{{URL::asset('assets/img/photos/3.jpg')}}" data-sub-html="<h4>Gallery Image 3</h4>" >
-							<a href="">
-								<img class="img-responsive" src="{{URL::asset('assets/img/photos/3.jpg')}}" alt="Thumb-1">
-							</a>
-						</li>
-						<li class="col-sm-6 col-lg-4" data-responsive="{{URL::asset('assets/img/photos/4.jpg')}}" data-src="{{URL::asset('assets/img/photos/4.jpg')}}" data-sub-html="<h4>Gallery Image 4</h4>" >
-							<a href="">
-								<img class="img-responsive" src="{{URL::asset('assets/img/photos/4.jpg')}}" alt="Thumb-1">
-							</a>
-						</li>
-						<li class="col-sm-6 col-lg-4" data-responsive="{{URL::asset('assets/img/photos/5.jpg')}}" data-src="{{URL::asset('assets/img/photos/5.jpg')}}" data-sub-html="<h4>Gallery Image 5</h4>" >
-							<a href="">
-								<img class="img-responsive" src="{{URL::asset('assets/img/photos/5.jpg')}}" alt="Thumb-1">
-							</a>
-						</li>
-						<li class="col-sm-6 col-lg-4" data-responsive="{{URL::asset('assets/img/photos/6.jpg')}}" data-src="{{URL::asset('assets/img/photos/6.jpg')}}" data-sub-html="<h4>Gallery Image 6</h4>" >
-							<a href="">
-								<img class="img-responsive" src="{{URL::asset('assets/img/photos/6.jpg')}}" alt="Thumb-1">
-							</a>
-						</li>
-						<li class="col-sm-6 col-lg-4" data-responsive="{{URL::asset('assets/img/photos/7.jpg')}}" data-src="{{URL::asset('assets/img/photos/7.jpg')}}" data-sub-html="<h4>Gallery Image 7</h4>" >
-							<a href="">
-								<img class="img-responsive" src="{{URL::asset('assets/img/photos/7.jpg')}}" alt="Thumb-1">
-							</a>
-						</li>
-						<li class="col-sm-6 col-lg-4" data-responsive="{{URL::asset('assets/img/photos/8.jpg')}}" data-src="{{URL::asset('assets/img/photos/8.jpg')}}" data-sub-html="<h4>Gallery Image 8</h4>" >
-							<a href="">
-								<img class="img-responsive" src="{{URL::asset('assets/img/photos/8.jpg')}}" alt="Thumb-1">
-							</a>
-						</li>
-						<li class="col-sm-6 col-lg-4" data-responsive="{{URL::asset('assets/img/photos/9.jpg')}}" data-src="{{URL::asset('assets/img/photos/9.jpg')}}" data-sub-html="<h4>Gallery Image 9</h4>" >
-							<a href="">
-								<img class="img-responsive" src="{{URL::asset('assets/img/photos/9.jpg')}}" alt="Thumb-1">
-							</a>
-						</li>
+                 @endforeach
 					</ul>
 					<!-- /Gallery -->
 

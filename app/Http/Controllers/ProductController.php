@@ -60,24 +60,24 @@ class ProductController extends Controller
         $imageName = $name .'.'.$request->photo->extension();
 
         // Public Folder
-        $request->photo->move(public_path($catogery->catogery_name), $imageName);
+        $request->photo->move(public_path('imgs/'.$catogery->catogery_name), $imageName);
         // $url = Storage::putFileAs('imgs', $file, $name . '.' . $file->extension());
 
         
 
-        // // Public Folder
-        // $request->image->move(public_path('imgs'), $imageName);
-        // $products=product::create( [
-        //     'name'=>$request->name,
-        //     'active'=>$request->active ?? 0,
-        //     'photo'=>$filename,
-        //     'catogery_id'=>$request->catogery_id,
-        //     'user_id'=>Auth()->user()->id,
+        // Public Folder
+       
+        $products=product::create( [
+            'name'=>$request->name,
+            'active'=>$request->active ?? 0,
+            'photo'=>$catogery->catogery_name.'/'.$request->name,
+            'catogery_id'=>$request->catogery_id,
+            'user_id'=>Auth()->user()->id,
 
             
-        // ]);
+        ]);
 
-            // return redirect()->back()->with('success', $request->name.'Product Added successfully.');
+            return redirect()->back()->with('success', $request->name.'Product Added successfully.');
         return dd($imageName);
     }
 

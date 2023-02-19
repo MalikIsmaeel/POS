@@ -218,18 +218,9 @@
 							
                                 <div class="col-md-2 mb-3">
 									
-								<select class="form-control select2" name="product_name[]">
-											<option label="products..">
-											</option>
-											@foreach ($data['products'] as $product)
-											<option value="{{$product->id}}">
-												{{$product->name}}
-											</option>
-											@endforeach
-											
-										</select>
+							<input type="text" name="product" id="">
 										  
-							         	<select class="form-control select2" name="unit_id[]">
+							         	<select class="form-control select2" name="unit_id">
 											<option label="products..">
 											</option>
 											@foreach ($data['units'] as $unit)
@@ -242,10 +233,10 @@
 										           
 									 </div>
                                 <div class="col-md-1 mb-3">
-                                            <input type="text" name="price[]" id="price" class="form-control" placeholder="product price">
+                                            <input type="text" name="price" id="price" class="form-control" placeholder="product price">
                                  </div>
 								 <div class="col-md-1 mb-3">
-                                            <input type="text" name="qty[]" id="qty" class="form-control" value='1' placeholder="product quntites">
+                                            <input type="text" name="qty" id="qty" class="form-control" value='1' placeholder="product quntites">
                                  </div>
 								 <div class="col-lg-2 mg-t-20 mg-lg-t-0">
 										<div class="input-group">
@@ -254,6 +245,7 @@
 													15%
 												</div><!-- input-group-text -->
 											</div><!-- input-group-prepend -->
+											
 											<input class="form-control" id="vat"  placeholder="" type="text" name="vat" readonly>
 										</div>
 									</div>

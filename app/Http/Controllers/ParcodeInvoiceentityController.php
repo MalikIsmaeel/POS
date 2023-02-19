@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ParcodeInvoiceentity;
 use Illuminate\Http\Request;
-use App\Models\store_dtl;
-class POScontroller extends Controller
+
+class ParcodeInvoiceentityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,14 +14,7 @@ class POScontroller extends Controller
      */
     public function index()
     {
-        $entity=store_dtl::get();
-       
-    
-        
-     
-        return view('POS.additems',['entities'=>$entity]);
-       
-        
+        //
     }
 
     /**
@@ -47,10 +41,10 @@ class POScontroller extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\ParcodeInvoiceentity  $parcodeInvoiceentity
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ParcodeInvoiceentity $parcodeInvoiceentity)
     {
         //
     }
@@ -58,10 +52,10 @@ class POScontroller extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\ParcodeInvoiceentity  $parcodeInvoiceentity
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ParcodeInvoiceentity $parcodeInvoiceentity)
     {
         //
     }
@@ -70,10 +64,10 @@ class POScontroller extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\ParcodeInvoiceentity  $parcodeInvoiceentity
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ParcodeInvoiceentity $parcodeInvoiceentity)
     {
         //
     }
@@ -81,10 +75,10 @@ class POScontroller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\ParcodeInvoiceentity  $parcodeInvoiceentity
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ParcodeInvoiceentity $parcodeInvoiceentity)
     {
         //
     }

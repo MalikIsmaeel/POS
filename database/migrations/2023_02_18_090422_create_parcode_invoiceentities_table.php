@@ -13,26 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('store_dtls', function (Blueprint $table) {
+        Schema::create('parcode_invoiceentities', function (Blueprint $table) {
             $table->id();
-           
-            $table->string('photo')->nullable();
-            $table->foreignId('catogery_id')->references('id')->on('catogeries')->onDelete('cascade');
-            $table->float('price');
+            $table->integer('qty');
             $table->float('cost');
+            $table->double('sub_total');
             $table->unsignedInteger('active');
-            $table->foreignId('tax_id')
-            ->references('id')->on('options')
-            ->onDelete('cascade'); // type of tax is it 15% 5% 0% 
-            $table->foreignId('product')
-            ->references('id')->on('products')
+            $table->foreignId('invoice_id')
+            ->references('id')->on('purchase_invoices')
             ->onDelete('cascade');
-            $table->foreignId('store_name')
+            $table->foreignId('store_id')
             ->references('id')->on('store_mstrs')
             ->onDelete('cascade');
             $table->foreignId('unit_id')
             ->references('id')->on('units')
             ->onDelete('cascade');
+            $table->double('tax');
             $table->foreignId('user_id')
             ->references('id')->on('users')
             ->onDelete('cascade');
@@ -47,6 +43,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('store_dtls');
+        Schema::dropIfExists('parcode_invoiceentities');
     }
 };
