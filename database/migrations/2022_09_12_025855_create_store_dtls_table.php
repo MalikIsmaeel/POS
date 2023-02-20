@@ -24,9 +24,7 @@ return new class extends Migration
             $table->foreignId('tax_id')
             ->references('id')->on('options')
             ->onDelete('cascade'); // type of tax is it 15% 5% 0% 
-            $table->foreignId('product')
-            ->references('id')->on('products')
-            ->onDelete('cascade');
+            $table->string('product_name');
             $table->foreignId('store_name')
             ->references('id')->on('store_mstrs')
             ->onDelete('cascade');

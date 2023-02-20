@@ -20,10 +20,10 @@ return new class extends Migration
             $table->double('sub_total');
             $table->unsignedInteger('active');
             $table->foreignId('invoice_id')
-            ->references('id')->on('purchase_invoices')
+            ->references('id')->on('parcode_invoices')
             ->onDelete('cascade');
             $table->foreignId('store_id')
-            ->references('id')->on('store_mstrs')
+            ->references('id')->on('store_dtls')
             ->onDelete('cascade');
             $table->foreignId('unit_id')
             ->references('id')->on('units')

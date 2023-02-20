@@ -1,9 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\Models\store_dtl;
+use Illuminate\Http\Request;
+use App\Models\store_mstr;
+use App\Models\product;
+use App\Models\unit;
+use App\Models\option;
+use App\Models\countery;
+use App\Models\catogery;
+use App\Models\city;
+use App\Models\sub_city;
+
+
 class POScontroller extends Controller
 {
     /**
@@ -13,12 +22,20 @@ class POScontroller extends Controller
      */
     public function index()
     {
-        $entity=store_dtl::get();
-       
+        $data['entity']=store_dtl::get();
+        $data['counteries']=countery::get()->where('active','=',1);
+        $data['stores']=store_mstr::get()->where('active','=',1);
+        $data['citys']=city::get()->where('active','=',1);
+        $data['catogeries']=catogery::get()->where('active','=',1);
+        $data['countery']=countery::get()->where('active','=',1);
+        $data['subcites']=sub_city::get()->where('active','=','1');
+        $data['products']=product::get()->where('active','=','1');
+        $data['types']=option::get()->where('option_name','=','store_type');
+        $data['units']=unit::get()->where('active','=','1');
     
         
      
-        return view('POS.additems',['entities'=>$entity]);
+        return view('POS.additems',['data'=>$data]);
        
         
     }

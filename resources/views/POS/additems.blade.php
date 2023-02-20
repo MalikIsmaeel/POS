@@ -44,14 +44,30 @@
 				<div class="demo-gallery">
 					<ul id="lightgallery" class="list-unstyled row row-sm pr-0">
 					        
-					<li class="col-sm-6 col-lg-4" data-sub-html="<h4>Gallery Image 1</h4>" >
-							@foreach($entities as $entity)
+					<li class="col-sm-8 col-lg-4" data-sub-html="<h4>Gallery Image 1</h4>" >
+							@foreach($data['entity'] as $entity)
+						 <ul class="row">
+						 <li class="col-sm-2" data-responsive="{{URL::asset('assets/img/photos/$entity->id.jpg')}}" data-src="{{URL::asset('assets/img/photos/$entity->id.jpg')}}" data-sub-html="<h4>Gallery Image 9</h4>" >
+							<a href="">
+								<img class="img-responsive" src="{{URL::asset('assets/img/photos/'.$entity->catogery_id.'/'.$entity->id.'.jpg')}}" alt="Thumb-1">
+							</a>
+						</li>
+						<li class="col-sm-2">
+							{{$entity->product_name}}
+						</li>
+						
+						<li class="col-sm-2">
+							{{$entity->price}}
+						</li>
 							
-							{{$entity->photo}}
-							{{URL::to('public/imgs').'/'.$entity->photo}}
-							<img class="img-responsive" src="{{URL::asset('assets/img/photos/2.jpg')}}" alt="Thumb-1">
+						 </ul>
+							
 						</li>
                  @endforeach
+				 <li>
+				 <a class="btn ripple btn-warning" data-target="#modaldemo6" data-toggle="modal" href="">View Demo</a>
+					
+				 </li>
 					</ul>
 					<!-- /Gallery -->
 
@@ -83,6 +99,26 @@
 			<!-- Container closed -->
 		</div>
 		<!-- main-content closed -->
+		<div class="modal" id="modaldemo6">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content modal-content-demo">
+					<div class="modal-header">
+						<h6 class="modal-title">Grid Modal</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+					</div>
+					<div class="modal-body">
+						
+
+
+
+					
+					<div class="modal-footer">
+						<button class="btn ripple btn-primary" type="button">Save changes</button>
+						<button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 @endsection
 @section('js')
 <!--Internal  Datepicker js -->
