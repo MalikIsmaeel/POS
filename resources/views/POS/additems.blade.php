@@ -42,6 +42,36 @@
 @section('content')
 				<!-- Gallery -->
 				<div class="demo-gallery">
+				@if ($errors->any())
+		@foreach ($errors->all() as $error)
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert">
+							<i class="fa fa-times"></i>
+						</button>
+						<strong>danger !</strong> {{$error}}
+					</div>
+</br>
+					@endforeach
+				
+				{{-- Message --}}
+@else
+@if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>Success !</strong> {{ session('success') }}
+   </div>
+	@endif
+	<!-- 'invoice_number', -->
+    <!-- 'invoice_date',
+    'date_due',
+    'total',
+    'total_vat',
+    'supplier_id',
+    
+    'user_id' -->
+@endif
 					<ul id="lightgallery" class="list-unstyled row row-sm pr-0">
 					        
 					<li class="col-sm-8 col-lg-4" data-sub-html="<h4>Gallery Image 1</h4>" >
@@ -103,17 +133,154 @@
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content modal-content-demo">
 					<div class="modal-header">
-						<h6 class="modal-title">Grid Modal</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+						<h6 class="modal-title">Grid Modal</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>	
 					</div>
 					<div class="modal-body">
-						
+					<div class="row">
+					<div class="col-lg-12 col-md-12">
+					<div class="card">
+							<div class="card-body">
+								<div class="main-content-label mg-b-5">
+									Select<span class="tx-sserif">2</span>
+								</div>
+								<p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
+								
+								<div class="card-body">
+							
+							<div>
+                    
+						<form action="{{route('POS.store')}}" method="post" id="form_insert" class="H-100" enctype="multipart/form-data">
+						@csrf
+		
+							<div class="row">
+			
+                                <div class="col-md-4 mb-3">
+									<p>Countery</p>
+								<select class="form-control select2" name="store_id">
+											<option label="store..">
+
+											</option>
+											@foreach ($data['stores'] as $store)
+											<option value="{{$store->id}}">
+												{{$store->storecode}}
+											</option>
+											@endforeach
+											
+										</select>   
+										           
+									 </div>
+                                <div class="col-md-4 mb-3">
+									<p>City</p>
+								<select class="form-control select2" name="catogery_id">
+											<option label="catogery">
+											</option>
+											@foreach ($data['catogeries'] as $catogery)
+											<option value="{{$catogery->id}}">
+												{{$catogery->catogery_name}}
+											</option>
+											@endforeach
+											
+										</select>   
+										           
+									 </div>  
+								 <div class="col-md-4 mb-3">
+									<p>Subcity</p>
+								 <select class="form-control select2" name="product_name">
+											<option label="products..">
+											</option>
+											@foreach ($data['entity'] as $entity)
+											<option value="{{$entity->id}}">
+												{{$entity->product_name}}
+											</option>
+											@endforeach
+											
+										</select>   
+										           
+									 </div>  
+								 <div class="col-md-4 mb-3">
+									<p>Store Type</p>
+								 <select class="form-control select2">
+											<option label="products..">
+											</option>
+											@foreach ($data['types'] as $type)
+											<option value="{{$type->id}}">
+												{{$type->option_value}}
+											</option>
+											@endforeach
+											
+										</select>   
+										           
+									 </div>
+									 <div class="col-md-4 mb-3">
+										 <p>Qty</p>
+								 <input type="number" name="qty" id="">   
+										           
+									 </div>
+									 <div class="col-md-4 mb-3">
+										 <p>Qty</p>
+								 <input type="number" name="price" id="">   
+										           
+									 </div>
+									 <div class="col-md-4 mb-3">
+									<p>uints</p>
+								<select class="form-control select2" name="unit_id">
+											<option label="city..">
+											</option>
+											@foreach ($data['units'] as $unit)
+											<option value="{{$unit->id}}">
+												{{$unit->unit_name}}
+											</option>
+											@endforeach
+											
+										</select>   
+										           
+									 </div> 
+							         <div class="col-md-4 mb-3">
+									<p>uints</p>
+								
+											<input type="file" name="photo" id="">
+										           
+									 </div> 
+											 
+							</div>
+							
+						</div>
+						<!-- $table->string('photo')->nullable();
+            $table->foreignId('catogery_id')->references('id')->on('catogeries')->onDelete('cascade');
+            $table->float('price');
+            $table->float('cost');
+            $table->unsignedInteger('active');
+            $table->foreignId('tax_id')
+            ->references('id')->on('options')
+            ->onDelete('cascade'); // type of tax is it 15% 5% 0% 
+            $table->string('product_name');
+            $table->foreignId('store_name')
+            ->references('id')->on('store_mstrs')
+            ->onDelete('cascade');
+            $table->foreignId('unit_id')
+            ->references('id')->on('units')
+            ->onDelete('cascade');
+            $table->foreignId('user_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade');
+            $table->timestamps(); -->
+
+					</div>
+				
+					</div>
+				</div>
+			
 
 
 
 					
 					<div class="modal-footer">
-						<button class="btn ripple btn-primary" type="button">Save changes</button>
+				
+                            
+                            <input type="submit" value="save" class="btn btn-primary w-25" id="add_btn">
+                      
 						<button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
+						</form>
 					</div>
 				</div>
 			</div>

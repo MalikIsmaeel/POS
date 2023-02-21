@@ -11,8 +11,8 @@ use App\Models\countery;
 use App\Models\catogery;
 use App\Models\city;
 use App\Models\sub_city;
-
-
+use Illuminate\Support\Facades\Storage;
+use File;
 class POScontroller extends Controller
 {
     /**
@@ -58,7 +58,23 @@ class POScontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $entity=store_dtl::where('active','=','1')->paginate(10);
+        // $path = storage_public('imgs/' . $entity->photo);
+        $imageName = $request->product_name.'.'.$request->photo->extension();
+        $request->photo->move(public_path('imgs'), $imageName);
+        
+ 
+     
+ 
+ 
+   
+
+    
+  
+
+   
+     return dd($request);   
     }
 
     /**
