@@ -23,7 +23,7 @@
                         {!! null !== session('file_url') ? session('file_url') : 'Please fill out the form and click the button below to generate the QR Code.' !!}
                     </div>
                     <div class="col-md-9 order-md-1">
-                        <form method="post" action="{{route('generate-qr-image')}}">
+                        <form method="post" action="{{route('qr')}}">
                             @csrf
                             @if($errors->any())
                             <div class="alert alert-danger">

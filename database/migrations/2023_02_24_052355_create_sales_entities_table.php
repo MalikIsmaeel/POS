@@ -13,26 +13,25 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('store_dtls', function (Blueprint $table) {
+        Schema::create('sales_entities', function (Blueprint $table) {
             $table->id();
-           
-            $table->string('photo')->nullable();
-            $table->foreignId('catogery_id')->references('id')->on('catogeries')->onDelete('cascade');
-            $table->float('qty');
-            $table->float('price');
-
+            $table->integer('qty');
             $table->float('cost');
+            $table->double('sub_total');
             $table->unsignedInteger('active');
-            $table->foreignId('tax_id')
-            ->references('id')->on('options')
-            ->onDelete('cascade'); // type of tax is it 15% 5% 0% 
-            $table->string('product_name');
-            $table->foreignId('store_name')
+            $table->foreignId('invoice_id')
+            ->references('id')->on('sales')
+            ->onDelete('cascade');
+            $table->foreignId('store_id')
             ->references('id')->on('store_mstrs')
+            ->onDelete('cascade');
+            $table->foreignId('product_id')
+            ->references('id')->on('store_dtl')
             ->onDelete('cascade');
             $table->foreignId('unit_id')
             ->references('id')->on('units')
             ->onDelete('cascade');
+            $table->double('tax');
             $table->foreignId('user_id')
             ->references('id')->on('users')
             ->onDelete('cascade');
@@ -47,6 +46,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('store_dtls');
+        Schema::dropIfExists('sales_entities');
     }
 };

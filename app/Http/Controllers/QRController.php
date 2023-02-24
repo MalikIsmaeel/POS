@@ -31,9 +31,9 @@ class QRController extends Controller
         return view('qr-form');
     }
 
-    public function generate( array $data , SallaController $salla)
+    public function generate(GenerateRequest $request, SallaController $salla)
     {
-        $qr_data = $data;
+        $qr_data = $request->validated();
         $base64_image = "";
 
         if ($request->has('qr_logo')) {
@@ -42,7 +42,7 @@ class QRController extends Controller
             $this->base64_image_string = $salla->render($qr_data);
         }
 
-        switch ($data['option']) {
+        switch ($request->qr_options) {
             case "download":
                 return $this->download_image();
                 break;

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_invoices', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->string('invoice_number');
             $table->date('invoice_date');
@@ -22,7 +22,6 @@ return new class extends Migration
             $table->integer('total_vat');
             $table->integer('total_with_vat');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            
             $table->timestamps();
         });
     }
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_invoices');
+        Schema::dropIfExists('sales');
     }
 };

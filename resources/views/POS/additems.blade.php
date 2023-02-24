@@ -78,7 +78,7 @@
 							@foreach($data['entity'] as $entity)
 						 <ul class="row">
 						 <li class="col-sm-2" data-responsive="{{URL::asset('assets/img/photos/$entity->id.jpg')}}" data-src="{{URL::asset('assets/img/photos/$entity->id.jpg')}}" data-sub-html="<h4>Gallery Image 9</h4>" >
-							<a href="">
+							<a href="{{route('add_cart',$entity->id)}}">
 								<img class="img-responsive" src="{{URL::asset('assets/img/photos/'.$entity->catogery_id.'/'.$entity->id.'.jpg')}}" alt="Thumb-1">
 							</a>
 						</li>
@@ -245,25 +245,7 @@
 							</div>
 							
 						</div>
-						<!-- $table->string('photo')->nullable();
-            $table->foreignId('catogery_id')->references('id')->on('catogeries')->onDelete('cascade');
-            $table->float('price');
-            $table->float('cost');
-            $table->unsignedInteger('active');
-            $table->foreignId('tax_id')
-            ->references('id')->on('options')
-            ->onDelete('cascade'); // type of tax is it 15% 5% 0% 
-            $table->string('product_name');
-            $table->foreignId('store_name')
-            ->references('id')->on('store_mstrs')
-            ->onDelete('cascade');
-            $table->foreignId('unit_id')
-            ->references('id')->on('units')
-            ->onDelete('cascade');
-            $table->foreignId('user_id')
-            ->references('id')->on('users')
-            ->onDelete('cascade');
-            $table->timestamps(); -->
+						
 
 					</div>
 				

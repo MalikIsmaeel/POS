@@ -163,4 +163,14 @@ class StoreDtlController extends Controller
         ]);
         return redirect()->back()->with('success', 'Product Deleted successfully.');
     }
+    public function get_by_catogery($id){
+
+
+        $products['data'] = store_dtl::where("catogery_id",'=',$id)->get() ;
+    
+        return response()->json(['products'=>$products ]);
+    
+    
+    }
+    
 }

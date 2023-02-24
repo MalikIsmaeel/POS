@@ -10,11 +10,15 @@ class store_dtl extends Model
     use HasFactory;
   protected $fillable=[
       'qty',
+      'price',
+      'cost' ,
       'active',
-      'product_id',
-      'store_id',
+      'product_name',
+      'store_name',
       'unit_id',
-      'user_id'
+      'tax_id',
+      'user_id',
+      'catogery_id'
 ];
     public function product(){
         return $this->belongsTo(product::class); 

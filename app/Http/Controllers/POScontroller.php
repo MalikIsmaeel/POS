@@ -12,6 +12,7 @@ use App\Models\catogery;
 use App\Models\city;
 use App\Models\sub_city;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use File;
 class POScontroller extends Controller
 {
@@ -31,11 +32,13 @@ class POScontroller extends Controller
         $data['subcites']=sub_city::get()->where('active','=','1');
         $data['products']=product::get()->where('active','=','1');
         $data['types']=option::get()->where('option_name','=','store_type');
+        $data['taxes']=option::get()->where('option_table','=','products');
         $data['units']=unit::get()->where('active','=','1');
     
         
      
-        return view('POS.additems',['data'=>$data]);
+        // return view('POS.additems',['data'=>$data]);
+        return view('POS.ppp',['data'=>$data]);
        
         
     }
@@ -45,9 +48,29 @@ class POScontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        
+    
+        $product = store_dtl::findOrFail(1);
+          
+        $cart = session()->get('cart', []);
+  
+        if(isset($cart[$id])) {
+            $cart[$id]['qty']++;
+        } else {
+            $cart[$id] = [
+                "product_name" => $product->product_name,
+                "qty" => 1,
+                "price" => $product->price,
+                "image" => $product->qty
+            ];
+        }
+          
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success','Product Added successfully.');
+       
+     
     }
 
     /**
@@ -59,12 +82,60 @@ class POScontroller extends Controller
     public function store(Request $request)
     {
         
-        $entity=store_dtl::where('active','=','1')->paginate(10);
-        // $path = storage_public('imgs/' . $entity->photo);
+        
+        $request->validate([
+            // 'product_name'=>'required|unique:store_dtl',
+            // 'qty'=>'required',
+            // 'product_name'=>'required',
+            // 'store_name'=>'required',
+            // 'tax_id'=>'requied',
+            // 'cost'=>'required',
+            'unit_id'=>'required',
+            
+        ]);
+       
         $imageName = $request->product_name.'.'.$request->photo->extension();
         $request->photo->move(public_path('imgs'), $imageName);
         
- 
+        $products=store_dtl::create( [
+            'qty'=>$request->qty,
+            'active'=>$request->active ?? 1,
+            'catogery_id'=>$request->catogery_id,
+            'product_name'=>$request->product_name,
+            'store_name'=>$request->store_name,
+            'unit_id'=>$request->unit_id,
+            'tax_id'=>$request->tax_id,
+            'price'=>$request->price,
+            'cost'=>$request->cost,
+            'user_id'=>Auth::user()->id
+
+            
+        ]);
+// return dd($request);
+        // $table->string('photo')->nullable();
+        // $table->foreignId('catogery_id')->references('id')->on('catogeries')->onDelete('cascade');
+        // $table->float('price');
+        // $table->float('cost');
+        // $table->unsignedInteger('active');
+        // $table->foreignId('tax_id')
+        // ->references('id')->on('options')
+        // ->onDelete('cascade'); // type of tax is it 15% 5% 0% 
+        // $table->string('product_name');
+        // $table->foreignId('store_name')
+        // ->references('id')->on('store_mstrs')
+        // ->onDelete('cascade');
+        // $table->foreignId('unit_id')
+        // ->references('id')->on('units')
+        // ->onDelete('cascade');
+        // $table->foreignId('user_id')
+        // ->references('id')->on('users')
+        // ->onDelete('cascade');
+      
+
+
+
+            return redirect()->back()->with('success','Product Added successfully.');
+       
      
  
  
@@ -121,4 +192,5 @@ class POScontroller extends Controller
     {
         //
     }
+
 }

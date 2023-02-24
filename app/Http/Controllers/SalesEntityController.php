@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ParcodeInvoice;
+use App\Models\sales_entity;
 use Illuminate\Http\Request;
 
-class ParcodeInvoiceController extends Controller
+class SalesEntityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ParcodeInvoiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ParcodeInvoice  $parcodeInvoice
+     * @param  \App\Models\sales_entity  $sales_entity
      * @return \Illuminate\Http\Response
      */
-    public function show(ParcodeInvoice $parcodeInvoice)
+    public function show(sales_entity $sales_entity)
     {
         //
     }
@@ -52,10 +52,10 @@ class ParcodeInvoiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ParcodeInvoice  $parcodeInvoice
+     * @param  \App\Models\sales_entity  $sales_entity
      * @return \Illuminate\Http\Response
      */
-    public function edit(ParcodeInvoice $parcodeInvoice)
+    public function edit(sales_entity $sales_entity)
     {
         //
     }
@@ -64,10 +64,10 @@ class ParcodeInvoiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ParcodeInvoice  $parcodeInvoice
+     * @param  \App\Models\sales_entity  $sales_entity
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ParcodeInvoice $parcodeInvoice)
+    public function update(Request $request, sales_entity $sales_entity)
     {
         //
     }
@@ -75,10 +75,10 @@ class ParcodeInvoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ParcodeInvoice  $parcodeInvoice
+     * @param  \App\Models\sales_entity  $sales_entity
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ParcodeInvoice $parcodeInvoice)
+    public function destroy(sales_entity $sales_entity)
     {
         //
     }

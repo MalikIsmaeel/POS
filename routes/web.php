@@ -16,6 +16,11 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\InvoiceParchaseEntityController;
 use App\Http\Controllers\PurchaseInvoiceController;
 use App\Http\Controllers\POScontroller;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\salesController;
+use App\Http\Controllers\QrController;
+use App\Models\store_dtl;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,8 +35,16 @@ use App\Http\Controllers\POScontroller;
   Auth::routes();
 
   Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+  Route::get('/cart',[CartController::class,'show'])->name('cart');
+  Route::get('/cart/{id}',[CartController::class,'addTocart'])->name('add_cart');
+  Route::get('/g_catg/{id}',[StoreDtlController::class,'get_by_catogery'])->name('entity_catgery');
+  Route::get('/invoice',function(){
+    return dd(session('cart'));
+  });
     //  Route::get('/{page}', [AdminController::class, 'index']);
+    route::resource('/sales',salesController::class);
+     Route::get('/qr',[QrController::class,'index'])->name('qr');
+     Route::POST('/qr',[QrController::class,'generate'])->name('qr');
 // 
 Route::resource('/user',UserController::class);
 Route::resource('/POS',POScontroller::class);
