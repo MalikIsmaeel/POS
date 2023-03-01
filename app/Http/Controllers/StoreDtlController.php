@@ -192,5 +192,19 @@ class StoreDtlController extends Controller
     
     
     }
-    
+     
+    public function product_search($id){
+        $products = store_dtl::get() ;
+        if($id!=' '){
+           
+           $products = store_dtl::where('product_name','LIKE','%'.$id.'%')->get() ;
+            
+
+        
+        }   
+       
+        // return view('POS.products',['products'=>$products ]);
+        
+        return view('POS.products',['products'=>$products ]);
+    }  
 }

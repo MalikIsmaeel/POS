@@ -20,16 +20,17 @@
 														
 																<div class="media-body">
 																	<div class="card-item-desc mt-0">
-																		<h6 class="mt-0 text-uppercase" style="width:50px"> {{$details['product_name']}}</h6>
+																		<h6 class="mt-0 text-uppercase" style=""> {{$details['product_name']}}</h6>
 																		<dl class="card-item-desc-1">
-																		<dt>price: </dt>
-																		<dd>{{$details['price']}}</dd>
+																		
+																		
 																		</dl>
 																		
 																	</div>
 																</div>
 															</div>
 														</td>
+														<td>{{$details['price']}}</td>
 														<td>
 														<div class="form-group">
 															<input type="number" class="" style="width: 30px" id="qty" value="{{$details['qty']}}">

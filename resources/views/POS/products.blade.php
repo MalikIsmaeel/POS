@@ -25,8 +25,7 @@
 												</div>
 											</div>
 										</div>
-										@endforeach
-										<div class="col-md-6 col-lg-6 col-xl-4  col-sm-6">
+										@endforeach<div class="col-md-6 col-lg-6 col-xl-4  col-sm-6">
 											<div class="card">
 												<div class="card-body">
 													<div class="pro-img-box">
@@ -34,11 +33,13 @@
 															<i class="mdi mdi-heart-outline ml-auto wishlist"></i>
 														</div>
 														<img class="w-100" src="{{URL::asset('assets/img/ecommerce/11.jpg')}}" alt="product-image">
-														<a href="{{route('add_cart',$entity->id)}}" class="adtocart"> <i class="las la-shopping-cart "></i>
+														<a href="" class="adtocart"> <i class="las la-shopping-cart "></i>
 														</a>
+														<button type="button" class="btn btn-success btn-sm" style="width: 100%;" data-toggle="modal" data-target="#modal1">modal1</button>
+
 													</div>
 													<div class="text-center pt-3">
-														<h6 class="h6 mb-2 mt-4 font-weight-bold text-uppercase">Handbag</h6>
+														<h6 class="h6 mb-2 mt-4 font-weight-bold text-uppercase">ADD</h6>
 														<span class="tx-15 ml-auto">
 															<i class="ion ion-md-star text-warning"></i>
 															<i class="ion ion-md-star text-warning"></i>
@@ -50,5 +51,6 @@
 													</div>
 												</div>
 											</div>
+										</div>
 										</div>
 									

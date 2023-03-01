@@ -19,7 +19,7 @@
 											
 										</select>   
 									
-								<select class="form-control select2 col-6 mr-3 ml-3" id="category">
+								<select class="form-control select2 col-3 mr-3 ml-3" id="category">
 											<option label="catogery" value="0">
 											</option>
 											@foreach ($data['catogeries'] as $catogery)
@@ -29,8 +29,13 @@
 											@endforeach
 											
 										</select>   
-										           
+										
+										<form  method="POST">
+										
+										<input type="text" name="key" id="product_sreach" class="form-control col-4 mr-3 ml-3">
+											</form>    
 								</div>
+								
 							</div>
 						</div>
 						
@@ -116,16 +121,7 @@
 												<tr>
 												<tr data-id="{{ $id }}">
 												<td>
-													<div class="media">
-														
-																<div class="media-body">
-																	<div class="card-item-desc mt-0">
-																		<h6 class="mt-0 text-uppercase" style=""> {{$details['product_name']}}</h6>
-																		
-																		
-																	</div>
-																</div>
-															</div>
+													 {{$details['product_name']}}
 														</td>
 														<td>{{$details['price']}}</td>
 														<td>
@@ -237,7 +233,7 @@ error: function( req, status, err ) {
 });
 $('#stores').on('change',function(e)
  {
-    console.log(e);
+   
     var str_id = e.target.value;
 
 $.ajax({
@@ -256,21 +252,22 @@ error: function( req, status, err ) {
 
 });	
 });
-$(".deleteRecord").click(function (){
-    var id = $(this).attr('id');
-
+$("#product_sreach").keyup(function (e){
+	var id = e.target.value;
+    // console.log(id)
 	var token = $("meta[name='csrf-token']").attr("content");
    
     $.ajax(
     {
-        url: "cart/"+id,
-        type: 'DELETE',
+        url: "product_search/"+id,
+        type: 'GET',
         data: {
-            "id": id,
+        //     "id": id,
             "_token": token,
         },
         success: function (data){
-			$("#cartcard").html(data);
+			$("#products").html(data);
+			// console.log(data)
         }
     });
    
@@ -297,6 +294,7 @@ function delete_record (id){
    
 
 }
+
 function add_to_cart(id){
 
          

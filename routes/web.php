@@ -41,9 +41,8 @@ use App\Models\store_dtl;
   Route::delete('/cart/{id}',[CartController::class,'remove'])->name('remove');
   Route::get('/g_catg/{id}',[StoreDtlController::class,'get_by_catogery'])->name('entity_catgery');
   Route::get('/g_store/{id}',[StoreDtlController::class,'get_by_store'])->name('entity_catgery');
-  Route::get('/invoice',function(){
-    return view('POS.main');
-  });
+  Route::get('/product_search/{id}',[StoreDtlController::class,'product_search']);
+  
     //  Route::get('/{page}', [AdminController::class, 'index']);
     route::resource('/sales',salesController::class);
      Route::get('/qr',[QrController::class,'index'])->name('qr');
