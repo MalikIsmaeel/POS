@@ -51,9 +51,10 @@
 														<div class="d-flex product-sale">
 															<i class="mdi mdi-heart text-danger ml-auto wishlist"></i>
 														</div>
-														<img class="w-100" src="{{URL::asset('assets/img/ecommerce/02.jpg')}}" alt="product-image">
-														<a href="{{route('add_cart',$entity->id)}}" class="adtocart"> <i class="las la-shopping-cart "></i>
+														<img class="w-100" src="{{URL::asset('assets/img/ecommerce/02.jpg')}}" alt="product-image" id="{{$entity->id}}">
+														<!-- <a href="{{route('add_cart',$entity->id)}}" class="adtocart"> <i class="las la-shopping-cart "></i> -->
 														</a>
+														
 													</div>
 													<div class="text-center pt-3">
 														<h3 class="h6 mb-2 mt-4 font-weight-bold text-uppercase" style="width:fit-content !importatant">{{$entity->product_name}}</h3>
@@ -120,7 +121,7 @@
 										<thead>
 											
 										</thead>
-										<tbody>
+										<tbody id="tbody">
 										@php $total = 0 @endphp
 										@php $vat = 0 @endphp
 										@php $total_with_vat = 0 @endphp
@@ -130,7 +131,7 @@
 											@php $vat += $details['price'] * $details['qty']*0.15 @endphp
 											@php $total_with_vat += ($details['price'] * $details['qty']*0.15)+$details['price'] * $details['qty'] @endphp
 												<tr>
-											
+												<tr data-id="{{ $id }}">
 												<td>
 													<div class="media">
 														
@@ -148,14 +149,21 @@
 														</td>
 														<td>
 														<div class="form-group">
-															<input type="number" class="" style="width:50px" id="inputName" value="{{$details['qty']}}">
+															<input type="number" class="" style="width: 30px" id="qty" value="{{$details['qty']}}">
 																</div>
 														</td>
 														<td class="text-center text-lg text-medium">{{$details['qty']*$details['price']}}</td>
 														<td class="text-center text-lg text-medium">{{$details['qty']*$details['price']*0.15}}</td>
 														<td class="text-center text-lg text-medium">{{($details['qty']*$details['price']*0.15)+$details['qty']*$details['price']}}</td>
-														<td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
-													
+														<td class="text-center">
+														
+														 <td class="actions" data-th="">
+														 <meta name="csrf-token" content="{{ csrf_token() }}">
+                       										 <button class="btn btn-danger btn-sm deleteRecord" id="{{$id}}"><i class="fa fa-trash"></i></button>
+                    </td>
+														
+														
+														
 													</tr>
             @endforeach
 			<!-- end foreach -->
@@ -203,4 +211,48 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
+<script>
+
+$(document).ready(function(){
+	
+    $('img').click(function(){
+
+         var id=$(this).attr('id');
+         console.log(id)
+        $.ajax({
+            url: "cart/"+id,
+            method: "GET",
+            type:"JSON",
+    //         // data:id,
+        success:function(data){
+			$("#tbody").html(data);
+        },
+        error: function( req, status, err ) {
+            console.log( 'something went wrong', status, err );
+        }
+        
+    });
+});
+$(".deleteRecord").click(function (){
+    var id = $(this).attr('id');
+
+	var token = $("meta[name='csrf-token']").attr("content");
+   
+    $.ajax(
+    {
+        url: "cart/"+id,
+        type: 'DELETE',
+        data: {
+            "id": id,
+            "_token": token,
+        },
+        success: function (data){
+			$("#tbody").html(data);
+        }
+    });
+   
+});
+});
+</script>
+
 @endsection

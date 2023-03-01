@@ -38,7 +38,7 @@ class POScontroller extends Controller
         
      
         // return view('POS.additems',['data'=>$data]);
-        return view('POS.ppp',['data'=>$data]);
+        return view('POS.main',['data'=>$data]);
        
         
     }

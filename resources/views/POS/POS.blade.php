@@ -32,14 +32,9 @@
 <body>
 <div class="col-md-8">
     <div class="row">
-        <form action="" method="get">
-        @foreach($data['catogeries'] as $catogery)
-        
-        <button id='{{$catogery->id}}'>{{$catogery->catogery_name}}</button>
-        
-        @endforeach
-        </form>
-       
+    @foreach($data['catogeries'] as $catogery)
+        <button id="{{$catogery->id}}">{{$catogery->catogery_name}}</button>
+       @endforeach
     </div>
     <div class="row">
         <div id="datas">
@@ -50,33 +45,32 @@
 <div class="col-md-4"></div>
 <script>
     
-    $(document).ready(function() {
-//         let btn=target.id;
-$('#buttonDemoAjax').on('click',function (id){
-//   let  product=[[1,2],[4,5]];
-//   var successed =0;
-    $.ajax({
-            url: "{{ route('entity_catgery',"+id") }}",
+$(document).ready(function(){
+    $('img').click(function(){
+         var id=$(this).attr('id');
+         alert(id);
+        $.ajax({
+            url: "g_catg/"+id,
             method: "GET",
-            dataType: 'json',
-//     //         data: {
-//     //           id:id
-//     //         },
-    
-            success: function (data,status) {
-         
-             
-            
-            },
-            error: function( req, status, err ) {
+            type:"JSON",
+    //         // data:id,
+        success:function(data){
+            // $.each(data, function(i) {             
+            // alert(data[i].id);
+            // $('#datas').append(data[i].id+"<br>"+data[i].product_name+"<br>").html;         
+        // });  
+            // $('#datas').append(data);
+            console.log('yes');
+        },
+        error: function( req, status, err ) {
             console.log( 'something went wrong', status, err );
         }
         
-        });
-      
-//         console.log(product)
- });
+    });
 });
+});
+      
+ 
 </script>
 
 

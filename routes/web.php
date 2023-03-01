@@ -36,16 +36,25 @@ use App\Models\store_dtl;
 
   Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
   Route::get('/cart',[CartController::class,'show'])->name('cart');
-  Route::get('/cart/{id}',[CartController::class,'addTocart'])->name('add_cart');
+  Route::get('/checkout',[CartController::class,'checkout'])->name('chechout');
+  Route::get('/cart/{id}',[CartController::class,'addToCart'])->name('add_cart');
+  Route::delete('/cart/{id}',[CartController::class,'remove'])->name('remove');
   Route::get('/g_catg/{id}',[StoreDtlController::class,'get_by_catogery'])->name('entity_catgery');
   Route::get('/invoice',function(){
-    return dd(session('cart'));
+    return view('POS.main');
   });
     //  Route::get('/{page}', [AdminController::class, 'index']);
     route::resource('/sales',salesController::class);
      Route::get('/qr',[QrController::class,'index'])->name('qr');
      Route::POST('/qr',[QrController::class,'generate'])->name('qr');
-// 
+  
+   Route::get('/getrequest/{id}',function($id){
+    if(Request::ajax()){
+      return response()->json(store_dtl::where('catogery_id',$id)->get());
+    }
+    // return var_dump(store_dtl::where('id',2)->get());
+    return response()->json(store_dtl::where('id',2)->get());
+   })->name('getrequest');
 Route::resource('/user',UserController::class);
 Route::resource('/POS',POScontroller::class);
 Route::resource('/catogrey',CatogeryController::class);
