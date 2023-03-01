@@ -177,5 +177,20 @@ class StoreDtlController extends Controller
     
     
     }
+
+    public function get_by_store($id){
+        $products ='';
+        if($id==0){
+            $products = store_dtl::get() ;
+        }
+        else {
+
+
+        $products = store_dtl::where('store_name',$id)->get() ;
+        }
+        return view('POS.products',['products'=>$products ]);
+    
+    
+    }
     
 }

@@ -1,51 +1,15 @@
 @extends('layouts.master')
 @section('css')
 @endsection
-@section('page-header')
-				<!-- breadcrumb -->
-				<div class="breadcrumb-header justify-content-between">
-					<div class="my-auto">
-						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">Pages</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Empty</span>
-						</div>
-					</div>
-					<div class="d-flex my-xl-auto right-content">
-						<div class="pr-1 mb-3 mb-xl-0">
-							<button type="button" class="btn btn-info btn-icon ml-2"><i class="mdi mdi-filter-variant"></i></button>
-						</div>
-						<div class="pr-1 mb-3 mb-xl-0">
-							<button type="button" class="btn btn-danger btn-icon ml-2"><i class="mdi mdi-star"></i></button>
-						</div>
-						<div class="pr-1 mb-3 mb-xl-0">
-							<button type="button" class="btn btn-warning  btn-icon ml-2"><i class="mdi mdi-refresh"></i></button>
-						</div>
-						<div class="mb-3 mb-xl-0">
-							<div class="btn-group dropdown">
-								<button type="button" class="btn btn-primary">14 Aug 2019</button>
-								<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuDate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<span class="sr-only">Toggle Dropdown</span>
-								</button>
-								<div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuDate" data-x-placement="bottom-end">
-									<a class="dropdown-item" href="#">2015</a>
-									<a class="dropdown-item" href="#">2016</a>
-									<a class="dropdown-item" href="#">2017</a>
-									<a class="dropdown-item" href="#">2018</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- breadcrumb -->
-@endsection
 @section('content')
 				<!-- row -->
-				<div class="row">
+				<div class="row mt-3 bg-grey">
                    <div class="col-md-8">
 				   <div class="card">
 							<div class="card-body p-2">
 								<div class="input-group">
-								<select class="form-control select2">
-											<option label="products.." value="0">
+								<select class="form-control select2" id="stores">
+											<option label="Store" value="0">
 											</option>
 											@foreach ($data['stores'] as $store)
 											<option value="{{$store->id}}">
@@ -56,7 +20,7 @@
 										</select>   
 									
 								<select class="form-control select2 col-6 mr-3 ml-3" id="category">
-											<option label="products.." value="0">
+											<option label="catogery" value="0">
 											</option>
 											@foreach ($data['catogeries'] as $catogery)
 											<option value="{{$catogery->id}}">
@@ -108,8 +72,10 @@
 															<i class="mdi mdi-heart-outline ml-auto wishlist"></i>
 														</div>
 														<img class="w-100" src="{{URL::asset('assets/img/ecommerce/11.jpg')}}" alt="product-image">
-														<a href="{{route('add_cart',$entity->id)}}" class="adtocart"> <i class="las la-shopping-cart "></i>
+														<a href="" class="adtocart"> <i class="las la-shopping-cart "></i>
 														</a>
+														<button type="button" class="btn btn-success btn-sm" style="width: 100%;" data-toggle="modal" data-target="#modal1">modal1</button>
+
 													</div>
 													<div class="text-center pt-3">
 														<h6 class="h6 mb-2 mt-4 font-weight-bold text-uppercase">Handbag</h6>
@@ -126,19 +92,7 @@
 											</div>
 										</div>
 									
-										<ul class="pagination product-pagination mr-auto float-left">
-											<li class="page-item page-prev disabled">
-												<a class="page-link" href="#" tabindex="-1">Prev</a>
-											</li>
-											<li class="page-item active"><a class="page-link" href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#">4</a></li>
-											<li class="page-item"><a class="page-link" href="#">5</a></li>
-											<li class="page-item page-next">
-												<a class="page-link" href="#">Next</a>
-											</li>
-										</ul>
+										
 									</div>
 								</div>
 								<div class="col-xl-4 col-lg-4 col-md-12 mb-3 mb-md-0">
@@ -166,16 +120,14 @@
 														
 																<div class="media-body">
 																	<div class="card-item-desc mt-0">
-																		<h6 class="mt-0 text-uppercase" style="width:50px"> {{$details['product_name']}}</h6>
-																		<dl class="card-item-desc-1">
-																		<dt>price: </dt>
-																		<dd>{{$details['price']}}</dd>
-																		</dl>
+																		<h6 class="mt-0 text-uppercase" style=""> {{$details['product_name']}}</h6>
+																		
 																		
 																	</div>
 																</div>
 															</div>
 														</td>
+														<td>{{$details['price']}}</td>
 														<td>
 														<div class="form-group">
 															<input type="number" class="" style="width: 30px" id="qty" value="{{$details['qty']}}">
@@ -236,8 +188,25 @@
 				<!-- row closed -->
 			</div>
 			<!-- Container closed -->
+			<div class="modal hide fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myModalLabel"></h4>
+          </div>
+          <div class="modal-body">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+          </div>
+        </div>
+      </div>
+    </div>
 		</div>
 		<!-- main-content closed -->
+		
 @endsection
 @section('js')
 <script>
@@ -266,7 +235,27 @@ error: function( req, status, err ) {
 
 });	
 });
+$('#stores').on('change',function(e)
+ {
+    console.log(e);
+    var str_id = e.target.value;
 
+$.ajax({
+   url: "g_store/"+str_id,
+   method: "GET",
+   type:"JSON",
+//         // data:id,
+success:function(data){
+//    $("#cartcard").html(data);
+$("#products").html(data);
+
+},
+error: function( req, status, err ) {
+   console.log( 'something went wrong', status, err );
+}
+
+});	
+});
 $(".deleteRecord").click(function (){
     var id = $(this).attr('id');
 

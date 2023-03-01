@@ -40,6 +40,7 @@ use App\Models\store_dtl;
   Route::get('/cart/{id}',[CartController::class,'addToCart'])->name('add_cart');
   Route::delete('/cart/{id}',[CartController::class,'remove'])->name('remove');
   Route::get('/g_catg/{id}',[StoreDtlController::class,'get_by_catogery'])->name('entity_catgery');
+  Route::get('/g_store/{id}',[StoreDtlController::class,'get_by_store'])->name('entity_catgery');
   Route::get('/invoice',function(){
     return view('POS.main');
   });
