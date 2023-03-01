@@ -116,7 +116,7 @@
 						<div class="card">
 						
 							<div class="card-header border-bottom border-top pt-3 pb-3 mb-0 font-weight-bold text-uppercase">Filter</div>
-							<div class="card-body">
+							<div class="card-body" id="cartcard">
 							<table class="table slide table-hover mb-0 table-borderless">
 										<thead>
 											
@@ -159,7 +159,7 @@
 														
 														 <td class="actions" data-th="">
 														 <meta name="csrf-token" content="{{ csrf_token() }}">
-                       										 <button class="btn btn-danger btn-sm deleteRecord" id="{{$id}}"><i class="fa fa-trash"></i></button>
+                       										 <button class="btn btn-danger btn-sm deleteRecord" id="{{$id}}" onclick="delete_record ({{$id}})"><i class="fa fa-trash"></i></button>
                     </td>
 														
 														
@@ -184,7 +184,7 @@
 								<td>
                                    <h3>Total</h3>
 								</td>
-								<td style="margin: right 15px;px">{{$total}}</td>
+								<td style="margin: right 15px">{{$total}}</td>
 						  </tr>
 						  <tr>
 								<td>
@@ -225,7 +225,7 @@ $(document).ready(function(){
             type:"JSON",
     //         // data:id,
         success:function(data){
-			$("#tbody").html(data);
+			$("#cartcard").html(data);
         },
         error: function( req, status, err ) {
             console.log( 'something went wrong', status, err );
@@ -247,12 +247,32 @@ $(".deleteRecord").click(function (){
             "_token": token,
         },
         success: function (data){
-			$("#tbody").html(data);
+			$("#cartcard").html(data);
         }
     });
    
 });
 });
+function delete_record (id){
+    // var d = this.id;
+// console.log(id);
+	var token = $("meta[name='csrf-token']").attr("content");
+   
+    $.ajax(
+    {
+        url: "cart/"+id,
+        type: 'DELETE',
+        data: {
+            "id": id,
+            "_token": token,
+        },
+        success: function (data){
+			$("#tbody").html(data);
+        }
+    });
+   
+
+}
 </script>
 
 @endsection

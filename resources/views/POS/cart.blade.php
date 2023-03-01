@@ -1,5 +1,9 @@
-
-                                        @php $total = 0 @endphp
+<table class="table slide table-hover mb-0 table-borderless">
+										<thead>
+											
+										</thead>
+										<tbody id="tbody">
+										@php $total = 0 @endphp
 										@php $vat = 0 @endphp
 										@php $total_with_vat = 0 @endphp
        									 @if(session('cart'))
@@ -36,7 +40,7 @@
 														
 														 <td class="actions" data-th="">
 														 <meta name="csrf-token" content="{{ csrf_token() }}">
-                       										 <button class="btn btn-danger btn-sm deleteRecord" id="{{$id}}"><i class="fa fa-trash"></i></button>
+                       										 <button class="btn btn-danger btn-sm deleteRecord" id="{{$id}}" onclick="delete_record ({{$id}})"><i class="fa fa-trash"></i></button>
                     </td>
 														
 														
@@ -45,4 +49,41 @@
             @endforeach
 			<!-- end foreach -->
         @endif 
-		@yield('script')
+											<!-- end if  -->
+										</tbody>
+									</table>
+							</div>
+							<div class="card-header border-bottom border-top pt-3 pb-3 mb-0 font-weight-bold text-uppercase">TOTAL</div>
+							
+
+
+
+							<div class="py-2 px-3">
+								</label>
+						<table class="table table-borderless">
+							<tr>
+								<td>
+                                   <h3>Total</h3>
+								</td>
+								<td style="margin: right 15px;px">{{$total}}</td>
+						  </tr>
+						  <tr>
+								<td>
+                                   <h3 >VAT</h3>
+								</td>
+								<td style="margin-roght:15px">{{$vat}}</td>
+						  </tr>
+						  <tr>
+								<td>
+                                   <h3>Total with vat</h3>
+								</td>
+								<td style="margin-right:10px">{{$total_with_vat}}</td>
+						  </tr>
+						</table>
+		@section('script')
+		
+$(".deleteRecord").click(function (){
+	<script>
+	
+</script>
+		@endsection
