@@ -22,7 +22,7 @@ class StoreDtlController extends Controller
     public function index()
     {
         $entity=store_dtl::where('active','=','1')->paginate(10);
-        $path = storage_public('imgs/' . $entity->photo);
+        // $path = storage_public('imgs/' . $entity->photo);
 
    
 
@@ -163,12 +163,17 @@ class StoreDtlController extends Controller
         ]);
         return redirect()->back()->with('success', 'Product Deleted successfully.');
     }
-    public function get_by_catogery(){
+    public function get_by_catogery($id){
+        $products ='';
+        if($id==0){
+            $products = store_dtl::get() ;
+        }
+        else {
 
 
-        $products = store_dtl::all() ;
-    
-        return response()->json(['products'=>$products ]);
+        $products = store_dtl::where('catogery_id',$id)->get() ;
+        }
+        return view('POS.products',['products'=>$products ]);
     
     
     }

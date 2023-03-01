@@ -41,7 +41,36 @@
 				<!-- row -->
 				<div class="row">
                    <div class="col-md-8">
-							<div class="row row-sm">
+				   <div class="card">
+							<div class="card-body p-2">
+								<div class="input-group">
+								<select class="form-control select2">
+											<option label="products.." value="0">
+											</option>
+											@foreach ($data['stores'] as $store)
+											<option value="{{$store->id}}">
+												{{$store->storecode}}
+											</option>
+											@endforeach
+											
+										</select>   
+									
+								<select class="form-control select2 col-6 mr-3 ml-3" id="category">
+											<option label="products.." value="0">
+											</option>
+											@foreach ($data['catogeries'] as $catogery)
+											<option value="{{$catogery->id}}">
+												{{$catogery->catogery_name}}
+											</option>
+											@endforeach
+											
+										</select>   
+										           
+								</div>
+							</div>
+						</div>
+						
+				   <div class="row row-sm" id="products">
 										
 										@foreach ($data['entity'] as $entity)
 										<div class="col-md-6 col-lg-6 col-xl-4  col-sm-6">
@@ -51,13 +80,13 @@
 														<div class="d-flex product-sale">
 															<i class="mdi mdi-heart text-danger ml-auto wishlist"></i>
 														</div>
-														<img class="w-100" src="{{URL::asset('assets/img/ecommerce/02.jpg')}}" alt="product-image" id="{{$entity->id}}">
-														<!-- <a href="{{route('add_cart',$entity->id)}}" class="adtocart"> <i class="las la-shopping-cart "></i> -->
+														<img class="w-100" src="{{URL::asset('assets/img/ecommerce/02.jpg')}}" alt="product-image" id="{{$entity->id}}" onclick="add_to_cart({{$entity->id}})">
+	<!-- <a href="{{route('add_cart',$entity->id)}}" class="adtocart"> <i class="las la-shopping-cart "></i> -->
 														</a>
 														
 													</div>
 													<div class="text-center pt-3">
-														<h3 class="h6 mb-2 mt-4 font-weight-bold text-uppercase" style="width:fit-content !importatant">{{$entity->product_name}}</h3>
+														<h6 class="h6 mb-2 mt-4 font-weight-bold text-uppercase" style="width:fit-content !importatant">{{$entity->product_name}}</h6>
 														<span class="tx-15 ml-auto">
 															<i class="ion ion-md-star text-warning"></i>
 															<i class="ion ion-md-star text-warning"></i>
@@ -83,7 +112,7 @@
 														</a>
 													</div>
 													<div class="text-center pt-3">
-														<h3 class="h6 mb-2 mt-4 font-weight-bold text-uppercase">Handbag</h3>
+														<h6 class="h6 mb-2 mt-4 font-weight-bold text-uppercase">Handbag</h6>
 														<span class="tx-15 ml-auto">
 															<i class="ion ion-md-star text-warning"></i>
 															<i class="ion ion-md-star text-warning"></i>
@@ -113,10 +142,10 @@
 									</div>
 								</div>
 								<div class="col-xl-4 col-lg-4 col-md-12 mb-3 mb-md-0">
-						<div class="card">
+						<div class="card" id="cartcard">
 						
 							<div class="card-header border-bottom border-top pt-3 pb-3 mb-0 font-weight-bold text-uppercase">Filter</div>
-							<div class="card-body" id="cartcard">
+							<div class="card-body">
 							<table class="table slide table-hover mb-0 table-borderless">
 										<thead>
 											
@@ -182,19 +211,19 @@
 						<table class="table table-borderless">
 							<tr>
 								<td>
-                                   <h3>Total</h3>
+                                   <h6>Total</h6>
 								</td>
 								<td style="margin: right 15px">{{$total}}</td>
 						  </tr>
 						  <tr>
 								<td>
-                                   <h3 >VAT</h3>
+                                   <h6 >VAT</h6>
 								</td>
 								<td style="margin-roght:15px">{{$vat}}</td>
 						  </tr>
 						  <tr>
 								<td>
-                                   <h3>Total with vat</h3>
+                                   <h6>Total with vat</h6>
 								</td>
 								<td style="margin-right:10px">{{$total_with_vat}}</td>
 						  </tr>
@@ -215,24 +244,29 @@
 
 $(document).ready(function(){
 	
-    $('img').click(function(){
+    
+	$('#category').on('change',function(e)
+ {
+    console.log(e);
+    var cat_id = e.target.value;
 
-         var id=$(this).attr('id');
-         console.log(id)
-        $.ajax({
-            url: "cart/"+id,
-            method: "GET",
-            type:"JSON",
-    //         // data:id,
-        success:function(data){
-			$("#cartcard").html(data);
-        },
-        error: function( req, status, err ) {
-            console.log( 'something went wrong', status, err );
-        }
-        
-    });
+$.ajax({
+   url: "g_catg/"+cat_id,
+   method: "GET",
+   type:"JSON",
+//         // data:id,
+success:function(data){
+//    $("#cartcard").html(data);
+$("#products").html(data);
+
+},
+error: function( req, status, err ) {
+   console.log( 'something went wrong', status, err );
+}
+
+});	
 });
+
 $(".deleteRecord").click(function (){
     var id = $(this).attr('id');
 
@@ -253,6 +287,7 @@ $(".deleteRecord").click(function (){
    
 });
 });
+
 function delete_record (id){
     // var d = this.id;
 // console.log(id);
@@ -267,12 +302,31 @@ function delete_record (id){
             "_token": token,
         },
         success: function (data){
-			$("#tbody").html(data);
+			$("#cartcard").html(data);
         }
     });
    
 
 }
+function add_to_cart(id){
+
+         
+        
+        $.ajax({
+            url: "cart/"+id,
+            method: "GET",
+            type:"JSON",
+    //         // data:id,
+        success:function(data){
+			$("#cartcard").html(data);
+			// console.log(data)
+        },
+        error: function( req, status, err ) {
+            console.log( 'something went wrong', status, err );
+        }
+        
+    });
+};
 </script>
 
 @endsection

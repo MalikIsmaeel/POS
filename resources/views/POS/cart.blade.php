@@ -1,4 +1,6 @@
-<table class="table slide table-hover mb-0 table-borderless">
+<div class="card-header border-bottom border-top pt-3 pb-3 mb-0 font-weight-bold text-uppercase">Filter</div>
+							<div class="card-body" id="cartcard">
+							<table class="table slide table-hover mb-0 table-borderless">
 										<thead>
 											
 										</thead>
@@ -63,27 +65,23 @@
 						<table class="table table-borderless">
 							<tr>
 								<td>
-                                   <h3>Total</h3>
+                                   <h6>Total</h6>
 								</td>
-								<td style="margin: right 15px;px">{{$total}}</td>
+								<td style="margin: right 15px">{{$total}}</td>
 						  </tr>
 						  <tr>
 								<td>
-                                   <h3 >VAT</h3>
+                                   <h6 >VAT</h6>
 								</td>
 								<td style="margin-roght:15px">{{$vat}}</td>
 						  </tr>
 						  <tr>
 								<td>
-                                   <h3>Total with vat</h3>
+                                   <h6>Total with vat</h6>
 								</td>
 								<td style="margin-right:10px">{{$total_with_vat}}</td>
 						  </tr>
 						</table>
-		@section('script')
-		
-$(".deleteRecord").click(function (){
-	<script>
-	
-</script>
-		@endsection
+								<button class="btn btn-primary-gradient mt-2 mb-2 pb-2" type="submit">Filter</button>
+							</div>
+						</div>
