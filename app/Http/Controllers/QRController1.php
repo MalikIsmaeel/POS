@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\GenerateRequest;
 use App\Http\Controllers\SallaController;
-use App\Models\sales;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use PDF;
 
@@ -22,7 +20,6 @@ class QRController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
         $this->logo = 'images/lion_head.png'; // https://www.silhouette.pics/83600/free-lion-head-tattoo-download.php
         $this->temporary_image_file_name = time() . '.png';
         $this->temporary_image_file_path = 'qr_images/' . $this->temporary_image_file_name;
@@ -36,36 +33,26 @@ class QRController extends Controller
 
     public function generate(GenerateRequest $request, SallaController $salla)
     {
-        $sales=sales::get()->last();
-        $qr_data = [
-            'seller_name'=>Auth::user()->name,
-            'vat_number'=>123456789101112,
-            'invoice_date'=>$sales->invoice_date, 
-            'total_amount'=>$sales->total_with_vat,
-          'vat_amount'=>$sales->total_with_vat,
-        ];
-        
-        
+        $qr_data = $request->validated();
         $base64_image = "";
 
-        // if ($request->has('qr_logo')) {
-        //     $this->base64_image_string = $salla->render_with_logo($qr_data, $this->logo);
-        // } else {
+        if ($request->has('qr_logo')) {
+            $this->base64_image_string = $salla->render_with_logo($qr_data, $this->logo);
+        } else {
             $this->base64_image_string = $salla->render($qr_data);
-        // }
+        }
 
-        // switch ($request->qr_options) {
-        //     case "download":
-                // return $this->download_image();
-        //         break;
-        //     case "store":
-        //         return $this->store_image();
-        //         break;
-        //     case "pdf":
+        switch ($request->qr_options) {
+            case "download":
+                return $this->download_image();
+                break;
+            case "store":
+                return $this->store_image();
+                break;
+            case "pdf":
                 return $this->pdf_file_with_image();
-        //         break;
-        // }
-        
+                break;
+        }
     }
 
     public function download_image()

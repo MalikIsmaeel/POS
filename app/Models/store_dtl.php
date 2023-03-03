@@ -15,6 +15,8 @@ class store_dtl extends Model
       'active',
       'product_name',
       'store_name',
+      'invoice_id',
+      'sub_total',
       'unit_id',
       'tax_id',
       'user_id',

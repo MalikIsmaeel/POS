@@ -1,7 +1,54 @@
-@extends('layouts.master')
-@section('css')
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template">
+		<meta name="Author" content="Spruko Technologies Private Limited">
+		<meta name="Keywords" content="admin,admin dashboard,admin dashboard template,admin panel template,admin template,admin theme,bootstrap 4 admin template,bootstrap 4 dashboard,bootstrap admin,bootstrap admin dashboard,bootstrap admin panel,bootstrap admin template,bootstrap admin theme,bootstrap dashboard,bootstrap form template,bootstrap panel,bootstrap ui kit,dashboard bootstrap 4,dashboard design,dashboard html,dashboard template,dashboard ui kit,envato templates,flat ui,html,html and css templates,html dashboard template,html5,jquery html,premium,premium quality,sidebar bootstrap 4,template admin bootstrap 4"/>
+		@include('layouts.head')
+	</head>
+
+	<body class="main-body app sidebar-mini">
+		<!-- Loader -->
+		<div id="global-loader">
+			<img src="{{URL::asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader">
+		</div>
+		<!-- /Loader -->
+				
+		<!-- main-content -->
+		<div class="">
+			@include('layouts.main-header')			
+			<!-- container -->
+			<div class="">
+				@yield('page-header')
+				@section('page-header')
+				<!-- breadcrumb -->
+				<div class="breadcrumb-header justify-content-between">
+					<div class="my-auto">
+						<div class="d-flex">
+							<h4 class="content-title mb-0 my-auto">Pages</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Empty</span>
+						</div>
+					</div>
+					<div class="d-flex my-xl-auto right-content">
+						<div class="pr-1 mb-3 mb-xl-0">
+							<button type="button" class="btn btn-info btn-icon ml-2"><i class="mdi mdi-filter-variant"></i></button>
+						</div>
+						<div class="pr-1 mb-3 mb-xl-0">
+							<button type="button" class="btn btn-danger btn-icon ml-2"><i class="mdi mdi-star"></i></button>
+						</div>
+						<div class="pr-1 mb-3 mb-xl-0">
+						<a href="{{ url('/') }}" class="btn btn-primary">EXIT</a>
+									</div>
+						<div class="mb-3 mb-xl-0">
+							
+						</div>
+					</div>
+				</div>
+				<!-- breadcrumb -->
 @endsection
-@section('content')
+<section>
 				<!-- row -->
 				<div class="row mt-3 bg-grey">
                    <div class="col-md-8">
@@ -39,7 +86,7 @@
 							</div>
 						</div>
 						
-				   <div class="row row-sm" id="products">
+				   <div class="row row-sm overflow-hidden" id="products">
 										
 										@foreach ($data['entity'] as $entity)
 										<div class="col-md-6 col-lg-6 col-xl-4  col-sm-6">
@@ -51,19 +98,13 @@
 														</div>
 														<img class="w-100" src="{{URL::asset('assets/img/ecommerce/02.jpg')}}" alt="product-image" id="{{$entity->id}}" onclick="add_to_cart({{$entity->id}})">
 	<!-- <a href="{{route('add_cart',$entity->id)}}" class="adtocart"> <i class="las la-shopping-cart "></i> -->
-														</a>
+														<!-- </a> -->
 														
 													</div>
 													<div class="text-center pt-3">
 														<h6 class="h6 mb-2 mt-4 font-weight-bold text-uppercase" style="width:fit-content !importatant">{{$entity->product_name}}</h6>
-														<span class="tx-15 ml-auto">
-															<i class="ion ion-md-star text-warning"></i>
-															<i class="ion ion-md-star text-warning"></i>
-															<i class="ion ion-md-star text-warning"></i>
-															<i class="ion ion-md-star-half text-warning"></i>
-															<i class="ion ion-md-star-outline text-warning"></i>
-														</span>
-														<h4 class="h5 mb-0 mt-2 text-center font-weight-bold text-danger">{{$entity->price}} <span class="text-secondary font-weight-normal tx-13 ml-1 prev-price">$79</span></h4>
+														
+														<h4 class="h5 mb-0 mt-2 text-center font-weight-bold text-danger">{{$entity->cost}} 
 													</div>
 												</div>
 											</div>
@@ -72,27 +113,9 @@
 										<div class="col-md-6 col-lg-6 col-xl-4  col-sm-6">
 											<div class="card">
 												<div class="card-body">
-													<div class="pro-img-box">
-														<div class="d-flex product-sale">
-															<i class="mdi mdi-heart-outline ml-auto wishlist"></i>
-														</div>
-														<img class="w-100" src="{{URL::asset('assets/img/ecommerce/11.jpg')}}" alt="product-image">
-														<a href="" class="adtocart"> <i class="las la-shopping-cart "></i>
-														</a>
-														<button type="button" class="btn btn-success btn-sm" style="width: 100%;" data-toggle="modal" data-target="#modal1">modal1</button>
+												<button type="button" class="btn btn-success btn-sm" style="width: 100%;" data-toggle="modal" data-target="#modal1">+</button>
 
-													</div>
-													<div class="text-center pt-3">
-														<h6 class="h6 mb-2 mt-4 font-weight-bold text-uppercase">Handbag</h6>
-														<span class="tx-15 ml-auto">
-															<i class="ion ion-md-star text-warning"></i>
-															<i class="ion ion-md-star text-warning"></i>
-															<i class="ion ion-md-star text-warning"></i>
-															<i class="ion ion-md-star-half text-warning"></i>
-															<i class="ion ion-md-star-outline text-warning"></i>
-														</span>
-														<h4 class="h5 mb-0 mt-2 text-center font-weight-bold text-danger">$19 <span class="text-secondary font-weight-normal tx-13 ml-1 prev-price">$39</span></h4>
-													</div>
+													
 												</div>
 											</div>
 										</div>
@@ -109,35 +132,39 @@
 										<thead>
 											
 										</thead>
-										<tbody id="tbody">
+										<tbody id="tbody" class="overflow-scroll">
 										@php $total = 0 @endphp
 										@php $vat = 0 @endphp
 										@php $total_with_vat = 0 @endphp
        									 @if(session('cart'))
         							    @foreach(session('cart') as $id => $details)
-											@php $total += ($details['price'] * $details['qty']*0.15)+$details['price'] * $details['qty'] @endphp
-											@php $vat += $details['price'] * $details['qty']*0.15 @endphp
-											@php $total_with_vat += ($details['price'] * $details['qty']*0.15)+$details['price'] * $details['qty'] @endphp
+											@php $total +=$details['cost'] * $details['qty'] @endphp
+											@php $vat += $details['cost'] * $details['qty']*0.15 @endphp
+											@php $total_with_vat = $total+$vat @endphp
 												<tr>
 												<tr data-id="{{ $id }}">
 												<td>
 													 {{$details['product_name']}}
 														</td>
-														<td>{{$details['price']}}</td>
+														<td>{{$details['cost']}}</td>
 														<td>
-														<div class="form-group">
-															<input type="number" class="" style="width: 30px" id="qty" value="{{$details['qty']}}">
+														<div class="form-group d-flex">
+														<button class="btn  btn-sm deleteRecord" id="{{$id}}" onclick="update_record ({{$id}},'+')"><i class="far fa-arrow-alt-circle-right"></i></button>
+														{{$details['qty']}}		
+														<button class="btn  btn-sm deleteRecord" id="{{$id}}" onclick="update_record ({{$id}},'-')"><i class="far fa-arrow-alt-circle-left"></i></button>
+        
+															
 																</div>
 														</td>
-														<td class="text-center text-lg text-medium">{{$details['qty']*$details['price']}}</td>
-														<td class="text-center text-lg text-medium">{{$details['qty']*$details['price']*0.15}}</td>
-														<td class="text-center text-lg text-medium">{{($details['qty']*$details['price']*0.15)+$details['qty']*$details['price']}}</td>
+														<td class="text-center text-lg text-medium">{{$details['qty']*$details['cost']}}</td>
+														<td class="text-center text-lg text-medium">{{$details['qty']*$details['cost']*0.15}}</td>
+														<td class="text-center text-lg text-medium">{{($details['qty']*$details['cost']*0.15)+$details['qty']*$details['cost']}}</td>
 														<td class="text-center">
 														
 														 <td class="actions" data-th="">
 														 <meta name="csrf-token" content="{{ csrf_token() }}">
                        										 <button class="btn btn-danger btn-sm deleteRecord" id="{{$id}}" onclick="delete_record ({{$id}})"><i class="fa fa-trash"></i></button>
-                    </td>
+																   </td>
 														
 														
 														
@@ -156,28 +183,31 @@
 
 							<div class="py-2 px-3">
 								</label>
-						<table class="table table-borderless">
-							<tr>
+								<form action="{{route('sales.store')}}" method="post">
+									@csrf
+						     <table class="table table-borderless">
+							 <tr>
 								<td>
                                    <h6>Total</h6>
 								</td>
-								<td style="margin: right 15px">{{$total}}</td>
-						  </tr>
-						  <tr>
+								<td style="margin: right 15px"><input type="text" name="total" id="" value="{{$total}}" readonly></td>
+						      </tr>
+						     <tr>
 								<td>
                                    <h6 >VAT</h6>
 								</td>
-								<td style="margin-roght:15px">{{$vat}}</td>
+								<td style="margin-roght:15px"><input type="text" name="vat" id="" value="{{$vat}}" readonly></td>
 						  </tr>
 						  <tr>
 								<td>
                                    <h6>Total with vat</h6>
 								</td>
-								<td style="margin-right:10px">{{$total_with_vat}}</td>
+								<td style="margin-right:10px"><input type="text" name="total_with_vat" id="" value="{{$total_with_vat}}" readonly></td>
 						  </tr>
-						</table>
-								<button class="btn btn-primary-gradient mt-2 mb-2 pb-2" type="submit">Filter</button>
+						 </table>
+								<button class="btn btn-primary-gradient mt-2 mb-2 pb-2" type="submit" onclick="window.print();">save</button>
 							</div>
+							</form>
 						</div>
 					</div>
 							</div>
@@ -198,13 +228,12 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
           </div>
         </div>
+		
       </div>
     </div>
 		</div>
 		<!-- main-content closed -->
-		
-@endsection
-@section('js')
+</section>
 <script>
 
 $(document).ready(function(){
@@ -314,6 +343,32 @@ function add_to_cart(id){
         
     });
 };
+
+function update_record(id,ch){
+
+         
+        
+$.ajax({
+	url: "update-cart/"+id+'/'+ch,
+	method: "patch",
+	type:"JSON",
+	data: {_token: '{{ csrf_token() }}'},
+//         // data:id,
+success:function(data){
+	// $("#cartcard").html(data);
+	$("#cartcard").html(data);
+},
+error: function( req, status, err ) {
+	console.log( 'something went wrong', status, err );
+}
+
+});
+};
 </script>
 
-@endsection
+				@include('layouts.sidebar')
+				@include('layouts.models')
+            	@include('layouts.footer')
+				@include('layouts.footer-scripts')	
+	</body>
+</html>

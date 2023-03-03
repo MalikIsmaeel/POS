@@ -47,14 +47,10 @@ use App\Models\store_dtl;
     route::resource('/sales',salesController::class);
      Route::get('/qr',[QrController::class,'index'])->name('qr');
      Route::POST('/qr',[QrController::class,'generate'])->name('qr');
-  
-   Route::get('/getrequest/{id}',function($id){
-    if(Request::ajax()){
-      return response()->json(store_dtl::where('catogery_id',$id)->get());
-    }
-    // return var_dump(store_dtl::where('id',2)->get());
-    return response()->json(store_dtl::where('id',2)->get());
-   })->name('getrequest');
+     Route::POST('/qr',[QrController::class,'generate'])->name('qr');
+    Route::patch('/update-cart/{id}/{op}',[CartController::class,'update'])->name('update-cart');
+    
+   
 Route::resource('/user',UserController::class);
 Route::resource('/POS',POScontroller::class);
 Route::resource('/catogrey',CatogeryController::class);

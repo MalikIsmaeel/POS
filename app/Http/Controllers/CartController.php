@@ -8,6 +8,12 @@ use App\Models\sales;
 use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        
+    }
     public function show(){
         return dd(session('cart'));
     }
@@ -16,16 +22,27 @@ class CartController extends Controller
         
         $product = store_dtl::findOrFail($id);
           $qty=1;
-        $cart = session()->get('cart', []);
-  
+          $cart = session()->get('cart', []);
+          $ivoice=sales::get()->last()->id;
+        if(isset($cart)){
+            
+            $ivoice++;
+        }
         if(isset($cart[$id])) {
             $cart[$id]["qty"]++;
         } else {
             $cart[$id] = [
                 "product_name" => $product->product_name,
+                "product_id"=>$id,
                 "qty"=>$qty,
-                "price" => $product->price,
-                
+                "unit_id"=>$product->unit_id,
+                "store_id"=>$product->store_name,
+                "cost" => $product->price,
+                "invoice_id"=>$ivoice,
+                "sub_total"=>$product->price*$product->price,
+                "tax"=>$product->price*$product->price*0.15,
+                "active"=>1,
+                "user_id"=>Auth::user()->id
             ];
         }
           
@@ -42,14 +59,28 @@ class CartController extends Controller
      *
      * @return response()
      */
-    public function update(Request $request)
+    public function update($id,$op)
     {
-        if($request->id && $request->qty){
+        if($id && $op){
             $cart = session()->get('cart');
-            $cart[$request->id]["qty"] = $request->qty;
+            if($op=='+'){
+                $cart[$id]["qty"]++;
+            }
+            if($op=='-'){
+                if($cart[$id]["qty"]==0){
+                
+                    unset($cart[$id]);
+                    
+                }
+                else{
+               --$cart[$id]["qty"];
+                }
+            }
+            
             session()->put('cart', $cart);
             session()->flash('success', 'Cart updated successfully');
         }
+        return view('POS.cart');
     }
   
     /**

@@ -16,16 +16,15 @@
 			<img src="{{URL::asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader">
 		</div>
 		<!-- /Loader -->
-		
+		@include('layouts.main-sidebar')		
 		<!-- main-content -->
-		
-			
+		<div class="main-content app-content">
+			@include('layouts.main-header')			
 			<!-- container -->
-			<div class="mt-3 container-fluid">
-				<!-- @yield('page-header') -->
+			<div class="container-fluid">
+				@yield('page-header')
 				@yield('content')
-			</div>
-			
+				@include('layouts.sidebar')
 				@include('layouts.models')
             	@include('layouts.footer')
 				@include('layouts.footer-scripts')	
