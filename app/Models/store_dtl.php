@@ -34,7 +34,9 @@ class store_dtl extends Model
     public function store(){
         return $this->belongsTo(store_mstr::class); 
     }
-      
+    public function sales_invoice(){
+        return $this->hasMany(sales_entity::class); 
+    }
 }
 // 
 //             

@@ -39,8 +39,8 @@ class CartController extends Controller
                 "store_id"=>$product->store_name,
                 "cost" => $product->price,
                 "invoice_id"=>$ivoice,
-                "sub_total"=>$product->price*$product->price,
-                "tax"=>$product->price*$product->price*0.15,
+                "sub_total"=>$qty * $product->price,
+                "tax"=>$product->price * $product->price*0.15,
                 "active"=>1,
                 "user_id"=>Auth::user()->id
             ];
@@ -127,7 +127,7 @@ class CartController extends Controller
                    $invoice['user_id']=Auth::user()->id;
                     $invoice['store_id']=$product->store_name;
                     $invoice['product_id']=$product->id;
-                    $invoice['sub_total']=$product->price*$product_cart['qty'];
+                    $invoice['sub_total']=$product->price * $product_cart['qty'];
             //        $invoice['invoice_id']=$invoice_id ?? 1;
                    $invoice['tax']=$invoice['sub_total'] * 0.15;
             // //        

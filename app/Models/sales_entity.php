@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\store_dtl;
 class sales_entity extends Model
 {
     use HasFactory;
@@ -20,4 +20,7 @@ class sales_entity extends Model
                'user_id',
                    'tax',
     ];
+    public function test(){
+        return $this->belongsTo(store_dtl::class); 
+    }
 }

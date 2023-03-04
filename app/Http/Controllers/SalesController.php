@@ -120,9 +120,10 @@ class SalesController extends Controller
           
               $this->base64_image_string = $salla->render($qr_data);
           
-                  return $this->pdf_file_with_image();
+                //   return $this->pdf_file_with_image();
           
-            //  return redirect()->back()->with('success', $inv.' Invoice Added successfully.');
+             return redirect()->back()->with('success', $inv.' Invoice Added successfully.');
+            // dd($this->base64_image_string);
               
     }
 
@@ -210,23 +211,32 @@ class SalesController extends Controller
         
         
     }
-    public function pdf_file_with_image()
+    public function pdf_file_with_image(SallaController $salla)
     {
-        $data = [
-            'title' => 'Invoice number: IN-123456789',
-            'date' => date('m/d/Y'),
-            'qr_image' => $this->image_html($this->base64_image_string),
+        $sales=sales::get()->last();
+        $sales_entity=sales_entity::where('invoice_id',$sales->id)->get() ;
+        $qr_data = [
+            'seller_name'=>Auth::user()->name,
+            'vat_number'=>123456789101112,
+            'invoice_date'=>$sales->invoice_date, 
+            'total_amount'=>$sales->total_with_vat,
+            'vat_amount'=>$sales->vat,
         ];
+        $this->base64_image_string = $salla->render($qr_data);
+        
+        $data = [
+            'title' => 'Invoice number:'.$sales->invoice_number,
+            'date' => $sales->invoice_date,
+            'qr_image' => $this->image_html($this->base64_image_string),
+            'total'=>$sales->total,
+            'total_vat'=>$sales->total_vat,
+            'total_with_vat'=>$sales->total_with_vat,
+        ];
+      
+      // return dd($sales_entity->test()->id);
+        return View('pdf-with-qr', $data,['entity'=>$sales_entity]);
 
-        // First method
-        // $pdf = \App::make('dompdf.wrapper');
-        // $pdf->loadHTML('<h1>Test</h1>');
-        // return $pdf->download();
-
-        // Second method
-        return View('pdf-with-qr', $data);
-
-        // return $pdf->download($this->temporary_pdf_file_name);
+        
     }
 
     public function decode_base64($base64_encoded_string)

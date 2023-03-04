@@ -42,7 +42,7 @@ use App\Models\store_dtl;
   Route::get('/g_catg/{id}',[StoreDtlController::class,'get_by_catogery'])->name('entity_catgery');
   Route::get('/g_store/{id}',[StoreDtlController::class,'get_by_store'])->name('entity_catgery');
   Route::get('/product_search/{id}',[StoreDtlController::class,'product_search']);
-  
+  route::get('/invoice',[salesController::class,'pdf_file_with_image']);
     //  Route::get('/{page}', [AdminController::class, 'index']);
     route::resource('/sales',salesController::class);
      Route::get('/qr',[QrController::class,'index'])->name('qr');

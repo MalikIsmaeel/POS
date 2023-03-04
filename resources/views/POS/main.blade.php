@@ -49,6 +49,30 @@
 				<!-- breadcrumb -->
 @endsection
 <section>
+@if ($errors->any())
+		@foreach ($errors->all() as $error)
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert">
+							<i class="fa fa-times"></i>
+						</button>
+						<strong>danger !</strong> {{$error}}
+					</div>
+</br>
+					@endforeach
+				
+				{{-- Message --}}
+@else
+@if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+			
+        </button>
+        <strong>Success !</strong> {{ session('success') }}
+   </div>
+   <iframe src="http://127.0.0.1:8000/invoice" style="display:none"></iframe>
+	@endif
+@endif
 				<!-- row -->
 				<div class="row mt-3 bg-grey">
                    <div class="col-md-8">
@@ -86,7 +110,7 @@
 							</div>
 						</div>
 						
-				   <div class="row row-sm overflow-hidden" id="products">
+				   <div class="row row-sm " id="products" style="overflow: scroll!important;">
 										
 										@foreach ($data['entity'] as $entity)
 										<div class="col-md-6 col-lg-6 col-xl-4  col-sm-6">
@@ -124,30 +148,30 @@
 									</div>
 								</div>
 								<div class="col-xl-4 col-lg-4 col-md-12 mb-3 mb-md-0">
-						<div class="card" id="cartcard">
+						<div class="card" id="cartcard" style="">
 						
 							<div class="card-header border-bottom border-top pt-3 pb-3 mb-0 font-weight-bold text-uppercase">Filter</div>
 							<div class="card-body">
 							<table class="table slide table-hover mb-0 table-borderless">
 										<thead>
-											
+										<tr><td>product</td><td>price</td><td>qty</td><td>vat</td><td>subtotal</td></tr>	
 										</thead>
-										<tbody id="tbody" class="overflow-scroll">
+										<tbody id="tbody"style="overflow: scroll;">
 										@php $total = 0 @endphp
 										@php $vat = 0 @endphp
 										@php $total_with_vat = 0 @endphp
        									 @if(session('cart'))
         							    @foreach(session('cart') as $id => $details)
 											@php $total +=$details['cost'] * $details['qty'] @endphp
-											@php $vat += $details['cost'] * $details['qty']*0.15 @endphp
+											@php $vat += $details['cost'] * $details['qty']* 0.15 @endphp
 											@php $total_with_vat = $total+$vat @endphp
 												<tr>
 												<tr data-id="{{ $id }}">
-												<td>
+												<td style="padding:0px !important">
 													 {{$details['product_name']}}
 														</td>
-														<td>{{$details['cost']}}</td>
-														<td>
+														<td style="padding:0px !important">{{$details['cost']}}</td>
+														<td style="padding:0px !important">
 														<div class="form-group d-flex">
 														<button class="btn  btn-sm deleteRecord" id="{{$id}}" onclick="update_record ({{$id}},'+')"><i class="far fa-arrow-alt-circle-right"></i></button>
 														{{$details['qty']}}		
@@ -156,15 +180,15 @@
 															
 																</div>
 														</td>
-														<td class="text-center text-lg text-medium">{{$details['qty']*$details['cost']}}</td>
-														<td class="text-center text-lg text-medium">{{$details['qty']*$details['cost']*0.15}}</td>
-														<td class="text-center text-lg text-medium">{{($details['qty']*$details['cost']*0.15)+$details['qty']*$details['cost']}}</td>
-														<td class="text-center">
+														<td class="text-center text-lg text-medium" style="padding:0px 0px !important">{{$details['qty']*$details['cost']}}</td>
+														<td class="text-center text-lg text-medium" style="padding:0px 0px !important">{{$details['qty']*$details['cost']*0.15}}</td>
+														<td class="text-center text-lg text-medium" style="padding:0px 0px !important">{{($details['qty']*$details['cost']*0.15)+$details['qty']*$details['cost']}}</td>
+														<td class="text-center" style="padding:0px 0px !important">
 														
-														 <td class="actions" data-th="">
+														 
 														 <meta name="csrf-token" content="{{ csrf_token() }}">
                        										 <button class="btn btn-danger btn-sm deleteRecord" id="{{$id}}" onclick="delete_record ({{$id}})"><i class="fa fa-trash"></i></button>
-																   </td>
+																   
 														
 														
 														
@@ -214,7 +238,7 @@
 				<!-- row closed -->
 			</div>
 			<!-- Container closed -->
-			<div class="modal hide fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+			<!-- <div class="modal hide fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -232,6 +256,8 @@
       </div>
     </div>
 		</div>
+		<iframe src="http://127.0.0.1:8000/invoice" style="overflow: scroll;"></iframe> -->
+
 		<!-- main-content closed -->
 </section>
 <script>

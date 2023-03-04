@@ -1,19 +1,19 @@
 
                         <div class="card-header border-bottom border-top pt-3 pb-3 mb-0 font-weight-bold text-uppercase">Filter</div>
-							<div class="card-body">
+							<div class="card-body" >
 							<table class="table slide table-hover mb-0 table-borderless">
-										<thead>
-											
-										</thead>
-										<tbody id="tbody">
+							<thead>
+							<tr><td>product</td><td>price</td><td>qty</td><td>sub</td><td>vat</td><td>sub/vat</td></tr>	
+							</thead>
+										<tbody id="tbody"style="width:max-content; hight: 50px;">
 										@php $total = 0 @endphp
 										@php $vat = 0 @endphp
 										@php $total_with_vat = 0 @endphp
        									 @if(session('cart'))
         							    @foreach(session('cart') as $id => $details)
-											@php $total += ($details['cost'] * $details['qty']*0.15)+$details['cost'] * $details['qty'] @endphp
+											@php $total += $details['cost'] * $details['qty'] @endphp
 											@php $vat += $details['cost'] * $details['qty']*0.15 @endphp
-											@php $total_with_vat += ($details['cost'] * $details['qty']*0.15)+$details['cost'] * $details['qty'] @endphp
+											@php $total_with_vat =$total+$vat  @endphp
 												<tr>
 												<tr data-id="{{ $id }}">
 												<td>
@@ -32,13 +32,13 @@
 														<td class="text-center text-lg text-medium">{{$details['qty']*$details['cost']}}</td>
 														<td class="text-center text-lg text-medium">{{$details['qty']*$details['cost']*0.15}}</td>
 														<td class="text-center text-lg text-medium">{{($details['qty']*$details['cost']*0.15)+$details['qty']*$details['cost']}}</td>
-														<td class="text-center">
+														<td class="text-center" style="padding:0px 0px !important">
 														
-														 <td class="actions" data-th="">
+														 
 														 <meta name="csrf-token" content="{{ csrf_token() }}">
                        										 <button class="btn btn-danger btn-sm deleteRecord" id="{{$id}}" onclick="delete_record ({{$id}})"><i class="fa fa-trash"></i></button>
-																  </td>
-															</td>
+																   
+</td>
 														
 														
 														
