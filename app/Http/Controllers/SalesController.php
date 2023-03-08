@@ -213,7 +213,7 @@ class SalesController extends Controller
     }
     public function pdf_file_with_image(SallaController $salla)
     {
-        $sales=sales::get()->last();
+        $sales=sales::get()->last() ?? 1;
         $sales_entity=sales_entity::where('invoice_id',$sales->id)->get() ;
         $qr_data = [
             'seller_name'=>Auth::user()->name,

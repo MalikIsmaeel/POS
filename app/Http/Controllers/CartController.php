@@ -23,7 +23,7 @@ class CartController extends Controller
         $product = store_dtl::findOrFail($id);
           $qty=1;
           $cart = session()->get('cart', []);
-          $ivoice=sales::get()->last()->id;
+          $ivoice=sales::get()->last()->id  ?? 1;
         if(isset($cart)){
             
             $ivoice++;

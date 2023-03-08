@@ -37,7 +37,7 @@
 							<li><a class="slide-item" href="{{ url('option/create') }}">adding options</a></li>
 							<li><a class="slide-item" href="{{ url('unit/create') }}">adding units</a></li>
 							<li><a class="slide-item" href="{{ url('store/create') }}">adding store</a></li>
-							<li><a class="slide-item" href="{{ url('entity/create') }}">adding products</a></li>
+						
 						</ul>
 					</li>
 									</ul>

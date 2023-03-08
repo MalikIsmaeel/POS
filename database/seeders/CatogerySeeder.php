@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use App\Models\catogery;
 class CatogerySeeder extends Seeder
 {
     /**
@@ -14,10 +14,14 @@ class CatogerySeeder extends Seeder
      */
     public function run()
     {
-      $data = [
-    'Clothing' => ['Woman Shoes', 'Men\'s Shirts'],
-    'Handy' => ['Smartphones', 'Smartwatches ']
-];
+   
+   catogery::create([
+    'catogery_name'=>'fruts',
+    'description'=>'',
+    'active'=>1,
+    'user_id'=>1]);
+
+   
 
 
 

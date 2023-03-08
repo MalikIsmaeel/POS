@@ -26,7 +26,7 @@ return new class extends Migration
             ->references('id')->on('store_mstrs')
             ->onDelete('cascade');
             $table->foreignId('product_id')
-            ->references('id')->on('store_dtl')
+            ->references('id')->on('store_dtls')
             ->onDelete('cascade');
             $table->foreignId('unit_id')
             ->references('id')->on('units')

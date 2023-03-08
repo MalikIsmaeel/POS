@@ -40,6 +40,8 @@
                         </div>
 
                         <div class="row mb-3">
+                        'email' : 'admin@gmail.com'
+                     'password' :123456'
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
