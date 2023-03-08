@@ -16,7 +16,14 @@ class DatabaseSeeder extends Seeder
     {
         
 
-        \App\Models\User::factory()->create(
-        )->count(5);
+        // $this->call(userseeder::class);
+
+        $this->call(UnitSeeder::class);
+        $this->call(CounterySeeder::class);
+        $this->call(CitySeeder::class);
+        $this->call(SubCitySeeder::class);
+        $this->call(OptionSeeder::class);
+        $this->call(StoreMstrSeeder::class);
+        $this->call(StoreDtlSeeder::class);
     }
 }
