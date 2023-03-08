@@ -12,6 +12,7 @@ use App\Models\countery;
 use App\Models\catogery;
 use App\Models\city;
 use App\Models\sub_city;
+use File;
 class StoreDtlController extends Controller
 {
     /**
@@ -22,7 +23,7 @@ class StoreDtlController extends Controller
     public function index()
     {
         $entity=store_dtl::where('active','=','1')->paginate(10);
-        // $path = storage_public('imgs/' . $entity->photo);
+        $path = storage_public('imgs/' . $entity->photo);
 
    
 
@@ -59,7 +60,7 @@ class StoreDtlController extends Controller
         $data['types']=option::get()->where('option_name','=','store_type');
         $data['units']=unit::get()->where('active','=','1');
         
-        return view('POS.additems',['data'=>$data]);
+        return view('store_dtl.insert',['data'=>$data]);
     }
 
     /**
@@ -73,7 +74,7 @@ class StoreDtlController extends Controller
         $request->validate([
             'qty'=>'required',
             'active'=>'required',
-            'product_id'=>'required',
+            
             'store_id'=>'required',
             'cost'=>'required',
             'unit_id'=>'required',
@@ -83,8 +84,7 @@ class StoreDtlController extends Controller
         $products=store_dtl::create( [
             'qty'=>$request->qty,
             'active'=>$request->active,
-            'product_id'=>$request->product_id,
-            'store_id'=>$request->store_id,
+            'store_name'=>$request->store_id,
             'unit_id'=>$request->unit_id,
             'cost'=>$request->cost,
             'user_id'=>$request->user_id
